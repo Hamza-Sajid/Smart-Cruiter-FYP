@@ -1,0 +1,114 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+  
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
+
+/* DIV SHADOWS - BOX_SHADOWS */
+.shadows{
+    background: #FFFFFF;
+    /* Shadow/Div-Shadow */
+    box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.3), 0px 2px 5px -1px rgba(50, 50, 93, 0.25);
+    border-radius: 5px;}
+
+    .modalShadow{
+        box-shadow: 0px 2px 8px rgba(99, 99, 99, 0.2);
+        border-radius: 5px;
+    }
+
+/* FONTS */
+.heading1
+{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 28px;
+    color: #333232;
+}
+.heading2
+{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 28px;
+    color: #333232;
+}
+
+.heading2b
+{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 28px;
+    color: #333232;
+}
+
+.heading3
+{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 28px;
+    color: #333232;
+}
+.heading4
+{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 28px;
+    color: #333232;
+}
+.line1
+{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.line2
+{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 28px;
+}
+
+.btnfont
+{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+
+.navMenuFont
+{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 28px;
+    color: #333232;
+}
+
+.topNavigationBoxShadow{
+    box-shadow: 0px 1px 4px rgba(74, 188, 227, 0.25);
+
+}
+
+
+/* COLORS */
+
+.secondryColor
+{
+    background: #2687F0;
+}
+
+.tertaryColor
+{
+    background: #E3F3FF;
+}
