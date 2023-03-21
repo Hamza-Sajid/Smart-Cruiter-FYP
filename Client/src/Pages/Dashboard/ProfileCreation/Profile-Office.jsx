@@ -1,6 +1,5 @@
 import React from "react";
 import Profile_Office2 from "../../../Components/ProfileSetup/Profile_Office2";
-
 export default function Profile_Office() {
   return (
     <div>

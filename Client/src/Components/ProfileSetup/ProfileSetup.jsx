@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Home from "../../assets/illustrations/home.svg";
-import MainButton from "../Common/MainButton";
 function ProfileSetup() {
   const navigate = useNavigate();
   return (

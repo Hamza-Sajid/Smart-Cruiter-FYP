@@ -1,21 +1,25 @@
 import React from "react";
+import { useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import NavigationTab from "../Dashboard/ProfileCreation/NavigationTab";
 
 function ProfileP1() {
   const navigate = useNavigate();
-  const imgFilehandler = (e) => {
-    if (e.target.files.length !== 0) {
-      uploadimg((imgfile) => [
-        ...imgfile,
-        URL.createObjectURL(e.target.files[0]),
-      ]);
-    }
-  };
+
+  const [selectedImage, setSelectedImage] = useState();
+
+  // --> To Handle Input Fields
+  const [profileData, SetProfileData] = useState({
+    name: "",
+    phone_no: "",
+    website: "",
+  });
+
+  console.log(selectedImage);
   return (
     <div>
       {" "}
-      <div className="bg-white modalShadow w-3/5 m-auto mt-10  pb-12 ">
+      <form className="bg-white modalShadow w-3/5 m-auto mt-10  pb-12 ">
         <NavigationTab
           first_value={"Organization"}
           second_value={""}
@@ -31,11 +35,18 @@ function ProfileP1() {
             </label>
             <input
               type="text"
-              name="f_name"
-              id="f_name"
+              name="name"
+              id="name"
               placeholder="Humza"
               autoComplete="on"
               className="input input-bordered h-10 w-4/5 max-w-xs"
+              value={profileData.name}
+              onChange={(e) =>
+                SetProfileData((oldValue) => ({
+                  ...oldValue,
+                  name: e.target.value,
+                }))
+              }
             />
           </div>
 
@@ -50,6 +61,13 @@ function ProfileP1() {
               placeholder="+92 - 1112-222"
               autoComplete="on"
               className="input input-bordered h-10 w-4/5 max-w-xs"
+              value={profileData.phone_no}
+              onChange={(e) =>
+                SetProfileData((oldValue) => ({
+                  ...oldValue,
+                  phone_no: e.target.value,
+                }))
+              }
             />
           </div>
         </div>
@@ -66,6 +84,13 @@ function ProfileP1() {
               placeholder="Meta.org"
               autoComplete="on"
               className="input input-bordered h-10 w-4/5 max-w-xs"
+              value={profileData.website}
+              onChange={(e) =>
+                SetProfileData((oldValue) => ({
+                  ...oldValue,
+                  website: e.target.value,
+                }))
+              }
             />
           </div>
 
@@ -82,19 +107,25 @@ function ProfileP1() {
             <input
               id="filePicker"
               style={{ visibility: "hidden" }}
-              onChange={imgFilehandler}
+              onChange={(event) => {
+                setSelectedImage(event.target.files[0]);
+              }}
               type="file"
             />
           </div>
         </div>
         <button
-          onClick={() => navigate("/profilesetup/organization")}
-          type="submit"
+          type="button"
+          onClick={() =>
+            navigate("/profilesetup/organization", {
+              state: { basicInfo: profileData, image: selectedImage },
+            })
+          }
           className=" mt-12 btnfont btn btn-wide  bg-primary border-none hover:bg-black text-center m-auto block "
         >
           NEXT{" "}
         </button>
-      </div>
+      </form>
     </div>
   );
 }

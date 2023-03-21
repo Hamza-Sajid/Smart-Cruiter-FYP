@@ -6,26 +6,45 @@ import {
   RegionDropdown,
   CountryRegionData,
 } from "react-country-region-selector";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Profile_Office2() {
+  const location = useLocation();
+  const { basicInfo, image } = location.state;
+  // console.log("this is:" + i);
+
   const navigate = useNavigate();
-  const [text, setText] = useState("");
+
+  const [department, setDepartment] = useState("");
   const [options, setOptions] = useState([]);
   const [city, SetCity] = useState();
-
+  const [address, setAddress] = useState();
   const [country, setCountry] = useState("");
   const [region, setRegion] = useState("");
-
-  const handleChange = (event) => {
-    setText(event.target.value);
-  };
-
+  const [text, setText] = useState();
+  //This method is handling the country - orgin -locater library
   const handleAdd = () => {
     setOptions([...options, text]);
     setText("");
   };
-
+  console.log(options);
+  console.log(department);
+  // => Making a stracture so i can pass as a object to next component
+  const office_Value = {
+    name: basicInfo.name,
+    phone_no: basicInfo.phone_no,
+    website: basicInfo.website,
+    logo: {
+      image,
+    },
+    department: {
+      options,
+    },
+    office_location: address,
+    city: city,
+    country: country,
+    region: region,
+  };
   return (
     <div>
       {" "}
@@ -49,7 +68,7 @@ function Profile_Office2() {
                 type="text"
                 value={text}
                 placeholder="Add Departments e.g HR"
-                onChange={handleChange}
+                onChange={(e) => setText(e.target.value)}
                 autoComplete="on"
                 className="input input-bordered h-10  max-w-xs inline mt-6"
               />
@@ -86,13 +105,15 @@ function Profile_Office2() {
               type="text"
               name="f_name"
               id="f_name"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
               placeholder="F-8/Makraz ISB"
               autoComplete="on"
               className="input input-bordered h-10 w-full max-w-xs"
             />
-
-            <div className="flex mb-0">
-              <div className="w-1/2 mr-1">
+            {/* 2nd Line UI Code */}
+            <div className="flex mb-0 justify-between">
+              <div className=" mr-1">
                 <label className="label line1 block " htmlFor="first_name">
                   City
                 </label>
@@ -102,36 +123,42 @@ function Profile_Office2() {
                   id="f_name"
                   value={city}
                   onChange={(e) => SetCity(e.target.value)}
-                  placeholder="Your city"
+                  placeholder="Attock"
                   autoComplete="on"
-                  className="input input-bordered h-10 w-full max-w-xs"
+                  className="input input-bordered h-10 w-11/12 max-w-xs"
                 />
               </div>
-              <div className="w-1/2 mr-1  ml-6">
+              <div className="w-9/12 mr-1  ">
                 <label className="label block line1" htmlFor="last_name">
-                  Country ~ Region
+                  Country
                 </label>
-
-                <div className=" w-full h-8">
+                {/* COUNTRY SELECT UI WITH LIBRARY */}
+                <div className=" h-8">
                   <CountryDropdown
-                    className="w-full h-8 inline rounded p-1"
+                    className="w-full  h-10 bg-transparent border border-solid border-gray-300 inline rounded "
                     value={country}
                     onChange={(val) => setCountry(val)}
                   />
-
-                  <RegionDropdown
-                    className="w-9/12  ml-8 h-8 mt-1 rounded p-1"
-                    country={country}
-                    value={region}
-                    onChange={(val) => setRegion(val)}
-                  />
                 </div>
+              </div>
+              <div>
+                <label className="label block line1 pl-8" htmlFor="last_name">
+                  Region
+                </label>
+                <RegionDropdown
+                  className="w-9/12  ml-8  mt-1  h-10 bg-transparent border border-solid border-gray-300 inline rounded "
+                  country={country}
+                  value={region}
+                  onChange={(val) => setRegion(val)}
+                />
               </div>
             </div>
           </div>
         </div>
         <button
-          onClick={() => navigate("/profilesetup/social")}
+          onClick={() =>
+            navigate("/profilesetup/social", { state: { office_Value } })
+          }
           type="submit"
           className=" mt-12 btnfont btn btn-wide  bg-primary border-none hover:bg-black text-center m-auto block "
         >

@@ -6,9 +6,28 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
 
 function Profile_Social3() {
+  const location = useLocation();
+  // const { basicInfo, image } = location.state;
+  console.log(location.state);
+
+  // => A new object which can handle old + new value to pass to the next component using useNavigate()
+  const [socialDetails, setSocialDetails] = useState({
+    facebook_url: "",
+    insta_url: "",
+    linkedin_url: "asd",
+    yt_url: "dsa",
+  });
+  console.log(socialDetails);
+
+  //An data object to pass it to the next Route
+  const Office_Profile = {
+    office_details: location.state,
+    social_links: socialDetails,
+  };
   const navigate = useNavigate();
   return (
     <div>
@@ -35,6 +54,12 @@ function Profile_Social3() {
                 type="url"
                 name="f_name"
                 id="f_name"
+                onChange={(e) =>
+                  setSocialDetails((oldValue) => ({
+                    ...oldValue,
+                    facebook_url: e.target.value,
+                  }))
+                }
                 placeholder="Facebook Profile"
                 autoComplete="on"
                 className="input input-bordered h-10 w-full max-w-xs inline"
@@ -47,6 +72,12 @@ function Profile_Social3() {
                 type="url"
                 name="f_name"
                 id="f_name"
+                onChange={(e) =>
+                  setSocialDetails((old) => ({
+                    ...old,
+                    linkedin_url: e.target.value,
+                  }))
+                }
                 placeholder="LinkedIn"
                 autoComplete="on"
                 className="input input-bordered h-10 w-full max-w-xs inline"
@@ -63,6 +94,12 @@ function Profile_Social3() {
                 type="url"
                 name="f_name"
                 id="f_name"
+                onChange={(e) =>
+                  setSocialDetails((old) => ({
+                    ...old,
+                    insta_url: e.target.value,
+                  }))
+                }
                 placeholder="Insta Page"
                 autoComplete="on"
                 className="input input-bordered h-10 w-full max-w-xs inline"
@@ -75,6 +112,12 @@ function Profile_Social3() {
                 type="url"
                 name="f_name"
                 id="f_name"
+                onChange={(e) =>
+                  setSocialDetails((old) => ({
+                    ...old,
+                    yt_url: e.target.value,
+                  }))
+                }
                 placeholder="YouTube Channel"
                 autoComplete="on"
                 className="input input-bordered h-10 w-full max-w-xs inline"
@@ -83,7 +126,9 @@ function Profile_Social3() {
           </div>
         </div>
         <button
-          onClick={() => navigate("/profilesetup/addteam")}
+          onClick={() =>
+            navigate("/profilesetup/addteam", { state: { Office_Profile } })
+          }
           type="submit"
           className=" mt-12 btnfont btn btn-wide  bg-primary border-none hover:bg-black text-center m-auto block "
         >

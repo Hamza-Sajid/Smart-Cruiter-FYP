@@ -20,7 +20,6 @@ UserRouter.post("/login", login);
 
 UserRouter.post("/register", register)
 
-
 // -> Verify Email
 
 UserRouter.get("/verify", VerifyMail)

@@ -1,9 +1,91 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import NavigationTab from "../Dashboard/ProfileCreation/NavigationTab";
 
 function ProfileAddTeam() {
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  var { Office_Profile } = location.state;
+
+  // console.log(Office_Profile);
+
+  //new object for POST API
+  const data = {
+    name: Office_Profile.office_details.office_Value.name,
+    phone: Office_Profile.office_details.office_Value.phone_no,
+    website_link: Office_Profile.office_details.office_Value.website,
+
+    logo_url: {
+      url: Office_Profile.office_details.office_Value.logo.image,
+    },
+    departments: {
+      list: Office_Profile.office_details.office_Value.department.options,
+    },
+
+    address: Office_Profile.office_details.office_Value.office_location,
+
+    city: Office_Profile.office_details.office_Value.city,
+    country: Office_Profile.office_details.office_Value.country,
+    region: Office_Profile.office_details.office_Value.region,
+    fb_link: Office_Profile.social_links.facebook_url,
+    insta_link: Office_Profile.social_links.insta_url,
+    linkedin_link: Office_Profile.social_links.linkedin_url,
+    yt_link: Office_Profile.social_links.yt_url,
+  };
+  const logo = {
+    url: Office_Profile.office_details.office_Value.logo.image,
+  };
+  console.log(logo.url);
+  // console.log(data);
+  const [team_details, setTeamDetails] = useState({
+    name: "null",
+    email: "as@asd.com",
+    role: "admin",
+  });
+
+  console.log(data);
+
+  //let's try with another object and pass it as a data
+
+  const cv = {
+    logo: logo.url,
+    detailed_data: data,
+    team_details: team_details,
+  };
+  const [type, setType] = useState();
+  const post_Method = () => {
+    var formData = new FormData();
+    formData.append("logo", logo.url);
+    formData.append("detailed_data", data);
+    formData.append("team_data", team_details);
+
+    // let formData = new FormData(); //formdata object
+
+    // formData.append("name", "ABC"); //append the values with key, value pair
+    // formData.append("age", 20);
+
+    // axios POST request
+
+    // axios POST request
+    const options = {
+      url: "http://localhost:3000/profile/setup",
+      method: "POST",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        // "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      data: cv,
+    };
+    axios(options).then((response) => {
+      console.log(response);
+    });
+  };
+
   return (
     <div>
       {" "}
@@ -32,6 +114,13 @@ function ProfileAddTeam() {
                 type="text"
                 name="f_name"
                 id="f_name"
+                value={team_details.name}
+                onChange={(e) =>
+                  setTeamDetails((old) => ({
+                    ...old,
+                    name: e.target.value,
+                  }))
+                }
                 placeholder="Name"
                 autoComplete="on"
                 className="input input-bordered h-10 max-w-xs inline"
@@ -46,6 +135,13 @@ function ProfileAddTeam() {
                 type="email"
                 name="f_name"
                 id="f_name"
+                value={team_details.email}
+                onChange={(e) =>
+                  setTeamDetails((old) => ({
+                    ...old,
+                    email: e.target.value,
+                  }))
+                }
                 placeholder="Email@abc.com"
                 autoComplete="on"
                 className="input input-bordered h-10 max-w-xs inline"
@@ -56,12 +152,17 @@ function ProfileAddTeam() {
               <label className="label line1" htmlFor="role">
                 Role
               </label>
-              <select className="select select-bordered">
+              <select
+                className="select select-bordered"
+                onChange={(e) =>
+                  setTeamDetails((old) => ({ ...old, role: e.target.value }))
+                }
+              >
                 <option disabled selected>
                   Pick one
                 </option>
-                <option>View Only</option>
-                <option>Full Access</option>
+                <option value={"View Only"}>View Only</option>
+                <option value={"Full Access"}>Full Access</option>
               </select>
             </div>
           </div>
@@ -101,18 +202,24 @@ function ProfileAddTeam() {
               <label className="label line1" htmlFor="role">
                 Role
               </label>
-              <select className="select select-bordered">
+              <select
+                className="select select-bordered"
+                onChange={(e) =>
+                  setTeamDetails((old) => ({ ...old, role: e.target.value }))
+                }
+              >
                 <option disabled selected>
                   Pick one
                 </option>
-                <option>View Only</option>
-                <option>Full Access</option>
+                <option value={"View Only"}>View Only</option>
+                <option value={"Full Access"}>Full Access</option>
               </select>
             </div>
           </div>
         </div>
         <button
-          onClick={() => navigate("/profilesetup/sucess")}
+          // onClick={() => navigate("/profilesetup/sucess")}
+          onClick={post_Method}
           type="submit"
           className=" mt-12 btnfont btn btn-wide  bg-primary border-none hover:bg-black text-center m-auto block "
         >

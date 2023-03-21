@@ -31,7 +31,7 @@ const OrganizationSchema = new mongoose.Schema({
     departments: {
         type: [String],
         min: 1,
-        required: true,
+
     },
     office_address: {
         type: String,
@@ -62,41 +62,21 @@ const OrganizationSchema = new mongoose.Schema({
         type: String,
         required: [true, 'YT URL is required'],
     },
-    team_members: [
-        {
-            name: String,
-            email: String,
-            role: String
-        }
-    ]
-
-    // team_members:
-    // {
-    //     type: [String],
-    //     name: String,
-    //     email: String,
-    //     role: String
-
-    // }
-
     // team_members: [
+
     //     {
-
-    //         name: {
-    //             type: String,
-    //             required: [true, 'Team Member Name is required'],
-    //         },
-    //         email: {
-    //             type: String,
-
-    //             required: [true, 'Team Member Email@ is required'],
-    //         },
-    //         role: {
-    //             type: String,
-    //             required: [true, 'Team Member Role is required'],
-    //         }
+    //         name: String,
+    //         email: String,
+    //         role: String
     //     }
     // ]
+    team_members: [{
+
+        name: { type: String, required: true },
+        email: { type: String, required: true, max: 20 },
+        role: { type: String, required: true }
+
+    }]
 
 })
 

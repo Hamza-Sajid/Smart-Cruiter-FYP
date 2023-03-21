@@ -1,44 +1,46 @@
-const { json } = require('express');
+// -> IMPORTS
+const ProfileRouter = require('../Controllers/Setup Profile/Profile_Setup');
+const multer = require('multer')
+// -> INITIALIZATIONS
 const express = require('express');
-const OrganizationModal = require('../Models/Organization_Model');
-const userModel = require('../Models/User_Model');
-const app = express();
-const ProfileRouter = express.Router();
+const ProfileSetup = express.Router();
 
-ProfileRouter.post("/add", async (req, res) => {
-    const { username, password, organization_name, phoneNo, website, logo, departments, office_address, office_city, office_country, fb_url, linkedIn_url, insta_url, yt_url, team_members } = req.body;
+//* ** MULTER CONFIGURATION  ** */
 
-    // const checkUser = await userModel.findOne({ username: username });
-    // if (checkUser) {
-
-    const org = await new OrganizationModal({
-        "username": "CSduasdsa",
-        "password": "asjdlsa123",
-        "organization_name": "asdsa",
-        "phoneNo": 123213,
-        "website": "asd@asd.com",
-        "logo": "adsds",
-        "departments": ["hr", "markeeting"],
-        "office_address": "islamabad",
-        "office_city": "attock",
-        "office_country": "pakistan",
-        "fb_url": "https://google.com",
-        "linkedIn_url": "https://google.com",
-        "insta_url": "https://google.com",
-        "yt_url": "https://google.com",
-        "team_members": [{ "name": "hamza" }, { "email": "asd@asd.com" }, { "role": "admin" }]
-    })
-    try {
-        await org.save()
-        return res.send(200).json({ message: "user saved" });
-
-    } catch (error) {
-        return res.send(error)
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        //so it will store the images in the public directory
+        cb(null, "Models");
+    },
+    filename: function (req, file, cb) {
+        cb(null, new Date().toISOString() + file.originalname);
     }
-    return res.status(404).json({ message: "Invalid username" })
+});
 
-}
-)
+const multerFilter = (req, file, cb) => {
+    if (
+        file.mimetype === "image/png" ||
+        file.mimetype === "image/jpg" ||
+        file.mimetype === "image/jpeg"
+    ) {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+};
+
+const upload = multer({ storage: storage, multerFilter });
+
+// *******************************************************************
 
 
-module.exports = ProfileRouter;
+// -> MAIN CODE
+
+//1st Time Profile Setup Route
+ProfileSetup.post("/setup", ProfileRouter);
+
+ProfileSetup.post("/", (req, res) => {
+    res.send("welcome")
+})
+// -> EXPORT
+module.exports = ProfileSetup;
