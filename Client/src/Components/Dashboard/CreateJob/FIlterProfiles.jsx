@@ -6,7 +6,7 @@ import { BsPlusCircle } from "react-icons/bs";
 function FilterProfiles() {
   return (
     <div>
-      <h3 className="heading3">Filter Profile</h3>
+      <h3 className="heading4 ">Filter Profile</h3>
 
       <div className="modalShadow bg-white mt-2">
         <h4 className="heading3 pt-4 pb-3 text-center">Education</h4>

@@ -6,6 +6,7 @@ const cors = require("cors");
 const connection = require("./Config/Database.js");
 const UserRouter = require("./Routes/UserRoute");
 const ProfileRouter = require("./Routes/ProfileCreation");
+const JobRouter = require('./Routes/Jobs');
 
 //configration
 const app = express();
@@ -22,6 +23,7 @@ connection();
 
 app.use('/', UserRouter);
 app.use("/profile", ProfileRouter)
+app.use("/job", JobRouter)
 
 //app listening
 const port = process.env.PORT || 8080;

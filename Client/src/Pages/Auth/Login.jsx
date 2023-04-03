@@ -38,12 +38,18 @@ function Login() {
 
     axios(options)
       .then((response) => {
+        console.log(response);
         if (response.status == 200) {
+          //1st store the Token for authorization
+
+          const token = response.data.token;
+          localStorage.setItem("token", token);
           navigate("/home");
         }
       })
       .catch(function (error) {
         console.log(error);
+        //USING ALL EDGE CASES TO SHOW RELEVENT MESSSAGES ON INPUT
         if (error.response.status == 404) {
           SetError("No user found");
         } else if (error.response.status == 403) {

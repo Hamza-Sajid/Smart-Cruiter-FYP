@@ -38,7 +38,7 @@ function ProfileAddTeam() {
   const logo = {
     url: Office_Profile.office_details.office_Value.logo.image,
   };
-  console.log(logo.url);
+
   // console.log(data);
   const [team_details, setTeamDetails] = useState({
     name: "null",
@@ -57,32 +57,27 @@ function ProfileAddTeam() {
   };
   const [type, setType] = useState();
   const post_Method = () => {
-    var formData = new FormData();
-    formData.append("logo", logo.url);
-    formData.append("detailed_data", data);
-    formData.append("team_data", team_details);
-
-    // let formData = new FormData(); //formdata object
-
-    // formData.append("name", "ABC"); //append the values with key, value pair
-    // formData.append("age", 20);
-
-    // axios POST request
-
     // axios POST request
     const options = {
       url: "http://localhost:3000/profile/setup",
       method: "POST",
-      method: "POST",
+
       headers: {
         Accept: "application/json",
+        Authorization: localStorage.getItem("token"),
         // "Content-Type": "multipart/form-data",
         "Content-Type": "application/json;charset=UTF-8",
       },
       data: cv,
     };
     axios(options).then((response) => {
-      console.log(response);
+      if (response.status == 200) {
+        navigate("/profilesetup/sucess");
+      } else if (response.status == 404) {
+        alert("NO USER WITH THIS USERNAME EXIST IN THE SYSTEM");
+      } else {
+        alert("Something went wrong, try again with proper data");
+      }
     });
   };
 

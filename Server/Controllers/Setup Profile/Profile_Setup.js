@@ -6,6 +6,7 @@ const cloud = require("../../Config/Cloudnary.js");
 
 const OrganizationModal = require('../../Models/Organization_Model.js');
 const userModel = require('../../Models/User_Model.js');
+const { findOneAndUpdate } = require('../../Models/Organization_Model.js');
 const ProfileRouter = async (req, res, next) => {
     //    --> ORGANIZATION DEATILS EXTRACTION
 
@@ -43,18 +44,17 @@ const ProfileRouter = async (req, res, next) => {
     // const img_url = img.secure_url;
 
     // -> so 1st check is there is valid reg user which is trying to setup org account
-    const checkUser = await userModel.findOne({ username: 'Hamza' })
-    if (checkUser) {
+    const checkUser = await userModel.findById(req.body.userID)
+    if (checkUser.org_registered != true) {
 
 
         const org = await new OrganizationModal({
-            "username": 'IamKhan2',
+            "username": checkUser.username,
             "password": "Hamza123",
             "organization_name": org_name,
             "phoneNo": phone,
             "website": website_link,
             "logo": "Temp_URL",
-            // "departments": ` ['hr'],['markeeting']`,
             "departments": departments2,
 
             "office_address": address,
@@ -66,7 +66,23 @@ const ProfileRouter = async (req, res, next) => {
             "yt_url": insta_link,
             "team_members": data
         })
+
+
+
+        findOneAndUpdate
+
         try {
+
+            //Now 1st i have to get the acutall id value from _id with this code
+
+            var user_id = org._id;
+            user_id = user_id.toString();
+            const profile = await userModel.findOneAndUpdate(
+                { _id: req.body.userID }, // replace with the organization ID
+                { $set: { org_registered: true, org_id: user_id } }, // use $set operator to update the field
+                { new: true }, // return the updated document
+            );
+            await profile.save();
             await org.save()
 
             return res.status(200).json({ message: "user saved" });
@@ -79,6 +95,11 @@ const ProfileRouter = async (req, res, next) => {
 
     }
 
+
+    else if (checkUser.org_registered == true) {
+        console.log('already organizaion is REGISTERED  :-> STATUS  = ' + checkUser.org_registered);
+        return res.status(400).json({ message: "Already Organization Setup On This Profile" })
+    }
     return res.status(404).json({ message: "Invalid username" })
 }
 
