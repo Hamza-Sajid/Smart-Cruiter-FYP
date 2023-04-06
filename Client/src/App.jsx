@@ -15,6 +15,9 @@ import Profile_Sucess from "./Pages/Dashboard/ProfileCreation/Profile-Sucess";
 import CreateJob from "./Pages/CreateJob/CreateJob";
 import PostJob from "./Pages/CreateJob/PostJob";
 import JobDetails from "./Pages/CreateJob/JobDetails";
+import PostedJobs from "./Pages/EndUser/postedJobs";
+import PostedJobDescription from "./Pages/EndUser/PostedJobDescription";
+import PostedJobApplyForm from "./Pages/EndUser/PostedJobApplyForm";
 
 function App() {
   return (
@@ -34,6 +37,14 @@ function App() {
         <Route path="profilesetup/social" element={<ProfileSocial />} />
         <Route path="profilesetup/addteam" element={<ProfileTeam_Members />} />
         <Route path="profilesetup/sucess" element={<Profile_Sucess />} />
+        {/* END USER */}
+
+        <Route path="portal/job" element={<PostedJobs />} />
+        <Route
+          path="portal/job/description/:id"
+          element={<PostedJobDescription />}
+        />
+        <Route path="portal/job/apply/:id" element={<PostedJobApplyForm />} />
       </Routes>
 
       {/* UNCOMMENT TO LOAD PAGES 1 BY 1 */}

@@ -21,12 +21,13 @@ function CreatedJobElement() {
 
       axios(options).then((response) => {
         console.log(response);
-        setData(response.data);
+        setData(response.data.jobs);
       });
     };
 
     fetchData();
   }, []);
+
   return (
     <div className="flex flex-wrap gap-6">
       {data?.map((e, index) => {
