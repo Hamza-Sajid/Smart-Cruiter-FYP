@@ -9,10 +9,10 @@ const GetAllPostedJobs = async (req, res, next) => {
     const fetchAllPostedJobs = await Job.find();
 
     if (fetchAllPostedJobs) {
-        res.status(200).json({ fetchAllPostedJobs })
+        return res.status(200).json({ fetchAllPostedJobs })
     }
     else {
-        res.status(400).json({ message: "No job found" })
+        return res.status(400).json({ message: "No job found" })
     }
 }
 

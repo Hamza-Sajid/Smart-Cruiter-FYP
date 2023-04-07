@@ -11,71 +11,44 @@ const JobRouter = express.Router();
 JobRouter.post("/post", PostJobRouter)
 JobRouter.post("/get-jobs", GetJob);
 JobRouter.post("/get-jobs/details", GetSelectedJobDescription);
-JobRouter.post("/get-all-jobs", GetAllPostedJobs)
+JobRouter.get("/get-all-jobs", GetAllPostedJobs)
 
-
-
-
-// ~~~~~~~~~~~~~~~~~~~~~
-//  HANDLING UPLOAD FILE
-// ~~~~~~~~~~~~~~~~~~~~~
-
-
-
-
+//* ~~~~~~~~FILE - UPLOAD  -  API ~~~~~~~~~~ **/ 
 //* ** MULTER CONFIGURATION  ** */
+// var storage = multer.diskStorage({
 
-// const storage = multer.diskStorage({
 //     destination: function (req, file, cb) {
-//         //so it will store the images in the public directory
-//         cb(null, "uploads");
+//         cb(null, 'uploads')
 //     },
 //     filename: function (req, file, cb) {
-//         cb(null, new Date().toISOString() + file.originalname);
+//         cb(null, file.originalname)
 //     }
-// });
-
-// const multerFilter = (req, file, cb) => {
-//     if (
-//         file.mimetype === "image/png" ||
-//         file.mimetype === "image/jpg" ||
-//         file.mimetype === "image/jpeg"
-//     ) {
-//         cb(null, true);
-//     } else {
-//         cb(null, false);
-//     }
-// };
-
-// const upload = multer({ storage: storage, multerFilter });
+// })
+// var upload = multer({ storage: storage })
 
 
 
-// const upload = multer({
-//     storage: multer.memoryStorage(),
-//     limits: { fileSize: 5 * 1024 * 1024 }, // 5MB file size limit
-//     fileFilter: (req, file, cb) => {
-//         if (file.mimetype !== 'application/pdf') {
-//             return cb(new Error('Invalid file type, only PDF files are allowed'));
-//         }
-//         cb(null, true);
-//     },
-// });
-// *******************************************************************
 
-// SET STORAGE
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads')
+        cb(null, 'uploads/');
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname)
+        cb(null, Date.now() + '-' + file.originalname);
     }
-})
+});
 
-var upload = multer({ storage: storage })
+const upload = multer({ storage: storage });
+
+//  The correct method was to use upload.array() but it was giving error 
+//  so for time being i am gona use .any method
+
+JobRouter.post("/apply-to-job", upload.any('profile', 'resume'), ApplyForJob)
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-JobRouter.post("/apply-to-job", upload.single('profile'), ApplyForJob)
+
+
+
 
 module.exports = JobRouter;

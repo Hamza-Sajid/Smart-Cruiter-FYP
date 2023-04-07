@@ -1,25 +1,79 @@
 const express = require("express")
 const app = express();
-
+const cloudinary_config = require('../../Config/Cloudnary.js');
+const Cloudinary = require('cloudinary');
+const Candidate = require("../../Models/Candidate.js");
+const Job = require("../../Models/JobModel.js");
 
 const ApplyForJob = async (req, res, next) => {
-    // console.log(req.file);
-    // console.log(req.body)
-    // return res.send(req.body)
-    // console.log(req.file);
-    // console.log(req.file)
-    // res.send(req.body)
+    // ~~~~~~~~~~IMAGE HANDLING CODE~~~~~~~~~~~~~
 
 
-    try {
-        // console.log(req.file);
-        // console.log(req.body)
-        console.log(req.file.path)
-        res.send(req.file);
-    } catch (err) {
-        res.send(400);
+
+    if (!req.files) {
+        return res.status(400).json({ message: "Must Attach Your Resume" })
     }
 
+    // const resume = await Cloudinary.v2.uploader.upload(req.files[0].path, { folder: 'Resume' });
+    // const resume_url = resume.secure_url;
+
+    // const img = await Cloudinary.v2.uploader.upload(req.files[1].path, { folder: 'ProfilePictures' });
+    // const img_url = img.secure_url;
+
+    const resume_url = 'asd';
+    const img_url = 'dsa';
+
+    const { org_id, job_id } = req.body;
+
+
+    const { firstName, lastName, gender, address, city, zipCode } = req.body.personalInfo;
+
+    const { institute, level, majors } = req.body.accadamics;
+
+    const { title, duration, companyName } = req.body.profesional;
+
+    const { emailAddress, phoneNo, linkedinProfile, gitHubProfile } = req.body.contact;
+
+
+    const ApplyingCandidate = await new Candidate({
+        firstName: firstName,
+        lastName: lastName,
+        gender: gender,
+        address,
+        city: city,
+        zipCode: zipCode,
+        institute: institute,
+        level: level,
+        majors: majors,
+        title: title,
+        duration: duration,
+        companyName: companyName,
+        emailAddress: emailAddress,
+        phoneNo: phoneNo,
+        linkedinProfile: linkedinProfile,
+        gitHubProfile: gitHubProfile,
+        profilePic: img_url,
+        ResumeURL: resume_url,
+        jobID: job_id,
+        orgID: org_id
+    })
+    //Finding and updating job applicant_applied to +1
+    const findJob = await Job.findById(job_id)
+
+    if (findJob) {
+        findJob.applicants_no = +1;
+    }
+    try {
+        await ApplyingCandidate.save();
+        await findJob.save()
+    } catch (error) {
+        console.log(error)
+        return res
+            .status(500)
+            .json({ error: "An error occurred while saving the user." });
+    }
+
+    return res.status(200).json({ message: "Job posted!" })
 }
 
 module.exports = ApplyForJob;

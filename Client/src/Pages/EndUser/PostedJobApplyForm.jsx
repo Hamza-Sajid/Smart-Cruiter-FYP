@@ -8,9 +8,12 @@ import {
   FcAssistant,
   FcAdvertising,
   FcPlus,
+  FcCamera,
+  FcDocument,
 } from "react-icons/fc";
 
 import { FiPlusCircle } from "react-icons/fi";
+import { useLocation, useParams } from "react-router-dom";
 
 function PostedJobApplyForm() {
   const [educationDetailsPart2, setEducationaDetailsPart2] = useState(false);
@@ -48,17 +51,35 @@ function PostedJobApplyForm() {
   });
 
   const [file, setFile] = useState();
+  const [resume, setResume] = useState();
 
-  const handleFileUpload = (e) => {
-    setFile(e.target.files[0]);
+  const location = useLocation();
+  const Organization_id = location.state?.orgID;
+  const { id } = useParams();
+
+  const handleResumeUpload = (e) => {
+    setResume(e.target.files[0]);
   };
 
+  const handleProfilePic = (e) => {
+    console.log("setting profule pic");
+    setFile(e.target.files[0]);
+  };
+  console.log(file);
+  console.log(resume);
   const submit = async (e) => {
     e.preventDefault();
     // const formData = await new FormData();
     // await formData.append("file", file);
     const userData = {
       image: file,
+      resume: resume,
+      personalInfo: personalInformation,
+      accadamics: educationalInformation,
+      profesional: professionalInformation,
+      contact: contactInformation,
+      org_id: Organization_id,
+      job_id: id,
     };
     console.log(userData);
     const options = {
@@ -230,6 +251,37 @@ function PostedJobApplyForm() {
               }));
             }}
           />
+        </div>
+        {/* ~~~~~ PROFILE PIC UPLOAD UI CODE  ~~~~~~~~*/}
+        <div className="mt-2 flex justify-center m-auto p-4 items-center bg-transparent shadow-md cursor-pointer h-1/2 rounded-md">
+          <div
+            className="border bg-transparent border-gray-400 border-dashed rounded-md p-4 flex flex-col items-center justify-center
+            hover:bg-gray-100
+          "
+          >
+            <FcCamera className="text-4xl block" />
+            <h3 className="mt-2 line1">Click here to Upload profile picture</h3>
+            <input
+              type="file"
+              name="profile"
+              onChange={handleProfilePic}
+              id=""
+              alt="select profile picture"
+              accept="image/*"
+              style={{
+                position: "relative",
+                top: "5px",
+                background: "white",
+                color: "white",
+                display: "block",
+                margin: "auto",
+                width: "6.5em",
+                border: "1px solid black",
+                boxShadow: "2px 2px 2px 1px white",
+                borderRadius: "12px",
+              }}
+            />
+          </div>
         </div>
         {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
         {/* ACCAADAMIC QUALITFICATION */}
@@ -2018,30 +2070,48 @@ function PostedJobApplyForm() {
             value={personalInformation.gitHubProfile}
           />
         </div>
+
+        <div className="mt-4 flex justify-center m-auto p-4 items-center bg-transparent shadow-md cursor-pointer h-1/2 rounded-md">
+          <div
+            className="border bg-transparent border-gray-400 border-dashed rounded-md p-4 flex flex-col items-center justify-center
+            hover:bg-gray-100
+          "
+          >
+            <FcDocument className="text-4xl block" />
+            <h3 className="mt-2 line1">Upload Your Resume(Pdf)</h3>
+            <input
+              type="file"
+              name="resume"
+              onChange={handleResumeUpload}
+              id=""
+              alt="select resume  pdf"
+              accept="application/pdf"
+              style={{
+                position: "relative",
+                top: "5px",
+                background: "white",
+                color: "white",
+                display: "block",
+                margin: "auto",
+                width: "6.5em",
+                border: "1.5px solid black",
+                boxShadow: "2px 2px 2px 1px white",
+                borderRadius: "12px",
+              }}
+            />
+          </div>
+        </div>
         <div className="flex w-full justify-center mt-12">
           <button
             style={{ textTransform: "capitalize" }}
             className="btn bg-blue-600 border-none w-40 text-lg line1"
-            onClick={handleSubmit}
+            onClick={submit}
           >
             Submit
           </button>
         </div>
       </div>
 
-      <h1>Upload Files</h1>
-      <form enctype="multipart/form-data" method="POST">
-        <input
-          type="file"
-          id="name"
-          name="profile"
-          onChange={handleFileUpload}
-        />
-
-        <button className="btn" type="submit" onClick={submit}>
-          Upload
-        </button>
-      </form>
       <footer className="bg-gray-700 h-12 flex justify-center items-center">
         <h3 className="text-white line1">Powerd By Smart Cruiter </h3>
       </footer>

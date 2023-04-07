@@ -52,6 +52,11 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    applicants_no: {
+        type: Number,
+        required: true,
+        default: 0
+    }
 });
 
 const Job = mongoose.model("Job", jobSchema);

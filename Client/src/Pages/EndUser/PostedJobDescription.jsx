@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function PostedJobDescription() {
   const { id } = useParams();
@@ -26,10 +26,15 @@ function PostedJobDescription() {
   useEffect(() => {
     fetchJobDescription();
   }, [0]);
-  console.log(details);
-  const htmlContent =
-    "<b>This is bold text</b> and <i>this is italic text</i>.";
 
+  const navigate = useNavigate();
+  const handle = () => {
+    const { org_id, _id } = details;
+
+    navigate(`/portal/job/apply/${_id}`, {
+      state: { orgID: org_id },
+    });
+  };
   return (
     <div>
       <div className="w-full h-56 bg-gray-700 shadow-xl">
@@ -51,7 +56,9 @@ function PostedJobDescription() {
           className="mt-6"
           dangerouslySetInnerHTML={{ __html: details?.job_description }}
         ></p>
-        <button className="btn mt-6 block m-auto shadow-lg">Apply</button>
+        <button className="btn mt-6 block m-auto shadow-lg" onClick={handle}>
+          Apply
+        </button>
         <h4 className="font-bold">
           Pay : {details?.salaryRangeFrom} ~~ to ~~ {details?.salaryRangeUpto}
         </h4>
