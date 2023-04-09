@@ -1,6 +1,32 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import ShowMoreIcon from "../../../assets/icons/show_more.svg";
-function AppliedApplicantProfile() {
+function AppliedApplicantProfile({ id }) {
+  // const [candidates, setCandidates] = useState();
+  // useEffect(() => {
+  //   const fetchData = () => {
+  //     // axios POST request
+  //     const options = {
+  //       url: "http://localhost:3000/job/get-posted-job-details",
+  //       method: "POST",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json;charset=UTF-8",
+  //       },
+  //       data: {
+  //         job_id: id,
+  //       },
+  //     };
+
+  //     axios(options).then((response) => {
+  //       setCandidates(response.data);
+  //     });
+  //   };
+
+  //   fetchData();
+  // }, [0]);
+  // console.log(candidates);
+
   return (
     <div className="ml-8">
       <div className="bg-white p-6  mt-9 w-11/12 flex  rounded-lg border border-solid border-gray-200">

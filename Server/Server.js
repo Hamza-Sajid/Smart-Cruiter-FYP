@@ -8,6 +8,7 @@ const connection = require("./Config/Database.js");
 const UserRouter = require("./Routes/UserRoute");
 const ProfileRouter = require("./Routes/ProfileCreation");
 const JobRouter = require('./Routes/Jobs');
+const RecruitmentRouter = require('./Routes/RecruitmentCycle.js');
 
 
 //configration
@@ -21,14 +22,6 @@ app.use(express.json());
 
 app.use(bodyParser.json());
 
-// app.use(bodyParser.urlencoded({ extended: true }));
-
-// app.use(express.urlencoded({ extended: true, limit: "50mb" }));
-// app.use(express.json({ limit: "50mb" }));
-// app.use(express.urlencoded({
-//     extended: true
-// }));
-
 
 connection();
 
@@ -39,7 +32,7 @@ connection();
 app.use('/', UserRouter);
 app.use("/profile", ProfileRouter)
 app.use("/job", JobRouter)
-
+app.use('/details', RecruitmentRouter)
 //app listening
 const port = process.env.PORT || 8080;
 app.listen(port, () => {

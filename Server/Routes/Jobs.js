@@ -5,6 +5,8 @@ const GetJob = require('../Controllers/Jobs/GetJobs');
 const GetSelectedJobDescription = require('../Controllers/Jobs/GetSelectedJobDescription');
 const PostJobRouter = require('../Controllers/Jobs/PostJob');
 const multer = require('multer');
+const GetOrganizationPostedJobApplicants = require('../Controllers/Jobs/GetOrganizationPostedJob');
+
 
 const JobRouter = express.Router();
 
@@ -12,23 +14,19 @@ JobRouter.post("/post", PostJobRouter)
 JobRouter.post("/get-jobs", GetJob);
 JobRouter.post("/get-jobs/details", GetSelectedJobDescription);
 JobRouter.get("/get-all-jobs", GetAllPostedJobs)
+JobRouter.post("/get-posted-job-details", GetOrganizationPostedJobApplicants)
+
+
+
+
+
+
+
+
+
+
 
 //* ~~~~~~~~FILE - UPLOAD  -  API ~~~~~~~~~~ **/ 
-//* ** MULTER CONFIGURATION  ** */
-// var storage = multer.diskStorage({
-
-//     destination: function (req, file, cb) {
-//         cb(null, 'uploads')
-//     },
-//     filename: function (req, file, cb) {
-//         cb(null, file.originalname)
-//     }
-// })
-// var upload = multer({ storage: storage })
-
-
-
-
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/');
@@ -37,9 +35,7 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + '-' + file.originalname);
     }
 });
-
 const upload = multer({ storage: storage });
-
 //  The correct method was to use upload.array() but it was giving error 
 //  so for time being i am gona use .any method
 

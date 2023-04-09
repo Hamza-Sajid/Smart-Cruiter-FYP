@@ -20,12 +20,6 @@ function CreateJob() {
 
         <div className="ml-8 flex flex-wrap  gap-6 mt-12 w-11/12 m-auto p-2">
           <CreatedJobElement />
-          {/* 
-          <CreatedJobElement />
-
-          <CreatedJobElement />
-
-          <CreatedJobElement /> */}
         </div>
       </div>
     </div>

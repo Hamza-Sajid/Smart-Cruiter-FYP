@@ -19,6 +19,8 @@ import PostedJobs from "./Pages/EndUser/postedJobs";
 import PostedJobDescription from "./Pages/EndUser/PostedJobDescription";
 import PostedJobApplyForm from "./Pages/EndUser/PostedJobApplyForm";
 
+import AppliedCandidateDetails from "./Pages/RecruitmentCycle/AppliedCandidateDetails";
+
 function App() {
   return (
     <div>
@@ -29,7 +31,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/jobs" element={<CreateJob />} />
         <Route path="/postjob" element={<PostJob />}></Route>
-        <Route path="/JobDetails" element={<JobDetails />}></Route>
+        <Route path="/JobDetails/:id" element={<JobDetails />}></Route>
         <Route path="/verifyotp" element={<VerifyOPT />} />
         <Route path="/newpassword" element={<EnterNewPassword />} />
         <Route path="/profilesetup" element={<ProfileCreation />} />
@@ -37,6 +39,12 @@ function App() {
         <Route path="profilesetup/social" element={<ProfileSocial />} />
         <Route path="profilesetup/addteam" element={<ProfileTeam_Members />} />
         <Route path="profilesetup/sucess" element={<Profile_Sucess />} />
+
+        <Route
+          path="/JobDetails/applied/:id"
+          element={<AppliedCandidateDetails />}
+        />
+
         {/* END USER */}
 
         <Route path="portal/job" element={<PostedJobs />} />

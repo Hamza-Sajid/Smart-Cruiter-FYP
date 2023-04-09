@@ -31,7 +31,8 @@ function TopNavigationBar() {
         <img src={NotificationLogo} className="inline  mr-2" alt="" />
         <img
           className="hidden sm:inline"
-          src="https://seeklogo.com/images/N/new-jazz-logo-D69BD35771-seeklogo.com.jpg"
+          src="
+        https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png"
           width={30}
           alt=""
         />

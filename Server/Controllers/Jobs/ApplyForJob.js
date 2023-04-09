@@ -14,14 +14,13 @@ const ApplyForJob = async (req, res, next) => {
         return res.status(400).json({ message: "Must Attach Your Resume" })
     }
 
-    // const resume = await Cloudinary.v2.uploader.upload(req.files[0].path, { folder: 'Resume' });
-    // const resume_url = resume.secure_url;
+    const resume = await Cloudinary.v2.uploader.upload(req.files[0].path, { folder: 'Resume' });
+    const resume_url = resume.secure_url;
 
-    // const img = await Cloudinary.v2.uploader.upload(req.files[1].path, { folder: 'ProfilePictures' });
-    // const img_url = img.secure_url;
+    const img = await Cloudinary.v2.uploader.upload(req.files[1].path, { folder: 'ProfilePictures' });
+    const img_url = img.secure_url;
 
-    const resume_url = 'asd';
-    const img_url = 'dsa';
+
 
     const { org_id, job_id } = req.body;
 
@@ -61,7 +60,7 @@ const ApplyForJob = async (req, res, next) => {
     const findJob = await Job.findById(job_id)
 
     if (findJob) {
-        findJob.applicants_no = +1;
+        findJob.applicants_no += 1;
     }
     try {
         await ApplyingCandidate.save();

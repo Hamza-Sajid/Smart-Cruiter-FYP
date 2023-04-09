@@ -1,12 +1,44 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import AppliedApplicantProfile from "../../Components/Dashboard/CreateJob/AppliedApplicantProfile";
 import FilterProfiles from "../../Components/Dashboard/CreateJob/FIlterProfiles";
 import FIlterProfiles from "../../Components/Dashboard/CreateJob/FIlterProfiles";
 import TopRcruitementCycle from "../../Components/Dashboard/CreateJob/TopRcruitementCycle";
 import LeftMenuBar from "../../Components/Dashboard/LeftMenuBar";
 import TopNavigationBar from "../../Components/Dashboard/TopNavigationBar";
-
+import ShowMoreIcon from "../../assets/icons/show_more.svg";
 function JobDetails() {
+  const { id } = useParams();
+  const [candidates, setCandidates] = useState();
+  useEffect(() => {
+    const fetchData = () => {
+      // axios POST request
+      const options = {
+        url: "http://localhost:3000/job/get-posted-job-details",
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        data: {
+          job_id: id,
+        },
+      };
+
+      axios(options).then((response) => {
+        setCandidates(response.data);
+      });
+    };
+
+    fetchData();
+  }, [0]);
+  //To handle nabvigation and move user to next page
+  const navigate = useNavigate();
+  const handleNavigation = (e) => {
+    navigate(`/JobDetails/applied/${e}`);
+  };
   return (
     <div className="flex bg-white">
       <div className="hidden sm:block w-2/12 bg-white h-screen ">
@@ -22,11 +54,94 @@ function JobDetails() {
               <FilterProfiles />
             </div>
 
-            <div className="bg- w-full">
-              <AppliedApplicantProfile />
+            <div className=" w-11/12 m-auto">
+              {/*  ~~ HANDLING WITH APPLICANT UI CODE DIRECTLY HERE INSTEAD OF
+              COMPONENTS */}
+              {candidates !== null
+                ? candidates?.map((e, index) => {
+                    return (
+                      <>
+                        <div
+                          onClick={(event) => handleNavigation(e._id)}
+                          className="cursor-pointer bg-white p-6  mt-9 w-11/12 flex m-auto  rounded-lg border border-solid border-gray-200"
+                        >
+                          {/* CANIDATE PROFILE PICTURE */}
 
-              <AppliedApplicantProfile />
+                          <div className="w-1/5">
+                            <img
+                              width={150}
+                              height={150}
+                              src={e.ResumeURL}
+                              alt=""
+                              className="rounded-full"
+                            />
+                          </div>
+                          {/* EDUCATION , CITY AND EXPERINCE STAT UI */}
+                          <div className="flex flex-col w-full ml-4">
+                            {/* NAME FIELD */}
+                            <div>
+                              <h3 className="heading2b">
+                                {e.firstName + " " + e.lastName}
+                              </h3>
+                            </div>
+                            <div className="flex justify-between mt-4">
+                              <div className="w-1/4 flex flex-col justify-center text-center border border-solid border-gray-400 rounded-lg  ">
+                                <div>
+                                  <h3 className="line1 font-medium">
+                                    Experience
+                                  </h3>
+                                </div>
+                                <div>
+                                  <h3>{e.duration[0] + "/year"}</h3>
+                                </div>
+                              </div>
+                              {/* EDUCATION STAT */}
+                              <div className="flex flex-col justify-center text-center border border-solid border-gray-400 rounded-lg w-2/6 ">
+                                <div>
+                                  <h3 className="line1 font-medium">
+                                    Education
+                                  </h3>
+                                </div>
+                                <div>
+                                  <h3>{e.level[0]}</h3>
+                                </div>
+                              </div>
+                              {/* CITY STAT */}
+                              <div className="flex flex-col justify-center text-center border border-solid border-gray-400 rounded-lg w-3/12 ">
+                                <div>
+                                  <h3 className="line1 font-medium">City</h3>
+                                </div>
+                                <div>
+                                  <h3>{e.city}</h3>
+                                </div>
+                              </div>
+                              <div className=" w-16">
+                                <button className="bg-gray-800 text-white p-1 h-10 w-20 rounded-3xl relative -top-12">
+                                  Applied
+                                </button>
 
+                                <img
+                                  className="float-right ml-2 cursor-pointer"
+                                  src={ShowMoreIcon}
+                                  width={18}
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })
+                : undefined}
+
+              {/* <AppliedApplicantProfile id={id} />
+
+              
+
+              <AppliedApplicantProfile /> */}
+
+              <h2>another one </h2>
               <AppliedApplicantProfile />
             </div>
           </div>
