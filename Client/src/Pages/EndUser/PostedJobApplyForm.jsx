@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 import {
   FcBusinessman,
@@ -13,12 +15,19 @@ import {
 } from "react-icons/fc";
 
 import { FiPlusCircle } from "react-icons/fi";
-import { useLocation, useParams } from "react-router-dom";
-
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import Congrats from "../../assets/illustrations/congrats.svg";
 function PostedJobApplyForm() {
+  // __ Modal to show sucess msg when user registration get complete
+  const [showModal, setShowModal] = useState(false);
+  // __  To store the Date Of Birth
+  const [startDate, setStartDate] = useState(new Date());
+
+  //to show form when user is seeing modal of success
+  const [hideForm, setHideForm] = useState("");
+  // __ FORM HANDLING STATES __
   const [educationDetailsPart2, setEducationaDetailsPart2] = useState(false);
   const [educationDetailsPart3, setEducationaDetailsPart3] = useState(false);
-
   const [experienceDetails, setExperienceDetails] = useState(false);
   const [value, setValue] = useState(1);
 
@@ -36,6 +45,12 @@ function PostedJobApplyForm() {
     level: [],
     majors: [],
   });
+
+  const [educationSessionInformation, setEducationSessionInformation] =
+    useState({
+      from: [],
+      to: [],
+    });
 
   const [professionalInformation, setProfessionalInformation] = useState({
     title: [],
@@ -62,26 +77,33 @@ function PostedJobApplyForm() {
   };
 
   const handleProfilePic = (e) => {
-    console.log("setting profule pic");
     setFile(e.target.files[0]);
   };
-  console.log(file);
-  console.log(resume);
+
   const submit = async (e) => {
     e.preventDefault();
     // const formData = await new FormData();
     // await formData.append("file", file);
+
+    const DoB = {
+      day: startDate.getDate(),
+      month: startDate.getMonth(),
+      year: startDate.getFullYear(),
+    };
+
     const userData = {
       image: file,
       resume: resume,
       personalInfo: personalInformation,
+      dob: DoB,
       accadamics: educationalInformation,
+      accadamicsSession: educationSessionInformation,
       profesional: professionalInformation,
       contact: contactInformation,
       org_id: Organization_id,
       job_id: id,
     };
-    console.log(userData);
+    // console.log(userData);
     const options = {
       url: "http://localhost:3000/job/apply-to-job",
       method: "POST",
@@ -94,34 +116,22 @@ function PostedJobApplyForm() {
     };
 
     axios(options).then((response) => {
-      console.log(response);
+      if (response.status == 200) {
+        setHideForm("none");
+        setShowModal(true);
+      } else if (response.status == 206) {
+        alert("Enter valid information in Form");
+      } else {
+        alert("Enter all information as they were asked");
+      }
+      // console.log(response);
     });
   };
 
-  console.log(educationalInformation);
-  const handleSubmit = () => {
-    console.log("funciton running");
-    // axios POST request
-    const options = {
-      url: "http://localhost:3000/job/apply-to-job",
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      },
-      data: {
-        personal: personalInformation,
-        accadamics: educationalInformation,
-        profesional: professionalInformation,
-        contact: contactInformation,
-      },
-    };
-
-    axios(options).then((response) => {
-      console.log(response);
-    });
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    navigate("/portal/job");
   };
-
   return (
     <div>
       <div className="bg-gray-700 h-40 flex items-center justify-center shadow-xl">
@@ -129,8 +139,34 @@ function PostedJobApplyForm() {
           Product Manager
         </h1>
       </div>
+      {/* ~~~ ON SUCESS JOB APPLY MODAL UI CODE */}
 
-      <div className="w-4/5 m-auto bg-gray-100 rounded-lg shadows flex flex-wrap gap-6 p-8 mt-12 mb-12">
+      {showModal == true ? (
+        <div className="z-10 bg-white justify-center w-1/3 left-1/3 4 mt-12 p-6 modalShadow m-auto absolute">
+          <h1 className="heading2b text-blue-500 text-center">Congrats!</h1>
+          <img
+            className="block m-auto mt-4"
+            width={180}
+            src={Congrats}
+            alt=""
+          />
+          <p className="line1 text-center mt-4">
+            Your applicant is subbmited successfully
+          </p>
+          <button
+            onClick={handleGoBack}
+            className="shadow bg-blue-500 p-3 rounded-lg block m-auto heading4 text-white mt-4 hover:bg-gray-600"
+          >
+            Go Back
+          </button>
+        </div>
+      ) : undefined}
+
+      {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
+      <div
+        style={{ display: `${hideForm}` }}
+        className="w-4/5 m-auto bg-gray-100 rounded-lg shadows flex flex-wrap gap-6 p-8 mt-12 mb-12"
+      >
         <div className="block w-full">
           <h2 className="text-3xl heading2 text-center mb-8">
             Fill out the form
@@ -146,6 +182,7 @@ function PostedJobApplyForm() {
             className="h-10 input input-bordered w-full"
             id="text"
             name="name"
+            required
             autoComplete="on"
             placeholder="Ali"
             value={personalInformation.firstName}
@@ -162,6 +199,7 @@ function PostedJobApplyForm() {
           <label className="label line1">Last Name</label>
           <input
             type="text"
+            required
             className="h-10 input input-bordered w-full"
             id="text"
             name="name"
@@ -177,7 +215,19 @@ function PostedJobApplyForm() {
           />
         </div>
 
-        <div className="ml-12">
+        <div className="ml-2 ">
+          <label htmlFor="dob" className="label line1">
+            Data Of Birth
+          </label>
+          <DatePicker
+            showIcon
+            className="cursor-pointer bg-white w-44 p-2 rounded-md border border-solid border-gray-300"
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
+        </div>
+
+        <div className="ml-8">
           <label className="label line1">Gender</label>
           <select
             onChange={(e) => {
@@ -199,6 +249,7 @@ function PostedJobApplyForm() {
         <div className=" w-2/6">
           <label className="label line1">Address</label>
           <input
+            required
             type="text"
             className="h-10 input input-bordered w-full"
             id="text"
@@ -291,7 +342,7 @@ function PostedJobApplyForm() {
           Accadamics Qualification
         </h3>
 
-        <div className="w-2/6">
+        <div className="w-1/4">
           <label className="label line1">Institute</label>
           <select
             onChange={(e) => {
@@ -548,7 +599,7 @@ function PostedJobApplyForm() {
           </select>
         </div>
 
-        <div className="w-1/5">
+        <div className="w-1/6">
           <label className="label line1">Level</label>
           <select
             onChange={(e) => {
@@ -773,13 +824,60 @@ function PostedJobApplyForm() {
           </select>
         </div>
 
+        {/* YEAR OR SESSION SELECTION UI CODE */}
+        <div className="w-12 ml-2">
+          <label htmlFor="session" className="label line1">
+            Session
+          </label>
+
+          <input
+            type="number"
+            placeholder="2k19"
+            maxLength={4}
+            required
+            value={educationSessionInformation.from}
+            onChange={(e) => {
+              setEducationSessionInformation((prevState) => ({
+                ...prevState,
+                from: e.target.value,
+              }));
+            }}
+            className="input  input-bordered w-20"
+          />
+        </div>
+
+        <div className="ml-8 mt-14">
+          <h5 className="line1 font-medium">To</h5>
+        </div>
+
+        <div className="w-12">
+          <label htmlFor="session" className="label line1 text-transparent">
+            ,
+          </label>
+
+          <input
+            type="number"
+            placeholder="2k19"
+            maxLength={4}
+            required
+            className="input  input-bordered w-20"
+            value={educationSessionInformation.to}
+            onChange={(e) => {
+              setEducationSessionInformation((prevState) => ({
+                ...prevState,
+                to: e.target.value,
+              }));
+            }}
+          />
+        </div>
+
         <div className=" w-full">
           {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
           {/* CODE FOR 2ND EDUCATION DETAILS UI CODE */}
           {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
           {educationDetailsPart2 == true && value >= 2 ? (
             <div className="flex mb-6">
-              <div className="w-2/6">
+              <div className="w-1/4">
                 <label className="label line1">Institute</label>
                 <select
                   onChange={(e) => {
@@ -1040,7 +1138,7 @@ function PostedJobApplyForm() {
                 </select>
               </div>
 
-              <div className="w-1/5 ml-6">
+              <div className="w-1/6 ml-6">
                 <label className="label line1">Level</label>
                 <select
                   onChange={(e) => {
@@ -1296,6 +1394,38 @@ function PostedJobApplyForm() {
                   <option value="Zoology">Zoology</option>
                 </select>
               </div>
+
+              {/* YEAR OR SESSION SELECTION UI CODE */}
+              <div className="w-12 ml-8">
+                <label htmlFor="session" className="label line1">
+                  Session
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="2k19"
+                  className="input  input-bordered w-20"
+                />
+              </div>
+
+              <div className="ml-14 mt-14">
+                <h5 className="line1 font-medium">To</h5>
+              </div>
+
+              <div className="w-12 ml-6">
+                <label
+                  htmlFor="session"
+                  className="label line1 text-transparent"
+                >
+                  ,
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="2k23"
+                  className="input  input-bordered w-20"
+                />
+              </div>
             </div>
           ) : undefined}
           {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
@@ -1303,7 +1433,7 @@ function PostedJobApplyForm() {
           {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
           {educationDetailsPart2 == true && value == 3 ? (
             <div className="flex mb-6">
-              <div className="w-2/6">
+              <div className="w-1/4">
                 <label className="label line1">Institute</label>
                 <select
                   onChange={(e) => {
@@ -1564,7 +1694,7 @@ function PostedJobApplyForm() {
                 </select>
               </div>
 
-              <div className="w-1/5 ml-6">
+              <div className="w-1/6 ml-6">
                 <label className="label line1">Level</label>
                 <select
                   onChange={(e) => {
@@ -1819,6 +1949,38 @@ function PostedJobApplyForm() {
                   </option>
                   <option value="Zoology">Zoology</option>
                 </select>
+              </div>
+
+              {/* YEAR OR SESSION SELECTION UI CODE */}
+              <div className="w-12 ml-8">
+                <label htmlFor="session" className="label line1">
+                  Session
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="2k19"
+                  className="input  input-bordered w-20"
+                />
+              </div>
+
+              <div className="ml-14 mt-14">
+                <h5 className="line1 font-medium">To</h5>
+              </div>
+
+              <div className="w-12 ml-6">
+                <label
+                  htmlFor="session"
+                  className="label line1 text-transparent"
+                >
+                  ,
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="2k23"
+                  className="input  input-bordered w-20"
+                />
               </div>
             </div>
           ) : undefined}

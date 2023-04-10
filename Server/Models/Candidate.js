@@ -10,7 +10,10 @@ const CandidateSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-
+    dob: {
+        type: String,
+        require: true
+    },
     gender: {
         type: String,
         enum: ["Male", "Female"],
@@ -41,7 +44,10 @@ const CandidateSchema = new mongoose.Schema({
         required: true,
     }],
 
-
+    session: [{
+        type: String,
+        required: true
+    }],
     majors: [{
         type: String,
         required: true,

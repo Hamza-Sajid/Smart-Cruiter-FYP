@@ -9,6 +9,18 @@ const ApplyForJob = async (req, res, next) => {
     // ~~~~~~~~~~IMAGE HANDLING CODE~~~~~~~~~~~~~
 
 
+    const { dob } = req.body;
+    const { accadamicsSession } = req.body;
+    if (!dob, !accadamicsSession) {
+        return res.status(206).status({ message: "Fill the form" })
+    }
+    const { day, month, year } = dob;
+    const dateOfBirth = `${day}/${month}/${year}`;
+
+    const { from, to } = accadamicsSession;
+    const sessionDetails = `${from} - ${to}`;
+
+
 
     if (!req.files) {
         return res.status(400).json({ message: "Must Attach Your Resume" })
@@ -37,6 +49,7 @@ const ApplyForJob = async (req, res, next) => {
     const ApplyingCandidate = await new Candidate({
         firstName: firstName,
         lastName: lastName,
+        dob: dateOfBirth,
         gender: gender,
         address,
         city: city,
@@ -44,6 +57,7 @@ const ApplyForJob = async (req, res, next) => {
         institute: institute,
         level: level,
         majors: majors,
+        session: sessionDetails,
         title: title,
         duration: duration,
         companyName: companyName,

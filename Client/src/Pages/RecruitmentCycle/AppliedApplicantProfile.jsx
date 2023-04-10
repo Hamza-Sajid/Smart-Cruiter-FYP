@@ -50,7 +50,7 @@ BASIC PROFILE AREA
                 <h2 className="heading3 font-medium">
                   {userData?.firstName + " " + userData?.lastName}
                 </h2>
-                <h5 className="line1">DoB: (-DB Issue-) </h5>
+                <h5 className="line1">DoB: {userData?.dob} </h5>
               </div>
             </div>
 
@@ -100,7 +100,7 @@ BASIC PROFILE AREA
                   <h4 className="">{userData?.institute[0]}</h4>
                 </div>
                 <div className="border-l-2 border-solid border-gray-300 w-2/6">
-                  <h4 className="ml-6">DB Issue</h4>
+                  <h4 className="ml-6">{userData?.session[0]}</h4>
                 </div>
               </div>
             </div>
