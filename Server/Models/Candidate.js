@@ -45,7 +45,7 @@ const CandidateSchema = new mongoose.Schema({
     }],
 
     session: [{
-        type: String,
+        type: Array,
         required: true
     }],
     majors: [{

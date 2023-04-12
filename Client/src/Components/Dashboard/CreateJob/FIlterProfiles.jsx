@@ -6,10 +6,12 @@ import { BsPlusCircle } from "react-icons/bs";
 function FilterProfiles() {
   return (
     <div>
-      <h3 className="heading4 ">Filter Profile</h3>
+      <h3 className="line2 font-light text-gray-700">Filter Profile</h3>
 
       <div className="modalShadow bg-white mt-2">
-        <h4 className="heading3 pt-4 pb-3 text-center">Education</h4>
+        <h4 className="heading3b text-gray-800 pt-4 pb-3 text-center">
+          Education
+        </h4>
 
         {/* Education check boxes */}
         <div className="ml-4">
@@ -58,13 +60,14 @@ function FilterProfiles() {
             colorScheme="blue"
             defaultChecked={false}
             display={"block"}
+            fontSize={"2"}
             className="mb-2"
           >
             Ph.D
           </Checkbox>
         </div>
         {/* EXPERIANCE UI */}
-        <h4 className="heading3 pt-4 text-center">Experience</h4>
+        <h4 className="heading3b text-gray-800 pt-4 text-center">Experience</h4>
         <div className="p-3 ">
           <input type="range" min="0" max="100" className="range" step="25" />
           <div className="w-full flex justify-between text-xs px-2">
@@ -78,7 +81,7 @@ function FilterProfiles() {
 
         {/* CITY INPUT UI */}
 
-        <h4 className="heading3 pt-4 text-center">City</h4>
+        <h4 className="heading3b text-gray-800 pt-4 text-center">City</h4>
         <div className="flex items-center justify-start">
           <input
             title="add city name"
@@ -93,21 +96,25 @@ function FilterProfiles() {
         {/* INSERTED TAGS LIST */}
 
         <div className="flex flex-wrap mt-4  ">
-          <h5 className="bg-gray-800 p-2 rounded-lg text-white ml-3">
+          <h5 className="line1 bg-gray-800 p-2 rounded-lg text-white ml-3">
             Islamabad
           </h5>
-          <h5 className="bg-gray-800 p-2 rounded-lg text-white ml-3">Attock</h5>
+          <h5 className="line1 bg-gray-800 p-2 rounded-lg text-white ml-3">
+            Attock
+          </h5>
         </div>
 
         {/* GENDER SELECTION UI */}
-        <h4 className="heading3 pt-4 pb-3 text-center">Gender</h4>
+        <h4 className="heading3b text-gray-800 pt-4 pb-3 text-center">
+          Gender
+        </h4>
         <div className="ml-4 pb-1">
           <Checkbox
             size="lg"
             colorScheme="blue"
             defaultChecked={false}
             display={"block"}
-            className="mb-2"
+            className="mb-2  font-light "
           >
             Male
           </Checkbox>
@@ -117,7 +124,7 @@ function FilterProfiles() {
             colorScheme="blue"
             defaultChecked={false}
             display={"block"}
-            className="mb-2"
+            className="mb-2 font-light"
           >
             Female
           </Checkbox>

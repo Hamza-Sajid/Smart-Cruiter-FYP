@@ -2,11 +2,17 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { AiFillGithub } from "react-icons/ai";
+import { SiLinkedin } from "react-icons/si";
+
+import { MdClear } from "react-icons/md";
 
 function AppliedApplicantProfile() {
   const { id } = useParams();
   console.log(id);
 
+  const [modal, setModal] = useState(false);
+  const [modalValue, setModalValue] = useState("none");
   const [userData, setUserData] = useState();
   useEffect(() => {
     const fetchData = () => {
@@ -27,10 +33,35 @@ function AppliedApplicantProfile() {
     };
     fetchData();
   }, [0]);
-
   console.log(userData);
   return (
     <div>
+      {modal !== false ? (
+        <div
+          style={{ display: modalValue, background: "rgba(95,100,100,0.2)" }}
+          className="w-4/5 h-4/5  rounded-lg absolute  left-56 top-1/4 p-4 modalShadow"
+        >
+          {/* //CLOSE / EXIT BUTTON OF MODAL */}
+
+          <button
+            onClick={(e) => {
+              setModalValue("none");
+              setModal(false);
+            }}
+            className="block m-auto mb-6 bg-gray-50  rounded-xl p-2 hover:bg-gray-600 hover:text-white "
+          >
+            <MdClear className="text-3xl rounded-lg " />
+          </button>
+          <object
+            className="rounded-xl ml-1"
+            data={userData.profilePic}
+            type="application/pdf"
+            width="100%"
+            height="100%"
+          ></object>
+        </div>
+      ) : undefined}
+
       {userData !== null ? (
         <>
           {/* ~~~~~~~~~~~~~~~~
@@ -68,7 +99,13 @@ BASIC PROFILE AREA
                 <b>Address:</b> {userData?.address}
               </h3>
               <div className="w-1/2 block m-auto mt-6">
-                <button className="btn bg-blue-700 border-none">
+                <button
+                  onClick={(e) => {
+                    setModal(true);
+                    setModalValue("block");
+                  }}
+                  className="btn bg-blue-700 border-none"
+                >
                   View Resume
                 </button>
               </div>
@@ -100,7 +137,35 @@ BASIC PROFILE AREA
                   <h4 className="">{userData?.institute[0]}</h4>
                 </div>
                 <div className="border-l-2 border-solid border-gray-300 w-2/6">
-                  <h4 className="ml-6">{userData?.session[0]}</h4>
+                  <h4 className="ml-6">{userData?.session[0][0]?.first?.to}</h4>
+                </div>
+              </div>
+
+              {/* ---- 2nd Education Details Row */}
+              <div className="flex justify-around border-2 border-solid border-gray-3 rounded-md text-center p-1">
+                <div className="w-2/6">
+                  <h4>{userData?.majors[1]}</h4>
+                </div>
+                <div className="border-l-2 border-solid border-gray-300 w-2/6">
+                  <h4 className="">{userData?.institute[1]}</h4>
+                </div>
+                <div className="border-l-2 border-solid border-gray-300 w-2/6">
+                  <h4 className="ml-6">
+                    {userData?.session[0][0]?.second?.to}
+                  </h4>
+                </div>
+              </div>
+
+              {/* ---- 3rd Education Details Row */}
+              <div className="flex justify-around border-2 border-solid border-gray-3 rounded-md text-center p-1">
+                <div className="w-2/6">
+                  <h4>{userData?.majors[2]}</h4>
+                </div>
+                <div className="border-l-2 border-solid border-gray-300 w-2/6">
+                  <h4 className="">{userData?.institute[2]}</h4>
+                </div>
+                <div className="border-l-2 border-solid border-gray-300 w-2/6">
+                  <h4 className="ml-6">{userData?.session[0][0]?.third?.to}</h4>
                 </div>
               </div>
             </div>
@@ -122,7 +187,7 @@ BASIC PROFILE AREA
                 </div>
               </div>
 
-              {/* ---- 1st Education Details Row */}
+              {/* ---- 1st Experience Details Row */}
               <div className="flex justify-around border-2 border-solid border-gray-3 rounded-md text-center p-1">
                 <div className="w-2/6">
                   <h4>{userData?.title[0]}</h4>
@@ -142,9 +207,10 @@ BASIC PROFILE AREA
           </div>
           <div className="shadows rounded-md flex w-4/5 m-auto mt-4 p-6">
             <div className="w-1/2">
+              <SiLinkedin className="inline text-3xl text-blue-600 m-2" />
               <h2 className="heading4 font-medium inline">LinkedIn:</h2>
               <input
-                className="ml-4"
+                className="ml-4 bg-gray-50"
                 type="text"
                 name=""
                 value={userData?.linkedinProfile}
@@ -153,9 +219,10 @@ BASIC PROFILE AREA
             </div>
 
             <div>
+              <AiFillGithub className="inline text-4xl text-gray-800 mr-1" />
               <h2 className="heading4 font-medium inline">GitHub</h2>
               <input
-                className="ml-4"
+                className="ml-4 bg-gray-50"
                 type="text"
                 name=""
                 value={userData?.gitHubProfile}

@@ -1,8 +1,8 @@
 import axios from "axios";
-import React from "react";
-import { useState } from "react";
+import { React, useState, CSSProperties } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import {
   FcBusinessman,
@@ -17,6 +17,7 @@ import {
 import { FiPlusCircle } from "react-icons/fi";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Congrats from "../../assets/illustrations/congrats.svg";
+import { BeatLoader } from "react-spinners";
 function PostedJobApplyForm() {
   // __ Modal to show sucess msg when user registration get complete
   const [showModal, setShowModal] = useState(false);
@@ -48,8 +49,18 @@ function PostedJobApplyForm() {
 
   const [educationSessionInformation, setEducationSessionInformation] =
     useState({
-      from: [],
-      to: [],
+      first: {
+        from: [undefined],
+        to: [undefined],
+      },
+      second: {
+        from: [undefined],
+        to: [undefined],
+      },
+      third: {
+        from: [undefined],
+        to: [undefined],
+      },
     });
 
   const [professionalInformation, setProfessionalInformation] = useState({
@@ -84,7 +95,8 @@ function PostedJobApplyForm() {
     e.preventDefault();
     // const formData = await new FormData();
     // await formData.append("file", file);
-
+    //to enable loading animation
+    setLoading(!loading);
     const DoB = {
       day: startDate.getDate(),
       month: startDate.getMonth(),
@@ -115,23 +127,41 @@ function PostedJobApplyForm() {
       data: userData,
     };
 
-    axios(options).then((response) => {
-      if (response.status == 200) {
-        setHideForm("none");
-        setShowModal(true);
-      } else if (response.status == 206) {
-        alert("Enter valid information in Form");
-      } else {
-        alert("Enter all information as they were asked");
-      }
-      // console.log(response);
-    });
+    axios(options)
+      .then((response) => {
+        if (response.status == 200) {
+          setLoading(!loading);
+          setHideForm("none");
+          setShowModal(true);
+        } else if (response.status == 206) {
+          setLoading(!loading);
+
+          alert("Enter valid information in Form");
+        } else {
+          setLoading(!loading);
+
+          alert("Enter all information as they were asked");
+        }
+      })
+      .catch((e) => {
+        setLoading(false);
+        alert("kindly fill the complete form ");
+      });
   };
 
   const navigate = useNavigate();
   const handleGoBack = () => {
     navigate("/portal/job");
   };
+
+  // LOADING STATE ANIMATION CODE
+  let [loading, setLoading] = useState(false);
+  const CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "lightblue",
+  };
+  console.log(educationSessionInformation);
   return (
     <div>
       <div className="bg-gray-700 h-40 flex items-center justify-center shadow-xl">
@@ -835,11 +865,14 @@ function PostedJobApplyForm() {
             placeholder="2k19"
             maxLength={4}
             required
-            value={educationSessionInformation.from}
+            value={educationSessionInformation.first.from}
             onChange={(e) => {
               setEducationSessionInformation((prevState) => ({
                 ...prevState,
-                from: e.target.value,
+                first: {
+                  ...prevState.first,
+                  from: e.target.value,
+                },
               }));
             }}
             className="input  input-bordered w-20"
@@ -861,11 +894,14 @@ function PostedJobApplyForm() {
             maxLength={4}
             required
             className="input  input-bordered w-20"
-            value={educationSessionInformation.to}
+            value={educationSessionInformation.first.to}
             onChange={(e) => {
               setEducationSessionInformation((prevState) => ({
                 ...prevState,
-                to: e.target.value,
+                first: {
+                  ...prevState.first,
+                  to: e.target.value,
+                },
               }));
             }}
           />
@@ -1403,6 +1439,16 @@ function PostedJobApplyForm() {
 
                 <input
                   type="text"
+                  value={educationSessionInformation.second.from}
+                  onChange={(e) => {
+                    setEducationSessionInformation((prevState) => ({
+                      ...prevState,
+                      second: {
+                        ...prevState.second,
+                        from: e.target.value,
+                      },
+                    }));
+                  }}
                   placeholder="2k19"
                   className="input  input-bordered w-20"
                 />
@@ -1424,6 +1470,16 @@ function PostedJobApplyForm() {
                   type="text"
                   placeholder="2k23"
                   className="input  input-bordered w-20"
+                  value={educationSessionInformation.second.to}
+                  onChange={(e) => {
+                    setEducationSessionInformation((prevState) => ({
+                      ...prevState,
+                      second: {
+                        ...prevState.second,
+                        to: e.target.value,
+                      },
+                    }));
+                  }}
                 />
               </div>
             </div>
@@ -1961,6 +2017,16 @@ function PostedJobApplyForm() {
                   type="text"
                   placeholder="2k19"
                   className="input  input-bordered w-20"
+                  value={educationSessionInformation.third.from}
+                  onChange={(e) => {
+                    setEducationSessionInformation((prevState) => ({
+                      ...prevState,
+                      third: {
+                        ...prevState.third,
+                        from: e.target.value,
+                      },
+                    }));
+                  }}
                 />
               </div>
 
@@ -1980,6 +2046,16 @@ function PostedJobApplyForm() {
                   type="text"
                   placeholder="2k23"
                   className="input  input-bordered w-20"
+                  value={educationSessionInformation.third.to}
+                  onChange={(e) => {
+                    setEducationSessionInformation((prevState) => ({
+                      ...prevState,
+                      third: {
+                        ...prevState.third,
+                        to: e.target.value,
+                      },
+                    }));
+                  }}
                 />
               </div>
             </div>
@@ -2021,13 +2097,13 @@ function PostedJobApplyForm() {
                 name="name"
                 autoComplete="on"
                 placeholder="Lead Backend Developer"
-                onChange={(e) =>
+                onChange={(e) => {
                   setProfessionalInformation((prevState) => ({
                     ...prevState,
-                    title: [e.target.value],
-                  }))
-                }
-                value={professionalInformation.title}
+                    title: [e.target.value], // add many new values to the title array
+                  }));
+                }}
+                value={professionalInformation.title[0]}
               />
             </div>
 
@@ -2041,13 +2117,13 @@ function PostedJobApplyForm() {
                 min={0}
                 autoComplete="on"
                 placeholder="0.6 / 5 -- In Years"
-                onChange={(e) =>
+                onChange={(e) => {
                   setProfessionalInformation((prevState) => ({
                     ...prevState,
-                    duration: [e.target.value],
-                  }))
-                }
-                value={professionalInformation.duration}
+                    duration: [e.target.value], // add many new values to the title array
+                  }));
+                }}
+                value={professionalInformation.duration[0]}
               />
             </div>
 
@@ -2060,13 +2136,13 @@ function PostedJobApplyForm() {
                 name="company"
                 autoComplete="on"
                 placeholder="META"
-                onChange={(e) =>
+                onChange={(e) => {
                   setProfessionalInformation((prevState) => ({
                     ...prevState,
-                    companyName: [e.target.value],
-                  }))
-                }
-                value={professionalInformation.companyName}
+                    companyName: [e.target.value], // add many new values to the title array
+                  }));
+                }}
+                value={professionalInformation.companyName[0]}
               />
             </div>
           </div>
@@ -2085,13 +2161,6 @@ function PostedJobApplyForm() {
                   name="name"
                   autoComplete="on"
                   placeholder="Software Architect"
-                  onChange={(e) =>
-                    setProfessionalInformation((prevState) => ({
-                      ...prevState,
-                      title: [...prevState.title, e.target.value],
-                    }))
-                  }
-                  value={professionalInformation.title[1]}
                 />
               </div>
 
@@ -2105,13 +2174,6 @@ function PostedJobApplyForm() {
                   min={0}
                   autoComplete="on"
                   placeholder="0.6 / 5 -- In Years"
-                  onChange={(e) =>
-                    setProfessionalInformation((prevState) => ({
-                      ...prevState,
-                      duration: [...prevState.duration, e.target.value],
-                    }))
-                  }
-                  value={professionalInformation.duration[1]}
                 />
               </div>
 
@@ -2124,13 +2186,6 @@ function PostedJobApplyForm() {
                   name="company"
                   autoComplete="on"
                   placeholder="SAMSUNG"
-                  onChange={(e) =>
-                    setProfessionalInformation((prevState) => ({
-                      ...prevState,
-                      companyName: [...prevState.companyName, e.target.value],
-                    }))
-                  }
-                  value={professionalInformation.companyName[1]}
                 />
               </div>
             </div>
@@ -2271,6 +2326,20 @@ function PostedJobApplyForm() {
           >
             Submit
           </button>
+        </div>
+
+        {/* LOADING ANIMATION CODE */}
+        <div className="flex justify-center  w-full">
+          <div className="block">
+            <BeatLoader
+              color={"blue"}
+              loading={loading}
+              cssOverride={CSSProperties}
+              size={10}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
         </div>
       </div>
 
