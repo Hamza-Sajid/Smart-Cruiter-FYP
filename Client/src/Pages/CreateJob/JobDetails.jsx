@@ -2,19 +2,19 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import AppliedApplicantProfile from "../../Components/Dashboard/CreateJob/AppliedApplicantProfile";
 import FilterProfiles from "../../Components/Dashboard/CreateJob/FIlterProfiles";
-import FIlterProfiles from "../../Components/Dashboard/CreateJob/FIlterProfiles";
 import TopRcruitementCycle from "../../Components/Dashboard/CreateJob/TopRcruitementCycle";
 import LeftMenuBar from "../../Components/Dashboard/LeftMenuBar";
 import TopNavigationBar from "../../Components/Dashboard/TopNavigationBar";
 import ShowMoreIcon from "../../assets/icons/show_more.svg";
 import NoUser from "../../assets/illustrations/no_user.svg";
+
 function JobDetails() {
   const { id } = useParams();
   const [candidates, setCandidates] = useState();
   useEffect(() => {
     const fetchData = () => {
+      // dispath(startFetchingCandidatesData());
       // axios POST request
       const options = {
         url: "http://localhost:3000/job/get-posted-job-details",
@@ -28,9 +28,14 @@ function JobDetails() {
         },
       };
 
-      axios(options).then((response) => {
-        setCandidates(response.data);
-      });
+      axios(options)
+        .then((response) => {
+          setCandidates(response.data);
+          // dispath(sucessOnFetchingCandidatesData(response.data));
+        })
+        .catch((e) => {
+          // dispath(errorFetchingCandidatesData(e));
+        });
     };
 
     fetchData();
@@ -40,8 +45,7 @@ function JobDetails() {
   const handleNavigation = (e) => {
     navigate(`/JobDetails/applied/${e}`);
   };
-
-  // console.log(candidates.length);
+  console.log(candidates);
   return (
     <div className="flex bg-white">
       <div className="hidden sm:block w-2/12 bg-white h-screen ">
@@ -54,7 +58,7 @@ function JobDetails() {
           {/* FILTER PROFILE AND APPLICANT LIST SECTION */}
           <div className="flex flex-row  ">
             <div className="w-3/12 ml-4 ">
-              <FilterProfiles />
+              <FilterProfiles can={candidates} setCan={setCandidates} />
             </div>
 
             <div className=" w-11/12 m-auto  mt-0">
@@ -65,6 +69,7 @@ function JobDetails() {
                   return (
                     <>
                       <div
+                        key={index}
                         onClick={(event) => handleNavigation(e._id)}
                         className="cursor-pointer bg-white p-6  mt-9 w-11/12 flex  m-auto  rounded-lg border border-solid border-gray-200 hover:bg-gray-100"
                       >
@@ -135,16 +140,16 @@ function JobDetails() {
                   );
                 })
               ) : (
-                <>
+                <div className="block -ml-10">
                   <img
                     src={NoUser}
-                    className="w-2/5 block m-auto -mt-40"
+                    className="w-2/5 block m-auto  mt-40"
                     alt=""
                   />
                   <h2 className="heading2b text-center mt-6">
                     No Applied Candidate
                   </h2>
-                </>
+                </div>
               )}
               {/* 
               <AppliedApplicantProfile id={id} />
