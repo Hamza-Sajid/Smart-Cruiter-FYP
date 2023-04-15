@@ -7,6 +7,8 @@ import SwitchStatus from "../../Components/RecruitmentStage/SwitchStatus";
 import AppliedApplicantProfile from "./AppliedApplicantProfile";
 
 function AppliedCandidateDetails() {
+  const { id } = useParams();
+
   return (
     <>
       <div className="flex bg-white">
@@ -18,12 +20,11 @@ function AppliedCandidateDetails() {
             <TopNavigationBar />
             <TopRcruitementCycle />
             <div className="w-11/12 m-auto">
-              <SwitchStatus />
+              <SwitchStatus id={id} />
             </div>
           </div>
-
           <div className="w-11/12 m-auto bg-white rounded-lg p-6 mt-6 modalShadow">
-            <AppliedApplicantProfile />
+            <AppliedApplicantProfile id={id} />
           </div>
         </div>
       </div>

@@ -4,8 +4,10 @@ import { MdOutlineSpeakerNotes } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
 
 import { TiUserDelete } from "react-icons/ti";
+import DeleteCandidateProfileButton from "./DeleteCandidateProfileButton";
+import CandidateNotes from "./CandidateNotes";
 
-function SwitchStatus() {
+function SwitchStatus({ id }) {
   return (
     <div className="flex bg-white rounded-md shadow flex-row p-4">
       <div className=" w-full flex items-center">
@@ -21,14 +23,7 @@ function SwitchStatus() {
 
       <div className="justify-around  items-center w-2/6 flex ml-2">
         {/* NOTES BUTTON CODE */}
-        <div className="flex flex-col justify-center items-center">
-          <div className="bg-white shadows w-auto p-2 rounded-full hover:bg-gray-600 hover:text-white">
-            <button className="m-auto text-xl flex justify-center">
-              <MdOutlineSpeakerNotes className="line1 text-2xl text-blue-500 hover:bg-gray-600 hover:text-white" />
-            </button>
-          </div>
-          <h5 className="line2">Notes</h5>
-        </div>
+        <CandidateNotes id={id} />
 
         {/* LIKE BUTTON CODE */}
         <div className="flex flex-col justify-center items-center">
@@ -42,12 +37,7 @@ function SwitchStatus() {
 
         {/* DELETE BUTTON CODE */}
         <div className="flex flex-col justify-center items-center">
-          <div className="bg-white shadows w-auto p-2 rounded-full hover:bg-gray-600 hover:text-white">
-            <button className="m-auto text-xl flex justify-center ">
-              <TiUserDelete className="line1 text-2xl text-blue-500  hover:text-white" />
-            </button>
-          </div>
-          <h5 className="line2">Delete</h5>
+          <DeleteCandidateProfileButton id={id} />
         </div>
       </div>
     </div>

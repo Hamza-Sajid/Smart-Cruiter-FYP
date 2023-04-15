@@ -6,11 +6,11 @@ import { AiFillGithub } from "react-icons/ai";
 import { SiLinkedin } from "react-icons/si";
 
 import { MdClear } from "react-icons/md";
+import { FcInvite, FcPhone, FcHome } from "react-icons/fc";
 
-function AppliedApplicantProfile() {
-  const { id } = useParams();
-  console.log(id);
+import { AiOutlineMail, AiOutlineMessage, AiOutlineHome } from "react-icons/ai";
 
+function AppliedApplicantProfile({ id }) {
   const [modal, setModal] = useState(false);
   const [modalValue, setModalValue] = useState("none");
   const [userData, setUserData] = useState();
@@ -85,17 +85,20 @@ BASIC PROFILE AREA
               </div>
             </div>
 
-            <div className="flex flex-col  w-1/3  justify-center">
-              <h3 className="line1">
-                <b>Email: </b>
+            <div className="flex flex-col  w-2/5  justify-center">
+              <h3 className="line1 inline">
+                <AiOutlineMail className="inline text-2xl text-blue-500" />{" "}
+                <b className="inline">Email: </b>
                 {userData?.emailAddress[0]}
               </h3>
-              <h3 className="line1">
+              <h3 className="line1 inline">
                 {" "}
+                <AiOutlineMessage className="inline text-2xl text-blue-500" />{" "}
                 <b>Contact:</b> {userData?.phoneNo}
               </h3>
-              <h3 className="line1">
+              <h3 className="line1 inline">
                 {" "}
+                <AiOutlineHome className="inline text-2xl text-blue-500" />{" "}
                 <b>Address:</b> {userData?.address}
               </h3>
               <div className="w-1/2 block m-auto mt-6">
