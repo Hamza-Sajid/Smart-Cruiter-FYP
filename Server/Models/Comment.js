@@ -24,6 +24,10 @@ const CandidateComments = new mongoose.Schema({
     },
     Rejected: {
         type: String,
+    },
+    Initialized: {
+        type: Boolean,
+        default: false,
     }
 })
 

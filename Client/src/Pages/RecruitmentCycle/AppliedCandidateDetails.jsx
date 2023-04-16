@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import TopRcruitementCycle from "../../Components/Dashboard/CreateJob/TopRcruitementCycle";
 import LeftMenuBar from "../../Components/Dashboard/LeftMenuBar";
 import TopNavigationBar from "../../Components/Dashboard/TopNavigationBar";
@@ -8,6 +9,8 @@ import AppliedApplicantProfile from "./AppliedApplicantProfile";
 
 function AppliedCandidateDetails() {
   const { id } = useParams();
+
+  const notify = () => toast("Wow so easy !");
 
   return (
     <>
