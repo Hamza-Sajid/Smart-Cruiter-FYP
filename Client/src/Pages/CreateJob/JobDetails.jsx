@@ -54,7 +54,7 @@ function JobDetails() {
       <div className="w-full bg-background ">
         <div className="p-0">
           <TopNavigationBar />
-          <TopRcruitementCycle />
+          <TopRcruitementCycle id={id} />
           {/* FILTER PROFILE AND APPLICANT LIST SECTION */}
           <div className="flex flex-row  ">
             <div className="w-3/12 ml-4 ">

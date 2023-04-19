@@ -138,7 +138,7 @@ function FilterProfiles({ can, setCan }) {
         </h4>
         <div className="ml-4 pb-1">
           <Checkbox
-            size="lg"
+            size="md"
             colorScheme="blue"
             defaultChecked={false}
             display={"block"}
@@ -149,7 +149,7 @@ function FilterProfiles({ can, setCan }) {
           </Checkbox>
 
           <Checkbox
-            size="lg"
+            size="md"
             colorScheme="blue"
             defaultChecked={false}
             display={"block"}

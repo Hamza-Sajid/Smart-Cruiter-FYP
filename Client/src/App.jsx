@@ -20,6 +20,8 @@ import PostedJobDescription from "./Pages/EndUser/PostedJobDescription";
 import PostedJobApplyForm from "./Pages/EndUser/PostedJobApplyForm";
 
 import AppliedCandidateDetails from "./Pages/RecruitmentCycle/AppliedCandidateDetails";
+import InterviewingCandidate from "./Pages/RecruitmentCycle/InterviewingCandidate";
+import InterviewingCandidateDetails from "./Pages/RecruitmentCycle/InterviewingCandidateDetails";
 
 function App() {
   return (
@@ -43,6 +45,16 @@ function App() {
         <Route
           path="/JobDetails/applied/:id"
           element={<AppliedCandidateDetails />}
+        />
+
+        <Route
+          path="/JobDetails/interviewing/:id"
+          element={<InterviewingCandidate />}
+        />
+
+        <Route
+          path="/JobDetails/interviewing/details/:id"
+          element={<InterviewingCandidateDetails />}
         />
 
         {/* END USER */}

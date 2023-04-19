@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function TopRcruitementCycle() {
+function TopRcruitementCycle({ id }) {
+  const navigate = useNavigate();
   return (
     <div className=" flex justify-center">
       <div className="bg-white  w-4/5  flex m-4 p-4  rounded-lg shadows justify-between items-center">
@@ -8,7 +10,10 @@ function TopRcruitementCycle() {
           Applied Candidates
         </button>
 
-        <button className="bg-secondry text-white p-3 rounded-lg line2">
+        <button
+          onClick={() => navigate(`/JobDetails/interviewing/${id}`)}
+          className="bg-secondry text-white p-3 rounded-lg line2"
+        >
           Interviewing
         </button>
 

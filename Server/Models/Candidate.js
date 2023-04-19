@@ -104,6 +104,15 @@ const CandidateSchema = new mongoose.Schema({
     orgID: {
         type: String,
         required: true,
+    },
+    recruitmentCycle: {
+        type: String,
+        enum: ["Applied", "Interviewing", "Reccomended", "Hired", "Rejected"],
+        default: "Applied"
+    },
+    interviewDate: {
+        type: String,
+        default: 'nill'
     }
 })
 
