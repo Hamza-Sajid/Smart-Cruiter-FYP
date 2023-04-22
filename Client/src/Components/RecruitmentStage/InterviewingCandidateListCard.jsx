@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function InterviewingCandidateListCard({ id }) {
   const [user, setUser] = useState();
@@ -32,13 +33,19 @@ function InterviewingCandidateListCard({ id }) {
     fetchAllInterviewingCanidate();
   }, [0]);
 
+  const navigate = useNavigate();
   return (
     <div>
       {user !== null ? (
         user?.map((e, index) => {
           var educationLevelLastValue = e?.level.slice(-1)[0];
           return (
-            <div key={index}>
+            <div
+              key={index}
+              onClick={() =>
+                navigate(`/JobDetails/interviewing/details/${e._id}`)
+              }
+            >
               <div className="w-4/5 block m-auto bg-white h-auto p-5  shadow-md rounded-md hover:bg-gray-50 hover:border border-solid border-gray-300  cursor-pointer  ">
                 {e.interviewDate !== "nill" ? (
                   <div className="absolute right-44 top-64 bg-green-600 p-3 rounded-xl">
