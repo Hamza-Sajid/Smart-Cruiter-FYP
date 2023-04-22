@@ -29,10 +29,13 @@ connection();
 
 //Routes
 
-app.use('/', UserRouter);
-app.use("/profile", ProfileRouter)
-app.use("/job", JobRouter)
-app.use('/details', RecruitmentRouter)
+app.use("/", (req, res, next) => {
+    res.send("welcome");
+})
+// app.use('/', UserRouter);
+// app.use("/profile", ProfileRouter)
+// app.use("/job", JobRouter)
+// app.use('/details', RecruitmentRouter)
 //app listening
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
