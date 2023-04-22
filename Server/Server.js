@@ -38,6 +38,7 @@ app.use("/", (req, res, next) => {
 // app.use('/details', RecruitmentRouter)
 //app listening
 const port = process.env.PORT || 8080;
-app.listen(port, () => {
+
+app.listen(3232, () => {
     console.log("server is running on port :" + port)
 })
