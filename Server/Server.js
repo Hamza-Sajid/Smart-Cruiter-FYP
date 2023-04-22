@@ -37,8 +37,18 @@ app.use("/", (req, res, next) => {
 // app.use("/job", JobRouter)
 // app.use('/details', RecruitmentRouter)
 //app listening
-const port = process.env.PORT || 8080;
 
-app.listen(3232, () => {
-    console.log("server is running on port :" + port)
-})
+
+
+
+const port = process.env.PORT || 8080;
+try {
+    app.listen(8080, () => {
+        console.log("server is running on port :" + port)
+    })
+}
+
+catch (e) {
+    console.log("SERVER COULDN'T GET START")
+}
+
