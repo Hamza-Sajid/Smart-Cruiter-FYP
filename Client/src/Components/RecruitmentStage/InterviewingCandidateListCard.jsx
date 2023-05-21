@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import NoUserSVG from "../../assets/illustrations/no_user.svg";
 import { MdDoneAll, MdRemoveDone } from "react-icons/md";
 function InterviewingCandidateListCard({ id }) {
   const [user, setUser] = useState();
@@ -35,9 +35,10 @@ function InterviewingCandidateListCard({ id }) {
   }, [0]);
 
   const navigate = useNavigate();
+  console.log(user);
   return (
     <div>
-      {user !== null ? (
+      {user?.length !== 0 ? (
         user?.map((e, index) => {
           var educationLevelLastValue = e?.level.slice(-1)[0];
           return (
@@ -48,18 +49,6 @@ function InterviewingCandidateListCard({ id }) {
               }
             >
               <div className="w-4/5 block m-auto bg-white h-auto p-5  shadow-md rounded-md hover:bg-gray-50 hover:border border-solid border-gray-300  cursor-pointer  ">
-                {/* {e?.interviewDate !== "nill" ? (
-                  <div className="w-1/2 bg-green-600 p-3 rounded-xl">
-                    <h4 className="text-white line2">Interviewd</h4>
-                  </div>
-                ) : (
-                  <div className=" w-1/5 relative left-96  bg-gray-600 p-3 rounded-xl">
-                    <h4 className="text-white line2 text-center">
-                      Not Schedule
-                    </h4>
-                  </div>
-                )} */}
-
                 <div className="  flex  flex-wrap sm:flex-nowrap justify-between items-center">
                   <div className="m-auto ">
                     <img
@@ -126,7 +115,16 @@ function InterviewingCandidateListCard({ id }) {
           );
         })
       ) : (
-        <h2>No data</h2>
+        // *********************************************
+        // CODE FOR IF THERE ARE NOT INTERVIEWING USER
+        // *********************************************
+        <div className="mt-12">
+          <img className="w-1/4 m-auto shadow-sm" src={NoUserSVG}></img>
+
+          <h2 className="heading2b text-center mt-8">
+            Currently no Interviewing User
+          </h2>
+        </div>
       )}
     </div>
   );

@@ -5,6 +5,7 @@ const Candidate = require("../../Models/Candidate");
 const app = express();
 
 const UpdateStatus = async (req, res, next) => {
+
     const { status, id } = req.body;
 
 

@@ -152,7 +152,7 @@ function InterviewingCandidateDetails() {
             <TopNavigationBar />
             <TopRcruitementCycle />
             <div className="w-11/12 m-auto">
-              <SwitchStatus />
+              <SwitchStatus id={id} />
             </div>
           </div>
 
@@ -222,11 +222,6 @@ function InterviewingCandidateDetails() {
               >
                 {RatingPercentage}%
               </motion.div>
-              {/* <div
-                
-              >
-                70%
-              </div> */}
             </div>
 
             {/* //INTERVIEW DATE  &&& TIME */}

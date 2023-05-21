@@ -124,7 +124,7 @@ function CandidateNotes({ id }) {
         <h5 className="line2">Notes</h5>
         {/* //NOTES UI CODE */}
         {showComment == true ? (
-          <div className="w-96 h-auto bg-white rounded-lg modalShadow absolute top-1/4 p-4">
+          <div className="w-96 h-auto bg-white rounded-lg modalShadow absolute top-72 p-4">
             <ToastContainer
               position="top-center"
               autoClose={5000}
@@ -140,7 +140,7 @@ function CandidateNotes({ id }) {
 
             {/* Same as */}
             <div>
-              <h2 className="inline bg-yellow-500 p-2 rounded-lg text-white line2 font-medium">
+              <h2 className="inline bg-gradient-to-r from-orange-300 to-orange-500 p-2 rounded-lg text-white line2 font-medium">
                 Applied
               </h2>
               <input
@@ -160,7 +160,7 @@ function CandidateNotes({ id }) {
             </div>
 
             <div className="mt-6">
-              <h2 className="inline bg-green-500 p-2 rounded-lg text-white line2 font-medium">
+              <h2 className="inline bg-gradient-to-r from-green-400 to-green-600 p-2 rounded-lg text-white line2 font-medium">
                 Interviewing
               </h2>
               <input
@@ -180,7 +180,7 @@ function CandidateNotes({ id }) {
             </div>
 
             <div className="mt-6">
-              <h2 className="inline bg-pink-500 p-2 rounded-lg text-white line2 font-medium">
+              <h2 className="inline bg-gradient-to-r from-pink-300 to-pink-500 p-2 rounded-lg text-white line2 font-medium">
                 Reccomended
               </h2>
               <input
@@ -200,7 +200,7 @@ function CandidateNotes({ id }) {
             </div>
 
             <div className="mt-6">
-              <h2 className="inline bg-blue-400 p-2 rounded-lg text-white line2 font-medium">
+              <h2 className="inline bg-gradient-to-r from-blue-300 to-blue-500 p-2 rounded-lg text-white line2 font-medium">
                 Hired
               </h2>
               <input
@@ -220,7 +220,7 @@ function CandidateNotes({ id }) {
             </div>
 
             <div className="mt-6">
-              <h2 className="inline bg-red-500 p-2 rounded-lg text-white line2 font-medium">
+              <h2 className="inline bg-gradient-to-r from-red-300 to-red-500 p-2 rounded-lg text-white line2 font-medium">
                 Rejected
               </h2>
               <input

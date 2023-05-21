@@ -17,7 +17,10 @@ function TopRcruitementCycle({ id }) {
           Interviewing
         </button>
 
-        <button className="bg-secondry text-white p-3 rounded-lg line2">
+        <button
+          className="bg-secondry text-white p-3 rounded-lg line2"
+          onClick={() => navigate(`/JobDetails/reccomended/${id}`)}
+        >
           Reccomended
         </button>
 
