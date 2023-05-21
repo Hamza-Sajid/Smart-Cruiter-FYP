@@ -22,13 +22,25 @@ const login = async (req, res, next) => {
             });
         }
 
-        const checkStatus = await userModel.findOne({ isVerified: false });
-        if (checkStatus) {
+        // **************************************
+        // -> INITIAL LOGIC || JUST BLAZING-UP
+        // **************************************
+        // const checkStatus = await userModel.findOne({ isVerified: false });
+        // if (checkStatus) {
+        //     console.log(checkStatus);
+        //     return res.status(403).json({
+        //         error: "Email isn't verified, kindly first verify your email address",
+        //     });
+        // }
+
+        const checkStatus = findUser.isVerified;
+        if (checkStatus == false) {
             return res.status(403).json({
                 error: "Email isn't verified, kindly first verify your email address",
             });
         }
-        // console.log("Error " + checkStatus);
+
+
 
         // Compare the passwords
         const unhashed = await bcrypt.compare(password, findUser.password);

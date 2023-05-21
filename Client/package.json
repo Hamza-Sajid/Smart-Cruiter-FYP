@@ -9,12 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.6.1",
     "@reduxjs/toolkit": "^1.9.3",
+    "@smastrom/react-rating": "^1.3.1",
     "axios": "^1.3.1",
     "daisyui": "^2.49.0",
     "formik": "^2.2.9",
+    "framer-motion": "^10.12.10",
+    "js-alert": "^2.0.0",
     "react": "^18.2.0",
     "react-animated-rating": "^1.0.5",
+    "react-calendar": "^4.2.1",
     "react-confetti": "^6.1.0",
     "react-country-region-selector": "^3.6.1",
     "react-datepicker": "^4.11.0",
@@ -25,6 +30,7 @@
     "react-router-dom": "^6.8.0",
     "react-simple-star-rating": "^5.1.7",
     "react-spinners": "^0.13.8",
+    "react-time-picker": "^6.1.0",
     "react-toastify": "^9.1.2",
     "react-use-file-upload": "^0.9.5",
     "yup": "^0.32.11"

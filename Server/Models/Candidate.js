@@ -113,6 +113,22 @@ const CandidateSchema = new mongoose.Schema({
     interviewDate: {
         type: String,
         default: 'nill'
+    },
+    interviewTime: {
+        type: String,
+        default: 'nill'
+    },
+    rating: {
+        type: Number,
+        default: 0
+    },
+    interview_link: {
+        type: String,
+        default: 'http:zoom.meet.com/783'
+    },
+    feedback_form: {
+        type: [Number],
+        default: [0]
     }
 })
 

@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { MdDoneAll, MdRemoveDone } from "react-icons/md";
 function InterviewingCandidateListCard({ id }) {
   const [user, setUser] = useState();
 
@@ -47,31 +48,33 @@ function InterviewingCandidateListCard({ id }) {
               }
             >
               <div className="w-4/5 block m-auto bg-white h-auto p-5  shadow-md rounded-md hover:bg-gray-50 hover:border border-solid border-gray-300  cursor-pointer  ">
-                {e.interviewDate !== "nill" ? (
-                  <div className="absolute right-44 top-64 bg-green-600 p-3 rounded-xl">
+                {/* {e?.interviewDate !== "nill" ? (
+                  <div className="w-1/2 bg-green-600 p-3 rounded-xl">
                     <h4 className="text-white line2">Interviewd</h4>
                   </div>
                 ) : (
-                  <div className="absolute right-44 top-64 bg-gray-600 p-3 rounded-xl">
-                    <h4 className="text-white line2">Not Schedule</h4>
+                  <div className=" w-1/5 relative left-96  bg-gray-600 p-3 rounded-xl">
+                    <h4 className="text-white line2 text-center">
+                      Not Schedule
+                    </h4>
                   </div>
-                )}
+                )} */}
 
-                <div className="flex justify-between items-center">
-                  <div>
+                <div className="  flex  flex-wrap sm:flex-nowrap justify-between items-center">
+                  <div className="m-auto ">
                     <img
                       width={150}
                       src={e?.ResumeURL}
                       alt=""
-                      className="rounded-full"
+                      className="rounded-full "
                     />
                   </div>
                   {/* 2nd Profile Info */}
                   <div className="ml-6 flex  flex-col w-full">
-                    <h2 className="heading4 font-medium text-2xl mb-2">
+                    <h2 className="heading4 font-medium text-2xl mb-4">
                       {e?.firstName + " " + e?.lastName}
                     </h2>
-                    <div className="flex justify-around">
+                    <div className="flex flex-wrap sm:flex-nowrap gap-2 justify-around">
                       <div className=" bg-white border border-solid border-gray-300 rounded-lg p-2 text-center">
                         <div>
                           <h4 className="block line1 font-medium">
@@ -81,7 +84,7 @@ function InterviewingCandidateListCard({ id }) {
                         </div>
                       </div>
 
-                      <div className=" bg-white border border-solid border-gray-300 rounded-lg p-2 text-center">
+                      <div className="  bg-white border border-solid border-gray-300 rounded-lg p-2 text-center">
                         <div>
                           <h4 className="block line1 font-medium">Education</h4>
                           <h4 className="inline">{educationLevelLastValue}</h4>
@@ -95,7 +98,7 @@ function InterviewingCandidateListCard({ id }) {
                         </div>
                       </div>
 
-                      <div className=" bg-white border border-solid border-gray-300 rounded-lg p-2 text-center">
+                      <div className="bg-white border border-solid border-gray-300 rounded-lg p-2 text-center">
                         <div>
                           <h4 className="block line1 font-medium">
                             Interview Date
@@ -106,12 +109,16 @@ function InterviewingCandidateListCard({ id }) {
                     </div>
                   </div>
 
-                  <div className="flex items-center">
-                    <img
-                      width={60}
-                      src="https://t4.ftcdn.net/jpg/01/11/33/47/360_F_111334729_k7GzccfbcnqitdhZ2FxgnilOprXQeAmE.jpg"
-                      alt=""
-                    />
+                  <div className="flex w-full sm:w-auto items-center justify-center">
+                    {e?.interviewDate !== "nill" ? (
+                      <div className="bg-gray-50 rounded-xl p-4 items-center justify-center shadow-md mt-8">
+                        <MdDoneAll className=" text-2xl  text-green-600" />
+                      </div>
+                    ) : (
+                      <div className="bg-gray-50 rounded-xl p-4 items-center justify-center shadow-md mt-8">
+                        <MdRemoveDone className=" text-2xl  text-gray-500" />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

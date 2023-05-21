@@ -5,7 +5,7 @@ function TopRcruitementCycle({ id }) {
   const navigate = useNavigate();
   return (
     <div className=" flex justify-center">
-      <div className="bg-white  w-4/5  flex m-4 p-4  rounded-lg shadows justify-between items-center">
+      <div className="bg-white  w-4/5  flex sm:overflow-auto overflow-x-scroll sm:gap-0 gap-2 m-4 p-4  rounded-lg shadows justify-between items-center">
         <button className="bg-primary text-white p-3 rounded-lg line2">
           Applied Candidates
         </button>
