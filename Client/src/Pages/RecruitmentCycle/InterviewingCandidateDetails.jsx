@@ -19,6 +19,7 @@ import "react-clock/dist/Clock.css";
 import JSAlert from "js-alert";
 import { FiArrowLeft } from "react-icons/fi";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
+import GoBackButton from "../../Components/Common/GoBackButton";
 
 function InterviewingCandidateDetails() {
   const { id } = useParams();
@@ -157,41 +158,10 @@ function InterviewingCandidateDetails() {
           </div>
 
           <div className="w-11/12 m-auto mt-8 ">
-            <div className="flex items-center">
-              <div
-                className="bg-white p-2 w-10 mr-4 flex items-center justify-center h-10 rounded-full cursor-pointer shadow-md 
-                hover:bg-gray-600
-              "
-                onClick={() => {
-                  navigate(-1);
-                }}
-              >
-                <FiArrowLeft
-                  className="inline text-black
-                hover:text-white
-                "
-                />
-              </div>
-
-              <Breadcrumb>
-                <BreadcrumbItem>
-                  <BreadcrumbLink
-                    onClick={() => {
-                      navigate(-1);
-                    }}
-                  >
-                    Interviewing
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="#">
-                    {candidateDetails?.firstName}
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-              </Breadcrumb>
-            </div>
-
+            <GoBackButton
+              location={"Interviewing"}
+              name={candidateDetails?.firstName}
+            />
             <div className="flex justify-center">
               <motion.div
                 initial={{

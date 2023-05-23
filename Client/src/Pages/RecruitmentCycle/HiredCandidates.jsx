@@ -1,12 +1,13 @@
 import React from "react";
+import { FiSend } from "react-icons/fi";
 import { useParams } from "react-router-dom";
 import TopRcruitementCycle from "../../Components/Dashboard/CreateJob/TopRcruitementCycle";
 import LeftMenuBar from "../../Components/Dashboard/LeftMenuBar";
 import TopNavigationBar from "../../Components/Dashboard/TopNavigationBar";
-import InterviewingCandidateListCard from "../../Components/RecruitmentStage/InterviewingCandidateListCard";
+import HiredCandidateCard from "../../Components/RecruitmentStage/HiredCandidateCard";
 import ReccomendidCandidateCard from "../../Components/RecruitmentStage/ReccomendidCandidateCard";
 
-function ReccomendedCandidates() {
+function HiredCandidates() {
   const { id } = useParams();
 
   return (
@@ -21,9 +22,9 @@ function ReccomendedCandidates() {
             <TopRcruitementCycle />
           </div>
           <div className="w-11/12 m-auto mt-12  ">
-            <h2 className="heading3">Reccomended Candidates List</h2>
+            <h2 className="heading3">Hired Candidates List</h2>
             <div className="mt-6">
-              <ReccomendidCandidateCard id={id} />
+              <HiredCandidateCard id={id} />
             </div>
           </div>
         </div>
@@ -32,4 +33,4 @@ function ReccomendedCandidates() {
   );
 }
 
-export default ReccomendedCandidates;
+export default HiredCandidates;

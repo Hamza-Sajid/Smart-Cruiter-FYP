@@ -5,7 +5,7 @@ const app = express();
 
 
 const GetAllPostedJobs = async (req, res, next) => {
-    console.log('i am going to run');
+
     const fetchAllPostedJobs = await Job.find();
 
     if (fetchAllPostedJobs) {

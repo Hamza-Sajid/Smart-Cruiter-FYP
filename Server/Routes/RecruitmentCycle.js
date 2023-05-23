@@ -3,11 +3,14 @@ const DeleteCandidateProfile = require('../Controllers/Recruitment Cycle/DeleteC
 const FilterCandidates = require('../Controllers/Recruitment Cycle/FilterCandidates');
 const GetCandidateDetails = require('../Controllers/Recruitment Cycle/GetCandidateDetails');
 const GetComments = require('../Controllers/Recruitment Cycle/GetComments');
+const GetHiredCandidate = require('../Controllers/Recruitment Cycle/GetHiredCandidate');
+const GetReccomendedCandidatesDetails = require('../Controllers/Recruitment Cycle/GetReccomendedCandidateDetails');
 const GetReccomendedCandidates = require('../Controllers/Recruitment Cycle/GetReccomendedCandidates');
 const HandleComments = require('../Controllers/Recruitment Cycle/HandleComments');
 const PatchComments = require('../Controllers/Recruitment Cycle/PatchComments');
 const SaveInterviewDateAndTime = require('../Controllers/Recruitment Cycle/SaveInterviewDateAndTime');
 const SendInterviewEmail = require('../Controllers/Recruitment Cycle/SendInterviewEmail');
+const SentHiredEmail = require('../Controllers/Recruitment Cycle/SentHiredEmail');
 const showActiveCandidateDetails = require('../Controllers/Recruitment Cycle/ShowActiveCandidateDetails');
 const ShowInterviewingCandidate = require('../Controllers/Recruitment Cycle/ShowInterviewingCandidate');
 const SubmitFeedback = require('../Controllers/Recruitment Cycle/SubmitFeedbacl');
@@ -30,5 +33,9 @@ RecruitmentRouter.post("/active/interviewing/details/sendInterviewEmail", SendIn
 RecruitmentRouter.post("/active/interviewing/details/dateandtime", SaveInterviewDateAndTime);
 RecruitmentRouter.post("/active/interviewing/details/savefeedback", SubmitFeedback);
 RecruitmentRouter.post("/active/reccomended", GetReccomendedCandidates);
+RecruitmentRouter.post("/active/reccomended/details", GetReccomendedCandidatesDetails);
+RecruitmentRouter.post("/active/hired", GetHiredCandidate);
+RecruitmentRouter.post("/active/hired/sendEmail", SentHiredEmail);
+
 
 module.exports = RecruitmentRouter

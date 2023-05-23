@@ -181,7 +181,7 @@ function PostedJobApplyForm() {
             alt=""
           />
           <p className="line1 text-center mt-4">
-            Your applicant is subbmited successfully
+            Your application is subbmited successfully
           </p>
           <button
             onClick={handleGoBack}

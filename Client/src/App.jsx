@@ -24,6 +24,7 @@ import InterviewingCandidate from "./Pages/RecruitmentCycle/InterviewingCandidat
 import InterviewingCandidateDetails from "./Pages/RecruitmentCycle/InterviewingCandidateDetails";
 import ReccomendedCandidates from "./Pages/RecruitmentCycle/ReccomendedCandidates";
 import ReccomendedCandidatesDetails from "./Pages/RecruitmentCycle/ReccomendedCandidatesDetails";
+import HiredCandidates from "./Pages/RecruitmentCycle/HiredCandidates";
 
 function App() {
   return (
@@ -68,6 +69,8 @@ function App() {
           path="/JobDetails/reccomended/details/:id"
           element={<ReccomendedCandidatesDetails />}
         />
+
+        <Route path="/JobDetails/hired/:id" element={<HiredCandidates />} />
 
         {/* END USER */}
 

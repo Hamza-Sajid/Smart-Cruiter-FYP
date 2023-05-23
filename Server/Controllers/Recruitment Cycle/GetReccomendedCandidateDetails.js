@@ -2,17 +2,10 @@ const express = require("express");
 const Candidate = require("../../Models/Candidate");
 const app = express();
 
-const GetReccomendedCandidates = async (req, res, next) => {
-    //find ID where the id is == candidate
-
-    // -> go check all candidate which have the same job id:
+const GetReccomendedCandidatesDetails = async (req, res, next) => {
     const { id } = req.body;
     try {
-        const getUser = await Candidate.find({
-            jobID: id,
-            recruitmentCycle: "Reccomended",
-        });
-
+        const getUser = await Candidate.findById(id);
         if (getUser) {
             return res.status(200).json(getUser);
         } else {
@@ -23,4 +16,4 @@ const GetReccomendedCandidates = async (req, res, next) => {
     }
 };
 
-module.exports = GetReccomendedCandidates;
+module.exports = GetReccomendedCandidatesDetails;
