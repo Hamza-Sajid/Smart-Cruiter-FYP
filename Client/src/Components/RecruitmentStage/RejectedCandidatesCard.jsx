@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import NoUserSVG from "../../assets/illustrations/no_user.svg";
 import OkSVG from "../../assets/illustrations/done.svg";
 import { BeatLoader } from "react-spinners";
-function HiredCandidates({ id }) {
+function RejectedCandidateCard({ id }) {
   //   const { width, height } = useWindowSize();
 
   const [candidate, setCandidate] = useState();
@@ -26,7 +26,7 @@ function HiredCandidates({ id }) {
   useEffect(() => {
     const getCandidates = async () => {
       const options = {
-        url: "http://localhost:3000/details/active/hired",
+        url: "http://localhost:3000/details/active/rejected",
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -103,7 +103,7 @@ function HiredCandidates({ id }) {
                 shadow-md
               "
       >
-        Sent All Hired Email <FiSend className="inline text-lg ml-1" />
+        Sent All Decline Email <FiSend className="inline text-lg ml-1" />
       </label>
 
       {/* MODAL UI CODE */}
@@ -120,7 +120,7 @@ function HiredCandidates({ id }) {
           {successMsg == false ? (
             <div>
               <h3 className="font-bold text-xl text-gray-800 text-center">
-                Hired Email
+                Decline Email
               </h3>
 
               <div className="flex  w-10/12 m-auto mt-6 items-center">
@@ -150,7 +150,7 @@ function HiredCandidates({ id }) {
                   value={description}
                   className="h-auto w-full rounded-md bg-gray-50 border-none"
                   onChange={setDiscription}
-                  placeholder={"Congrats"}
+                  placeholder={"Try again!!"}
                 />
               </div>
 
@@ -253,7 +253,7 @@ function HiredCandidates({ id }) {
           <img className="w-1/4 m-auto shadow-sm" src={NoUserSVG}></img>
 
           <h2 className="heading2b text-center mt-8">
-            Currently no Hired Candidate
+            Currently no Rejected Candidate
           </h2>
         </div>
       )}
@@ -261,4 +261,4 @@ function HiredCandidates({ id }) {
   );
 }
 
-export default HiredCandidates;
+export default RejectedCandidateCard;

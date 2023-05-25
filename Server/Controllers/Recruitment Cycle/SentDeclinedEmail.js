@@ -3,7 +3,7 @@ const Job = require('../../Models/JobModel');
 const app = express();
 const nodemailer = require("nodemailer");
 
-const SentHiredEmail = async (req, res, next) => {
+const SentDeclinedEmail = async (req, res, next) => {
 
     var org_name, job_title;
 
@@ -105,4 +105,4 @@ const SentHiredEmail = async (req, res, next) => {
 
 }
 
-module.exports = SentHiredEmail;
+module.exports = SentDeclinedEmail;

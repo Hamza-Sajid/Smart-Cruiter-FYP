@@ -161,7 +161,7 @@ function PostedJobApplyForm() {
     margin: "0 auto",
     borderColor: "lightblue",
   };
-  console.log(educationSessionInformation);
+  // console.log(educationSessionInformation);
   return (
     <div>
       <div className="bg-gray-700 h-40 flex items-center justify-center shadow-xl">

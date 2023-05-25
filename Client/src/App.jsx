@@ -25,6 +25,9 @@ import InterviewingCandidateDetails from "./Pages/RecruitmentCycle/InterviewingC
 import ReccomendedCandidates from "./Pages/RecruitmentCycle/ReccomendedCandidates";
 import ReccomendedCandidatesDetails from "./Pages/RecruitmentCycle/ReccomendedCandidatesDetails";
 import HiredCandidates from "./Pages/RecruitmentCycle/HiredCandidates";
+import RejectedCandidates from "./Pages/RecruitmentCycle/RejectedCandidates";
+import WithdrawnCandidate from "./Pages/RecruitmentCycle/WithdrawnCandidate";
+import WithdrawnDetails from "./Pages/RecruitmentCycle/WithdrawnDetails";
 
 function App() {
   return (
@@ -71,6 +74,21 @@ function App() {
         />
 
         <Route path="/JobDetails/hired/:id" element={<HiredCandidates />} />
+
+        <Route
+          path="/JobDetails/rejected/:id"
+          element={<RejectedCandidates />}
+        />
+
+        <Route
+          path="/JobDetails/withdrawn/:id"
+          element={<WithdrawnCandidate />}
+        />
+
+        <Route
+          path="/JobDetails/withdrawn/details/:id"
+          element={<WithdrawnDetails />}
+        />
 
         {/* END USER */}
 

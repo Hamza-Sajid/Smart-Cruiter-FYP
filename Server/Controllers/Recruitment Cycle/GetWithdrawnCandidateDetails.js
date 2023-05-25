@@ -1,17 +1,14 @@
-const express = require("express");
-const Candidate = require("../../Models/Candidate");
+const express = require('express');
+const Candidate = require('../../Models/Candidate');
 const app = express();
+const GetWithdrawnCandidateDetails = async (req, res, next) => {
 
-const GetHiredCandidate = async (req, res, next) => {
+
     const { id } = req.body;
 
     try {
-        const getUser = await Candidate.find(
-            {
-                jobID: id,
-                recruitmentCycle: 'Hired'
-            }
-        );
+        const getUser = await Candidate.findById(id);
+
         if (getUser) {
             return res.status(200).json(getUser);
         } else {
@@ -20,6 +17,7 @@ const GetHiredCandidate = async (req, res, next) => {
     } catch (error) {
         return res.status(500).json({ message: "Something unexpected happend" });
     }
-};
 
-module.exports = GetHiredCandidate;
+}
+
+module.exports = GetWithdrawnCandidateDetails;

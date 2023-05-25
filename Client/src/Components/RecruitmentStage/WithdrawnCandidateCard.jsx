@@ -8,25 +8,15 @@ import { useNavigate } from "react-router-dom";
 import NoUserSVG from "../../assets/illustrations/no_user.svg";
 import OkSVG from "../../assets/illustrations/done.svg";
 import { BeatLoader } from "react-spinners";
-function HiredCandidates({ id }) {
+function WithdrawnCandidateCard({ id }) {
   //   const { width, height } = useWindowSize();
 
   const [candidate, setCandidate] = useState();
-  const [description, setDiscription] = useState();
-  const [emailTitle, setEmailTitle] = useState();
-  const [emailList, setEmailList] = useState([]);
-  const [jobInfo, setJobInfo] = useState({
-    job_id: "",
-    organization_name: "",
-    job_title: "",
-  });
 
-  const [successMsg, setSuccessMsg] = useState(false);
-  const [showSpinner, setShowSpinner] = useState(false);
   useEffect(() => {
     const getCandidates = async () => {
       const options = {
-        url: "http://localhost:3000/details/active/hired",
+        url: "http://localhost:3000/details/active/withdrawn",
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -37,11 +27,9 @@ function HiredCandidates({ id }) {
 
       axios(options)
         .then((response) => {
+          console.log(response);
           if (response.status == 200) {
             setCandidate(response.data);
-            setJobInfo((e) => ({
-              job_id: response.data[0]?.jobID,
-            }));
           } else {
             alert("something went wrong , try again");
           }
@@ -56,128 +44,8 @@ function HiredCandidates({ id }) {
 
   const navigate = useNavigate();
 
-  const handleEmail = async () => {
-    //get all user _ for bulk mail send
-    if (candidate.length !== 0) {
-      var email_to = [];
-      candidate.map((e, index) => {
-        // setEmailList((old) => [...old, e.emailAddress]);
-        email_to.push(e.emailAddress);
-      });
-
-      setShowSpinner(true);
-      // axios POST request
-      const options = {
-        url: "http://localhost:3000/details/active/hired/sendEmail",
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-        data: { jobInfo, email_to, emailTitle, description },
-      };
-
-      axios(options).then((response) => {
-        if (response.status == 200) {
-          setSuccessMsg(true);
-          setShowSpinner(false);
-        } else {
-          alert("Something went wrong , refresh page and try again");
-          setShowSpinner(false);
-        }
-      });
-    }
-  };
   return (
     <div>
-      <label
-        htmlFor="my-modal-3"
-        className="
-        w-1/4
-        flex 
-        items-center
-        justify-center
-        btn mb-8  m-auto
-                border-none
-                bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900
-                shadow-md
-              "
-      >
-        Sent All Hired Email <FiSend className="inline text-lg ml-1" />
-      </label>
-
-      {/* MODAL UI CODE */}
-
-      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box relative">
-          <label
-            htmlFor="my-modal-3"
-            className="btn btn-sm btn-circle absolute right-2 top-2"
-          >
-            ✕
-          </label>
-          {successMsg == false ? (
-            <div>
-              <h3 className="font-bold text-xl text-gray-800 text-center">
-                Hired Email
-              </h3>
-
-              <div className="flex  w-10/12 m-auto mt-6 items-center">
-                <label
-                  htmlFor="to"
-                  className="font-semibold heading3b text-gray-700"
-                >
-                  Subject
-                </label>
-                <input
-                  className="bg-gray-50 p-2 w-10/12 rounded-md indent-2 ml-4 "
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Successfully selected for [Role]"
-                  value={emailTitle}
-                  onChange={(e) => {
-                    setEmailTitle(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="flex   mt-4 items-center">
-                <ReactQuill
-                  theme="snow"
-                  defaultValue={"Enter your job description"}
-                  value={description}
-                  className="h-auto w-full rounded-md bg-gray-50 border-none"
-                  onChange={setDiscription}
-                  placeholder={"Congrats"}
-                />
-              </div>
-
-              <button
-                onClick={handleEmail}
-                className="btn bg-primary border-none text-center m-auto block
-           mt-6"
-              >
-                Send
-              </button>
-              {showSpinner == true ? (
-                <BeatLoader className=" text-center mt-6" color="#0063B2" />
-              ) : undefined}
-            </div>
-          ) : (
-            <div>
-              <img src={OkSVG} width="250" className="block m-auto" alt="" />
-              <h2 className="heading2b text-center">
-                Email Sent Successfully!
-              </h2>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* ********************** */}
-
       {candidate?.length !== 0 ? (
         candidate?.map((e, index) => {
           var educationLevelLastValue = e?.level.slice(-1)[0];
@@ -186,7 +54,7 @@ function HiredCandidates({ id }) {
             <div
               key={index}
               onClick={() => {
-                navigate(`/JobDetails/reccomended/details/${e._id}`);
+                navigate(`/JobDetails/withdrawn/details/${e._id}`);
               }}
               className="w-4/5 mb-6 block m-auto bg-white h-auto p-5  shadow-md rounded-md hover:bg-gray-50 hover:border border-solid border-gray-300  cursor-pointer  "
             >
@@ -253,7 +121,7 @@ function HiredCandidates({ id }) {
           <img className="w-1/4 m-auto shadow-sm" src={NoUserSVG}></img>
 
           <h2 className="heading2b text-center mt-8">
-            Currently no Hired Candidate
+            Currently no Withdrawn Candidate
           </h2>
         </div>
       )}
@@ -261,4 +129,4 @@ function HiredCandidates({ id }) {
   );
 }
 
-export default HiredCandidates;
+export default WithdrawnCandidateCard;
