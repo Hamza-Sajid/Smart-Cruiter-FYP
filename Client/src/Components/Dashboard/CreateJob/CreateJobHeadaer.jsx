@@ -41,7 +41,7 @@ function CreateJobHeadaer() {
                 <a>Active</a>
               </li>
               <li>
-                <a>Disabled</a>
+                <a>Closed</a>
               </li>
             </ul>
           </div>

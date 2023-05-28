@@ -1,4 +1,5 @@
 const express = require('express');
+const GetOrganizationPostedJobApplicants = require('../Controllers/Jobs/GetOrganizationPostedJob');
 const DeleteCandidateProfile = require('../Controllers/Recruitment Cycle/DeleteCandidateProfile');
 const FilterCandidates = require('../Controllers/Recruitment Cycle/FilterCandidates');
 const GetCandidateDetails = require('../Controllers/Recruitment Cycle/GetCandidateDetails');
@@ -17,11 +18,12 @@ const showActiveCandidateDetails = require('../Controllers/Recruitment Cycle/Sho
 const ShowInterviewingCandidate = require('../Controllers/Recruitment Cycle/ShowInterviewingCandidate');
 const SubmitFeedback = require('../Controllers/Recruitment Cycle/SubmitFeedbacl');
 const UpdateStatus = require('../Controllers/Recruitment Cycle/UpdateStatus');
+const UpdateWithdrawnReason = require('../Controllers/Recruitment Cycle/UpdateWithdrawnReason');
 
 const RecruitmentRouter = express.Router();
 
 
-
+RecruitmentRouter.post("/active/applied", GetOrganizationPostedJobApplicants)
 RecruitmentRouter.post("/active/user", showActiveCandidateDetails);
 RecruitmentRouter.post("/active/user/filter", FilterCandidates);
 RecruitmentRouter.delete("/active/user/delete", DeleteCandidateProfile);
@@ -43,6 +45,7 @@ RecruitmentRouter.post("/active/rejected", GetReccomendedCandidates);
 RecruitmentRouter.post("/active/withdrawn", GetWithdrawnCandidate);
 
 RecruitmentRouter.post("/active/withdrawn/details", GetWithdrawnCandidateDetails);
+RecruitmentRouter.post("/active/withdrawn/details/updateReason", UpdateWithdrawnReason);
 
 
 module.exports = RecruitmentRouter

@@ -1,39 +1,57 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function TopRcruitementCycle({ id }) {
-  const navigate = useNavigate();
+  // const [ids, setID] = useState();
+  // useEffect(() => {
+  //   setID(id);
+  // }, [id]);
+
+  const NavLinkStyles = ({ isActive }) => {
+    return {
+      background: isActive ? "#0063B2" : "#2687F0",
+      color: "white",
+      padding: "0.75rem",
+      borderRadius: "0.5rem",
+      fontFamily: "Poppins , sans-serif",
+      fontWeight: 300,
+      fontSize: "14px",
+      lineHeight: "28px",
+    };
+  };
+
+  // console.log(id);
   return (
     <div className=" flex justify-center">
       <div className="bg-white  w-4/5  flex sm:overflow-auto overflow-x-scroll sm:gap-0 gap-2 m-4 p-4  rounded-lg shadows justify-between items-center">
-        <button className="bg-primary text-white p-3 rounded-lg line2">
+        {/* <button className="bg-primary text-white p-3 rounded-lg line2">
           Applied Candidates
-        </button>
+        </button> */}
 
-        <button
-          onClick={() => navigate(`/JobDetails/interviewing/${id}`)}
-          className="bg-secondry text-white p-3 rounded-lg line2"
-        >
+        <NavLink style={NavLinkStyles} to={`/JobDetails/${id}`}>
+          Applied Candidates
+        </NavLink>
+
+        <NavLink style={NavLinkStyles} to={`/JobDetails/interviewing/${id}`}>
           Interviewing
-        </button>
+        </NavLink>
 
-        <button
-          className="bg-secondry text-white p-3 rounded-lg line2"
-          onClick={() => navigate(`/JobDetails/reccomended/${id}`)}
-        >
+        <NavLink style={NavLinkStyles} to={`/JobDetails/reccomended/${id}`}>
           Reccomended
-        </button>
+        </NavLink>
 
-        <button className="bg-secondry text-white p-3 rounded-lg w-24 line2">
+        <NavLink style={NavLinkStyles} to={`/JobDetails/hired/${id}`}>
           Hired
-        </button>
+        </NavLink>
 
-        <button className="bg-secondry text-white p-3 rounded-lg w-28 line2">
+        <NavLink style={NavLinkStyles} to={`/JobDetails/rejected/${id}`}>
           Declined
-        </button>
-        <button className="bg-secondry text-white p-3 rounded-lg line2">
+        </NavLink>
+
+        <NavLink style={NavLinkStyles} to={`/JobDetails/withdrawn/${id}`}>
           Withdrawn
-        </button>
+        </NavLink>
       </div>
     </div>
   );

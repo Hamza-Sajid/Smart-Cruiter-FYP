@@ -33,7 +33,6 @@ function AppliedApplicantProfile({ id }) {
     };
     fetchData();
   }, [0]);
-  console.log(userData);
   return (
     <div>
       {modal !== false ? (

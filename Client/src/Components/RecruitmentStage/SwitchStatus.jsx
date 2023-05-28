@@ -37,14 +37,22 @@ function SwitchStatus({ id }) {
       data: { id, status },
     };
 
-    axios(options).then((response) => {
-      if (response.status == 200) {
-        notify();
-        setTimeout(() => {
-          navigate(-1);
-        }, 1000);
-      }
-    });
+    axios(options)
+      .then((response) => {
+        if (response.status == 200) {
+          notify();
+          setTimeout(() => {
+            navigate(-1);
+          }, 1000);
+        } else if (response.status == 300) {
+          alert("Select any value of interview stage");
+        } else {
+          alert("something went wrong , refresh page and try again");
+        }
+      })
+      .catch((e) => {
+        alert("Something went wrong");
+      });
   };
 
   return (
@@ -72,6 +80,7 @@ function SwitchStatus({ id }) {
           <option defaultChecked disabled defaultValue="Applied">
             Applied Status
           </option>
+          <option value="">Select</option>
           <option value="Interviewing">Interviewing</option>
           <option value="Reccomended">Reccomended</option>
           <option value="Hired">Hired</option>

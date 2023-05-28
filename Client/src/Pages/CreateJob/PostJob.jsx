@@ -10,15 +10,6 @@ import TopNavigationBar from "../../Components/Dashboard/TopNavigationBar";
 
 import Confetti from "react-confetti";
 function PostJob() {
-  const imgFilehandler = (e) => {
-    if (e.target.files.length !== 0) {
-      uploadimg((imgfile) => [
-        ...imgfile,
-        URL.createObjectURL(e.target.files[0]),
-      ]);
-    }
-  };
-
   const navigate = useNavigate();
   const [apiFetched, setAPIFetched] = useState(false);
   const [description, setDescription] = useState("");
@@ -43,6 +34,15 @@ function PostJob() {
   org_data.push(count?.[2][1]);
   org_data.push(count?.[0][1]);
   // console.log(count[8][1]);
+
+  const imgFilehandler = (e) => {
+    if (e.target.files.length !== 0) {
+      uploadimg((imgfile) => [
+        ...imgfile,
+        URL.createObjectURL(e.target.files[0]),
+      ]);
+    }
+  };
 
   //From here i need to have the following data (dynamicity)
   //1-) Office Location 2-) Departments

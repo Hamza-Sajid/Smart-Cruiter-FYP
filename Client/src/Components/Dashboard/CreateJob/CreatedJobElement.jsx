@@ -20,23 +20,24 @@ function CreatedJobElement() {
       };
 
       axios(options).then((response) => {
-        console.log(response);
         setData(response.data.jobs);
       });
     };
 
     fetchData();
   }, []);
-  console.log(data._id);
+
   const navigate = useNavigate();
   const handleJob = (id) => {
     navigate(`/JobDetails/${id}`);
   };
+  console.log(data);
   return (
     <div className="flex flex-wrap gap-6">
       {data?.map((e, index) => {
         return (
           <div
+            key={index}
             onClick={(event) => handleJob(e._id)}
             title="Job"
             className="bg-white hover:bg-gray-100  hover:border hover:border-solid hover:border-gray-300 flex flex-wrap  items-center w-80 pl-4 pr-4 modalShadow cursor-pointer "

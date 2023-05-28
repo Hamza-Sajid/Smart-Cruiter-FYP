@@ -7,10 +7,11 @@ const GetReccomendedCandidates = async (req, res, next) => {
 
     // -> go check all candidate which have the same job id:
     const { id } = req.body;
+
     try {
         const getUser = await Candidate.find({
             jobID: id,
-            recruitmentCycle: "Declined",
+            recruitmentCycle: "Reccomended",
         });
 
         if (getUser) {

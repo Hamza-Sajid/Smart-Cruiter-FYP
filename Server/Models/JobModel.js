@@ -56,6 +56,13 @@ const jobSchema = new mongoose.Schema({
         type: Number,
         required: true,
         default: 0
+    },
+
+    job_status: {
+        type: String,
+        enum: ["Active", "Closed"],
+        required: true,
+        default: 'Active'
     }
 });
 

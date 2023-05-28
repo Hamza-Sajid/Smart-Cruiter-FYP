@@ -13,7 +13,7 @@ const HandleComments = async (req, res, next) => {
         Interviewing: Interviewing, Reccomended: Reccomended, Hired, Rejected, Initialized: true
     });
     try {
-        madeComment.save();
+        await madeComment.save();
     } catch (error) {
         return res.status(500).json({ message: "Server error occured" });
     }

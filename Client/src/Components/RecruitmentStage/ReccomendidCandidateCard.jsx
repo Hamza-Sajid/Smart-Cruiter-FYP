@@ -42,15 +42,13 @@ function ReccomendidCandidateCard({ id }) {
               onClick={() =>
                 navigate(`/JobDetails/reccomended/details/${e._id}`)
               }
-              className="w-4/5 block m-auto bg-white h-auto p-5  shadow-md rounded-md hover:bg-gray-50 hover:border border-solid border-gray-300  cursor-pointer  "
+              className="w-4/5 mt-6 block m-auto bg-white h-auto p-5  shadow-md rounded-md hover:bg-gray-50 hover:border border-solid border-gray-300  cursor-pointer  "
             >
               <div className="  flex  flex-wrap sm:flex-nowrap justify-between items-center">
                 <div className="m-auto ">
                   <img
                     width={150}
-                    src={
-                      "https://i.pinimg.com/736x/d5/59/bd/d559bd5ffda47d35f8d5ce8de8d6f325.jpg"
-                    }
+                    src={e.ResumeURL}
                     alt=""
                     className="rounded-full "
                   />

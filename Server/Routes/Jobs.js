@@ -14,7 +14,7 @@ JobRouter.post("/post", PostJobRouter)
 JobRouter.post("/get-jobs", GetJob);
 JobRouter.post("/get-jobs/details", GetSelectedJobDescription);
 JobRouter.get("/get-all-jobs", GetAllPostedJobs)
-JobRouter.post("/get-posted-job-details", GetOrganizationPostedJobApplicants)
+
 
 
 

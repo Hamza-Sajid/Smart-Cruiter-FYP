@@ -107,7 +107,7 @@ const CandidateSchema = new mongoose.Schema({
     },
     recruitmentCycle: {
         type: String,
-        enum: ["Applied", "Interviewing", "Reccomended", "Hired", "Rejected"],
+        enum: ["Applied", "Interviewing", "Reccomended", "Hired", "Withdrawn"],
         default: "Applied"
     },
     interviewDate: {
@@ -129,6 +129,11 @@ const CandidateSchema = new mongoose.Schema({
     feedback_form: {
         type: [Number],
         default: [0]
+    },
+
+    withdrawn_reason: {
+        type: String,
+        default: "Try again!"
     }
 })
 

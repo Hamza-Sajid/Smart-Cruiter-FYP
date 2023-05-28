@@ -35,7 +35,7 @@ function InterviewingCandidateListCard({ id }) {
   }, [0]);
 
   const navigate = useNavigate();
-  console.log(user);
+
   return (
     <div>
       {user?.length !== 0 ? (

@@ -17,7 +17,7 @@ function JobDetails() {
       // dispath(startFetchingCandidatesData());
       // axios POST request
       const options = {
-        url: "http://localhost:3000/job/get-posted-job-details",
+        url: "http://localhost:3000/details/active/applied",
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -45,7 +45,7 @@ function JobDetails() {
   const handleNavigation = (e) => {
     navigate(`/JobDetails/applied/${e}`);
   };
-  console.log(candidates);
+
   return (
     <div className="flex bg-white">
       <div className="hidden sm:block w-2/12 bg-white h-screen ">

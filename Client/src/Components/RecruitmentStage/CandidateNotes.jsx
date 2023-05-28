@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { MdOutlineSpeakerNotes } from "react-icons/md";
+import { MdClose, MdOutlineSpeakerNotes } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -14,7 +14,6 @@ function CandidateNotes({ id }) {
     Hired: "",
     Rejected: "",
   });
-
   const [addComment, setAddComment] = useState(true);
   const [commentID, setCommentID] = useState();
   const handleComments = () => {
@@ -67,7 +66,6 @@ function CandidateNotes({ id }) {
     //get the detial of inditatls state and show at relevent places
 
     const getComments = () => {
-      console.log("i am running ");
       // axios GET request
       const options = {
         url: "http://localhost:3000/details/active/user/get/comments",
@@ -90,8 +88,6 @@ function CandidateNotes({ id }) {
             Rejected: response.data.Rejected,
           }));
         }
-
-        console.log(response);
       });
     };
 
@@ -140,6 +136,12 @@ function CandidateNotes({ id }) {
 
             {/* Same as */}
             <div>
+              <MdClose
+                onClick={() => setShowComment(false)}
+                className="float-right cursor-pointer first-letter:
+              hover:bg-blue-100 rounded
+              "
+              />
               <h2 className="inline bg-gradient-to-r from-orange-300 to-orange-500 p-2 rounded-lg text-white line2 font-medium">
                 Applied
               </h2>
