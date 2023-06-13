@@ -1,5 +1,6 @@
 const express = require("express");
 const Candidate = require("../../Models/Candidate");
+const Job = require("../../Models/JobModel");
 const app = express();
 const UpdateStatus = async (req, res, next) => {
     const { status, id } = req.body;
@@ -14,6 +15,17 @@ const UpdateStatus = async (req, res, next) => {
         );
 
         if (updatedCandidate) {
+            if (status == "Declined") {
+                const findJob = await Job.findById(updatedCandidate.jobID);
+                findJob.report_status.rejected += 1;
+                await findJob.save();
+            }
+            else if (status == "Hired") {
+                const findJob = await Job.findById(updatedCandidate.jobID);
+                findJob.report_status.hired += 1;
+                await findJob.save();
+            }
+
             return res.status(200).json({ message: "Update successful" });
         } else {
             return res

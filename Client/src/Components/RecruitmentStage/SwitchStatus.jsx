@@ -99,19 +99,19 @@ function SwitchStatus({ id }) {
         </button>
       </div>
 
-      <div className="justify-around  items-center w-2/6 flex ml-2">
+      <div className="  justify-around  items-center w-1/4 flex ml-2">
         {/* NOTES BUTTON CODE */}
         <CandidateNotes id={id} />
 
         {/* LIKE BUTTON CODE */}
-        <div className="flex flex-col justify-center items-center">
-          <div className="bg-white shadows w-auto p-2 rounded-full hover:bg-gray-600 hover:text-white">
+        {/* <div className="flex flex-col justify-center items-center">
+          <div className="bg-white shadows w-auto p-2 rounded-full hover:bg-gray-60 hover:text-white">
             <button className="m-auto  text-xl flex justify-center">
               <AiFillHeart className="line1 text-2xl text-blue-500  hover:text-white" />
             </button>
           </div>
           <h5 className="line2">Like</h5>
-        </div>
+        </div> */}
 
         {/* DELETE BUTTON CODE */}
         <div className="flex flex-col justify-center items-center">

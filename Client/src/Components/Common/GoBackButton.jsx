@@ -10,17 +10,13 @@ function GoBackButton({ name, location }) {
       <div className="flex items-center">
         <div
           className="bg-white p-2 w-10 mr-4 flex items-center justify-center h-10 rounded-full cursor-pointer shadow-md 
-                hover:bg-gray-600
+                hover:bg-gray-100
               "
           onClick={() => {
             navigate(-1);
           }}
         >
-          <FiArrowLeft
-            className="inline text-black
-                hover:text-white
-                "
-          />
+          <FiArrowLeft className="inline text-black                " />
         </div>
 
         <Breadcrumb>

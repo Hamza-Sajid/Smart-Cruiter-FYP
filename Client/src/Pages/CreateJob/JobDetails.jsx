@@ -47,21 +47,21 @@ function JobDetails() {
   };
 
   return (
-    <div className="flex bg-white">
-      <div className="hidden sm:block w-2/12 bg-white h-screen ">
+    <div className="flex ">
+      <div className="hidden sm:block w-2/12 h-screen ">
         <LeftMenuBar />
       </div>
-      <div className="w-full bg-background ">
+      <div className="w-full  bg-">
         <div className="p-0">
           <TopNavigationBar />
           <TopRcruitementCycle id={id} />
           {/* FILTER PROFILE AND APPLICANT LIST SECTION */}
-          <div className="flex flex-row  ">
-            <div className="w-3/12 ml-4 ">
+          <div className="flex flex-row ">
+            <div className="sm:block hidden w-3/12 ml-4 ">
               <FilterProfiles can={candidates} setCan={setCandidates} />
             </div>
 
-            <div className=" w-11/12 m-auto  mt-0">
+            <div className="flex overflow-hidden flex-wrap w-full sm:w-11/12 m-auto  mt-0">
               {/*  ~~ HANDLING WITH APPLICANT UI CODE DIRECTLY HERE INSTEAD OF
               COMPONENTS */}
               {candidates?.length !== 0 ? (
@@ -71,17 +71,17 @@ function JobDetails() {
                       <div
                         key={index}
                         onClick={(event) => handleNavigation(e._id)}
-                        className="cursor-pointer bg-white p-6  mt-9 w-11/12 flex  m-auto  rounded-lg border border-solid border-gray-200 hover:bg-gray-100"
+                        className=" cursor-pointer  p-6  mt-9 w-11/12 flex  m-auto  rounded-lg border border-solid border-gray-200 hover:bg-gray-100"
                       >
                         {/* CANIDATE PROFILE PICTURE */}
 
-                        <div className="w-1/5">
+                        <div className="">
                           <img
-                            width={150}
-                            height={150}
-                            src={e.ResumeURL}
+                            width={120}
+                            height={120}
+                            src={e?.ResumeURL}
                             alt=""
-                            className="rounded-full"
+                            className="rounded-full w-16 md:w-28 lg:w-28"
                           />
                         </div>
                         {/* EDUCATION , CITY AND EXPERINCE STAT UI */}
@@ -92,8 +92,8 @@ function JobDetails() {
                               {e.firstName + " " + e.lastName}
                             </h3>
                           </div>
-                          <div className="flex justify-between mt-4">
-                            <div className="w-1/4 flex flex-col justify-center text-center border border-solid border-gray-400 rounded-lg  ">
+                          <div className="flex sm:gap-0 gap-4 justify-between mt-4">
+                            <div className="p-2 w-1/4 flex flex-col justify-center text-center border border-solid border-gray-400 rounded-lg  ">
                               <div>
                                 <h3 className="line1 font-medium">
                                   Experience
@@ -104,7 +104,7 @@ function JobDetails() {
                               </div>
                             </div>
                             {/* EDUCATION STAT */}
-                            <div className="flex flex-col justify-center text-center border border-solid border-gray-400 rounded-lg w-2/6 ">
+                            <div className=" p-2 flex flex-col justify-center text-center border border-solid border-gray-400 rounded-lg w-2/6 ">
                               <div>
                                 <h3 className="line1 font-medium">Education</h3>
                               </div>
@@ -113,7 +113,7 @@ function JobDetails() {
                               </div>
                             </div>
                             {/* CITY STAT */}
-                            <div className="flex flex-col justify-center text-center border border-solid border-gray-400 rounded-lg w-3/12 ">
+                            <div className="p-2 flex flex-col justify-center text-center border border-solid border-gray-400 rounded-lg  sm:w-3/12 ">
                               <div>
                                 <h3 className="line1 font-medium">City</h3>
                               </div>
@@ -121,13 +121,13 @@ function JobDetails() {
                                 <h3>{e.city}</h3>
                               </div>
                             </div>
-                            <div className=" w-16">
+                            <div className="relative right-16 sm:right-0 w-16">
                               <button className="bg-gray-800 text-white p-1 h-10 w-20 rounded-3xl relative -top-12">
                                 Applied
                               </button>
 
                               <img
-                                className="float-right ml-2 cursor-pointer"
+                                className="sm:block hidden float-right ml-2 cursor-pointer"
                                 src={ShowMoreIcon}
                                 width={18}
                                 alt=""

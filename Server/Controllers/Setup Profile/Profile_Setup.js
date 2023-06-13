@@ -32,6 +32,7 @@ const ProfileRouter = async (req, res, next) => {
 
     const { name, email, role } = req.body.team_details;
     const data = [{ name, email, role }];
+    // console.log(data);
     var departments2 = [departments]
     departments2 = departments2[0].list
 
@@ -46,6 +47,8 @@ const ProfileRouter = async (req, res, next) => {
     // -> so 1st check is there is valid reg user which is trying to setup org account
     const checkUser = await userModel.findById(req.body.userID)
     if (checkUser.org_registered != true) {
+
+        // console.log('1st time hai');
 
 
         const org = await new OrganizationModal({
@@ -69,7 +72,7 @@ const ProfileRouter = async (req, res, next) => {
 
 
 
-        findOneAndUpdate
+        // findOneAndUpdate
 
         try {
 
@@ -88,18 +91,21 @@ const ProfileRouter = async (req, res, next) => {
             return res.status(200).json({ message: "user saved" });
 
         } catch (error) {
-
+            // console.log(error)
             return res.status(500).json(error)
         }
 
 
     }
 
-
+    //1st Make Sure Is Organization is already registered or not
     else if (checkUser.org_registered == true) {
-        console.log('already organizaion is REGISTERED  :-> STATUS  = ' + checkUser.org_registered);
+        // console.log('2nd time hai');
+        // console.log('already organizaion is REGISTERED  :-> STATUS  = ' + checkUser.org_registered);
         return res.status(400).json({ message: "Already Organization Setup On This Profile" })
     }
+
+
     return res.status(404).json({ message: "Invalid username" })
 }
 

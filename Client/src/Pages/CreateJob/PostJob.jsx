@@ -28,6 +28,7 @@ function PostJob() {
   const count = useSelector(
     (state) => state.OrganizationDetailsReducer.apiData
   );
+  // console.log(count);
   var org_data = [];
   org_data.push(count?.[8][1]);
   org_data.push(count?.[9][1]);

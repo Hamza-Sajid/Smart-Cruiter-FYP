@@ -98,7 +98,7 @@ function LeftMenuBar() {
                 />
               </svg>
             </div>
-            <Link to={"/jobs"}>
+            <Link to={"/Candidates"}>
               <div className="inline ml-2 mt-1">
                 <button className="inline navMenuFont">Candidates</button>
               </div>
@@ -135,7 +135,7 @@ function LeftMenuBar() {
                 />
               </svg>
             </div>
-            <Link to={"/JobDetails"}>
+            <Link to={"/jobs"}>
               <div className="inline ml-2 mt-1">
                 <button className="inline navMenuFont">Jobs</button>
               </div>
@@ -170,9 +170,11 @@ function LeftMenuBar() {
                 />
               </svg>
             </div>
-            <div className="inline ml-2 mt-1">
-              <button className="inline navMenuFont">Reports</button>
-            </div>
+            <Link to={"/report"}>
+              <div className="inline ml-2 mt-1">
+                <button className="inline navMenuFont">Reports</button>
+              </div>
+            </Link>
           </div>
 
           {/* SETTINGS */}

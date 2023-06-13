@@ -6,12 +6,16 @@ const GetSelectedJobDescription = require('../Controllers/Jobs/GetSelectedJobDes
 const PostJobRouter = require('../Controllers/Jobs/PostJob');
 const multer = require('multer');
 const GetOrganizationPostedJobApplicants = require('../Controllers/Jobs/GetOrganizationPostedJob');
+const FilterShowActiveJobs = require('../Controllers/Jobs/Filter-ShowActiveJobs');
+const FilterShowClosedJobs = require('../Controllers/Jobs/FilterShowClosedJobs');
 
 
 const JobRouter = express.Router();
 
 JobRouter.post("/post", PostJobRouter)
 JobRouter.post("/get-jobs", GetJob);
+JobRouter.post("/get-jobs/active", FilterShowActiveJobs);
+JobRouter.post("/get-jobs/closed", FilterShowClosedJobs);
 JobRouter.post("/get-jobs/details", GetSelectedJobDescription);
 JobRouter.get("/get-all-jobs", GetAllPostedJobs)
 

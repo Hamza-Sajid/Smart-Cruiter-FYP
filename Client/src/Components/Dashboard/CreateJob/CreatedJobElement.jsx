@@ -4,34 +4,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import DeleteIcon from "../../../assets/icons/delete.svg";
 import SocialIcon from "../../../assets/icons/share.svg";
-function CreatedJobElement() {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      // axios POST request
-      const options = {
-        url: "http://localhost:3000/job/get-jobs",
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-        data: { id: localStorage.getItem("organization_id") },
-      };
-
-      axios(options).then((response) => {
-        setData(response.data.jobs);
-      });
-    };
-
-    fetchData();
-  }, []);
-
+function CreatedJobElement({ data, setData }) {
   const navigate = useNavigate();
   const handleJob = (id) => {
     navigate(`/JobDetails/${id}`);
   };
-  console.log(data);
+  // console.log(data);
   return (
     <div className="flex flex-wrap gap-6">
       {data?.map((e, index) => {
@@ -40,12 +18,15 @@ function CreatedJobElement() {
             key={index}
             onClick={(event) => handleJob(e._id)}
             title="Job"
-            className="bg-white hover:bg-gray-100  hover:border hover:border-solid hover:border-gray-300 flex flex-wrap  items-center w-80 pl-4 pr-4 modalShadow cursor-pointer "
+            className="bg-white hover:bg-gray-100  hover:border hover:border-solid hover:border-gray-300 flex flex-wrap  items-center w-80 pl-4 pr-4 pt-2 modalShadow cursor-pointer "
           >
             {/* <Link to={"/JobDetails"}> */}
             <div className=" w-full p-2 flex justify-between items-center ">
               <h2 className="heading3 inline font-medium">{e.jobPosition}</h2>
-              <button className="inline float-right mr-4 p-2 w-20 rounded-full font-medium text-primarytext  border-2 border-solid border-secondry hover:bg-secondry hover:text-white">
+              <button
+                className="inline float-right mr-4 p-2 w-20 rounded-full font-medium text-primarytext  border-2 border-solid
+               border-secondry bg-secondry text-white hover:text-white"
+              >
                 Active
               </button>
             </div>

@@ -33,7 +33,7 @@ function FilterProfiles({ can, setCan }) {
   };
 
   return (
-    <div>
+    <div className="hidden sm:block">
       <h3 className="line2 font-light text-gray-700">Filter Profile</h3>
 
       <div className="shadow-md rounded-md bg-white mt-2">

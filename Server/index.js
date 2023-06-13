@@ -11,7 +11,8 @@ const UserRouter = require("./Routes/UserRoute");
 const ProfileRouter = require("./Routes/ProfileCreation");
 const JobRouter = require('./Routes/Jobs');
 const RecruitmentRouter = require('./Routes/RecruitmentCycle.js');
-
+const ReportRouter = require('./Routes/Report.js');
+const RouterReport = require('./Routes/Report.js');
 
 // -----| Configration |-----
 const app = express();
@@ -33,7 +34,7 @@ app.use('/', UserRouter);
 app.use("/profile", ProfileRouter)
 app.use("/job", JobRouter)
 app.use('/details', RecruitmentRouter)
-
+app.use("/report", RouterReport)
 
 
 // Create a new ngrok tunnel.

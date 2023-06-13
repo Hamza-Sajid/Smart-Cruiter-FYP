@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import NavigationTab from "../Dashboard/ProfileCreation/NavigationTab";
 
 function ProfileAddTeam() {
@@ -61,7 +61,6 @@ function ProfileAddTeam() {
     const options = {
       url: "http://localhost:3000/profile/setup",
       method: "POST",
-
       headers: {
         Accept: "application/json",
         Authorization: localStorage.getItem("token"),
@@ -70,15 +69,23 @@ function ProfileAddTeam() {
       },
       data: cv,
     };
-    axios(options).then((response) => {
-      if (response.status == 200) {
-        navigate("/profilesetup/sucess");
-      } else if (response.status == 404) {
-        alert("NO USER WITH THIS USERNAME EXIST IN THE SYSTEM");
-      } else {
-        alert("Something went wrong, try again with proper data");
-      }
-    });
+    axios(options)
+      .then((response) => {
+        console.log(" i am running");
+        console.log(response.status);
+        if (response.status == 200) {
+          navigate("/profilesetup/sucess");
+        } else if (response.status == 400) {
+          alert("Organization is already registered!");
+        } else if (response.status == 404) {
+          alert("NO USER WITH THIS USERNAME EXIST IN THE SYSTEM");
+        } else {
+          alert("Something went wrong, try again with proper data");
+        }
+      })
+      .catch((e) => {
+        alert("Organzation is already registered");
+      });
   };
 
   return (
@@ -220,6 +227,12 @@ function ProfileAddTeam() {
         >
           NEXT{" "}
         </button>
+
+        <Link to="/home">
+          <p className="heading4 text-center mt-2 text-gray-400 cursor-pointer">
+            Go back to HOME
+          </p>
+        </Link>
       </div>
     </div>
   );

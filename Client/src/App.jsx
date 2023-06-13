@@ -28,70 +28,223 @@ import HiredCandidates from "./Pages/RecruitmentCycle/HiredCandidates";
 import RejectedCandidates from "./Pages/RecruitmentCycle/RejectedCandidates";
 import WithdrawnCandidate from "./Pages/RecruitmentCycle/WithdrawnCandidate";
 import WithdrawnDetails from "./Pages/RecruitmentCycle/WithdrawnDetails";
+import HiredCandidate from "./Pages/HiredCandidates/HiredCandidate";
+import HiredCandidateDetails from "./Pages/HiredCandidates/HiredCandidatesDetails";
+import MainPage from "./Pages/Report/MainPage";
+import ProtectedRoute from "./Components/Common/ProtectedRoute";
+import { useEffect } from "react";
 
 function App() {
+  const isAuthenticated = localStorage.getItem("token");
+  useEffect(() => {}, [isAuthenticated]);
   return (
     <div>
       <Routes>
+        {/* <Route path="/home" element={<HomePage />} /> */}
+
+        <Route
+          path="/home"
+          element={
+            // <HomePage />
+            <ProtectedRoute
+              isSignedIn={isAuthenticated}
+              children={<HomePage />}
+            ></ProtectedRoute>
+          }
+        />
+
+        <Route path="/register" element={<Registration />} />
+
         <Route path="/" element={<Login />} />
         <Route path="/forgetpwd" element={<ForgetPassword />} />
         <Route path="/register" element={<Registration />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/jobs" element={<CreateJob />} />
-        <Route path="/postjob" element={<PostJob />}></Route>
-        <Route path="/JobDetails/:id" element={<JobDetails />}></Route>
+
+        <Route
+          path="/jobs"
+          element={
+            <ProtectedRoute
+              isSignedIn={isAuthenticated}
+              children={<CreateJob />}
+            />
+          }
+          // {/* <CreateJob /> */}
+          // {/* // element={<CreateJob />} */}
+        />
+        <Route
+          path="/postjob"
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <PostJob />
+            // </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="/JobDetails/:id"
+          element={
+            <ProtectedRoute
+              isSignedIn={isAuthenticated}
+              children={<JobDetails />}
+            >
+              {/* <JobDetails /> */}
+            </ProtectedRoute>
+          }
+        ></Route>
         <Route path="/verifyotp" element={<VerifyOPT />} />
         <Route path="/newpassword" element={<EnterNewPassword />} />
-        <Route path="/profilesetup" element={<ProfileCreation />} />
-        <Route path="profilesetup/organization" element={<Profile_Office />} />
-        <Route path="profilesetup/social" element={<ProfileSocial />} />
-        <Route path="profilesetup/addteam" element={<ProfileTeam_Members />} />
-        <Route path="profilesetup/sucess" element={<Profile_Sucess />} />
+        <Route
+          path="/profilesetup"
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <ProfileCreation />
+            // </ProtectedRoute>
+          }
+        />
+        <Route
+          path="profilesetup/organization"
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <Profile_Office />
+            // </ProtectedRoute>
+          }
+        />
+        <Route
+          path="profilesetup/social"
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <ProfileSocial />
+            // </ProtectedRoute>
+          }
+        />
+        <Route
+          path="profilesetup/addteam"
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <ProfileTeam_Members />
+            // </ProtectedRoute>
+          }
+        />
+        <Route
+          path="profilesetup/sucess"
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <Profile_Sucess />
+            // </ProtectedRoute>
+          }
+        />
 
         <Route
           path="/JobDetails/applied/:id"
-          element={<AppliedCandidateDetails />}
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <AppliedCandidateDetails />
+            // </ProtectedRoute>
+          }
         />
 
         <Route
           path="/JobDetails/interviewing/:id"
-          element={<InterviewingCandidate />}
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <InterviewingCandidate />
+            // </ProtectedRoute>
+          }
         />
 
         <Route
           path="/JobDetails/interviewing/details/:id"
-          element={<InterviewingCandidateDetails />}
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <InterviewingCandidateDetails />
+            // </ProtectedRoute>
+          }
         />
 
         <Route
           path="/JobDetails/reccomended/:id"
-          element={<ReccomendedCandidates />}
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <ReccomendedCandidates />
+            // </ProtectedRoute>
+          }
         />
 
         <Route
           path="/JobDetails/reccomended/details/:id"
-          element={<ReccomendedCandidatesDetails />}
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <ReccomendedCandidatesDetails />
+            // </ProtectedRoute>
+          }
         />
 
-        <Route path="/JobDetails/hired/:id" element={<HiredCandidates />} />
+        <Route
+          path="/JobDetails/hired/:id"
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <HiredCandidates />
+            // </ProtectedRoute>
+          }
+        />
 
         <Route
           path="/JobDetails/rejected/:id"
-          element={<RejectedCandidates />}
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <RejectedCandidates />
+            // </ProtectedRoute>
+          }
         />
 
         <Route
           path="/JobDetails/withdrawn/:id"
-          element={<WithdrawnCandidate />}
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <WithdrawnCandidate />
+            // </ProtectedRoute>
+          }
         />
 
         <Route
           path="/JobDetails/withdrawn/details/:id"
-          element={<WithdrawnDetails />}
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <WithdrawnDetails />
+            // </ProtectedRoute>
+          }
         />
 
-        {/* END USER */}
+        {/* ***************************************************** */}
+        {/* CANDIDATE SECTION IS STARTING FROM HERE */}
+        {/* ***************************************************** */}
+        <Route
+          path="/Candidates"
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <HiredCandidate />
+            // </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/Candidates/details/:id"
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <HiredCandidateDetails />
+            // </ProtectedRoute>
+          }
+        />
 
+        <Route
+          path="/report"
+          element={
+            // <ProtectedRoute isSignedIn={isAuthenticated}>
+            <MainPage />
+            // </ProtectedRoute>
+          }
+        />
+
+        {/* *************************************************** */}
+        {/* END USER */}
+        {/* *************************************************** */}
         <Route path="portal/job" element={<PostedJobs />} />
         <Route
           path="portal/job/description/:id"

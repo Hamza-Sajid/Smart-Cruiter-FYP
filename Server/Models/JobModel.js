@@ -61,9 +61,62 @@ const jobSchema = new mongoose.Schema({
     job_status: {
         type: String,
         enum: ["Active", "Closed"],
-        required: true,
         default: 'Active'
-    }
+    },
+    report_status: {
+        type: {
+            applied: Number,
+            hired: Number,
+            rejected: Number,
+            withdrawn: Number,
+        },
+        default: {
+            applied: 0,
+            hired: 0,
+            rejected: 0,
+            withdraw: 0,
+        },
+    },
+    report_experience: {
+        type: {
+            nill: Number,
+            oneyear: Number,
+            two_to_three: Number,
+            four_to_five: Number,
+            five_plus: Number,
+        },
+        default: {
+            nill: 0,
+            oneyear: 0,
+            two_to_three: 0,
+            four_to_five: 0,
+            five_plus: 0,
+        },
+    },
+    report_educational_level: {
+        type: [String]
+    },
+    report_city: {
+        type: [String]
+    },
+    report_university: {
+        type: [String]
+    },
+    report_male_vs_female: {
+        type: {
+            male: Number,
+            female: Number,
+        },
+        default: {
+            male: 0,
+            female: 0,
+
+        },
+    },
+
+
+
+
 });
 
 const Job = mongoose.model("Job", jobSchema);

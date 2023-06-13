@@ -60,6 +60,7 @@ function HomePage() {
         },
       })
       .then(function (response) {
+        console.log(response);
         //Translating an ARRAY -> OBJECT
         const arr = Object.entries(response.data.organizaion);
         setOrganizationDetails(arr);
