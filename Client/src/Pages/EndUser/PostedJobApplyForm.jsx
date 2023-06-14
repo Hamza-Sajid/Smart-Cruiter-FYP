@@ -164,7 +164,7 @@ function PostedJobApplyForm() {
   // console.log(educationSessionInformation);
   return (
     <div>
-      <div className="bg-gray-700 h-40 flex items-center justify-center shadow-xl">
+      <div className="bg-gradient-to-b from-gray-900 to-gray-600 bg-gradient-to-r h-40 flex items-center justify-center shadow-xl">
         <h1 className="text-4xl heading text-white text-center">
           Product Manager
         </h1>

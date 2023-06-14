@@ -1,7 +1,7 @@
 import React from "react";
 import LeftMenuBar from "../../Components/Dashboard/LeftMenuBar";
 import TopNavigationBar from "../../Components/Dashboard/TopNavigationBar";
-
+import ProfilePic from "../../assets/icons/profileIcon.png";
 function AddNewEmployee() {
   return (
     <div className="flex bg-white">
@@ -17,6 +17,8 @@ function AddNewEmployee() {
           <h2 className="heading3 text-center font-medium mt-4">
             Add employee informatoin
           </h2>
+
+          <img src={ProfilePic} className="block m-auto mt-4"></img>
           <div className="form-control w-full max-w-xs mt-8 ml-8">
             <label className="label">
               <span className="label-text heading4">Name</span>

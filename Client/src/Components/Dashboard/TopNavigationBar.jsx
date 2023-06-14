@@ -1,7 +1,34 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { redirect, useNavigate } from "react-router-dom";
 
 import NotificationLogo from "../../assets/icons/notification.svg";
 function TopNavigationBar() {
+  const [profileURL, setProfileURL] = useState();
+  useEffect(() => {
+    // axios POST request
+    const options = {
+      url: "http://localhost:3000/getProfilePic",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      data: {
+        organization_id: localStorage.getItem("organization_id"),
+      },
+    };
+
+    axios(options).then((response) => {
+      if (response.status == 200) {
+        setProfileURL(response.data);
+      }
+      // console.log(response);
+    });
+  }, [0]);
+
+  const navigate = useNavigate();
   return (
     // <div className="flex  items-center p-2  topNavigationBoxShadow bg-white">
     //   <div className="w-11/12  ">
@@ -101,23 +128,22 @@ function TopNavigationBar() {
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              <img src="https://www.doyonutilities.com/wp-content/uploads/profile-icon.png" />
+              {/* //this need to be dynamic */}
+              <img src={profileURL} />
             </div>
           </label>
           <ul
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
+            <li
+              onClick={() => {
+                localStorage.removeItem("token");
+                localStorage.removeItem("organization_id");
+                localStorage.removeItem("user_id");
+                navigate("/");
+              }}
+            >
               <a>Logout</a>
             </li>
           </ul>

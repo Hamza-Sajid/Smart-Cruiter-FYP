@@ -5,6 +5,9 @@ const app = express();
 const verifyForgetPwd = async (req, res, next) => {
 
     const { params, inputCode } = req.body;
+
+    console.log("This is the otp code")
+    console.log(params, inputCode);
     //to remove space and , from code (as input is coming from an array[])
     let newVal = inputCode.toString();
     newVal = newVal.split(" ").pop()

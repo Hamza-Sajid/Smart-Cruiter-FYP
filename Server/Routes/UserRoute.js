@@ -1,4 +1,5 @@
 const express = require('express');
+const GetProfilePicture = require('../Controllers/Dashboard/GetProfilePic.js');
 const Home = require('../Controllers/Dashboard/Home.js');
 const forget_password = require('../Controllers/UserController/ForgetPassword.js');
 const login = require('../Controllers/UserController/Login.js');
@@ -47,4 +48,5 @@ UserRouter.post("/new-password", updatePassword)
 // Will implement it while deploying it on any hosting platform
 UserRouter.post("/home", AuthMiddleware, VerifyToken)
 UserRouter.post("/dashboard", Home)
+UserRouter.post("/getProfilePic", GetProfilePicture)
 module.exports = UserRouter;

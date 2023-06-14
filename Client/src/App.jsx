@@ -49,11 +49,11 @@ function App() {
         <Route
           path="/home"
           element={
-            // <HomePage />
-            <ProtectedRoute
-              isSignedIn={isAuthenticated}
-              children={<HomePage />}
-            ></ProtectedRoute>
+            <HomePage />
+            // <ProtectedRoute
+            //   isSignedIn={isAuthenticated}
+            //   children={<HomePage />}
+            // ></ProtectedRoute>
           }
         />
 
@@ -66,12 +66,13 @@ function App() {
         <Route
           path="/jobs"
           element={
-            <ProtectedRoute
-              isSignedIn={isAuthenticated}
-              children={<CreateJob />}
-            />
+            <CreateJob />
+
+            // <ProtectedRoute
+            //   isSignedIn={isAuthenticated}
+            //   children={<CreateJob />}
+            // />
           }
-          // {/* <CreateJob /> */}
           // {/* // element={<CreateJob />} */}
         />
         <Route

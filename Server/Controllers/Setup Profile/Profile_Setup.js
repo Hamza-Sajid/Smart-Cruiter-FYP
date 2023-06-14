@@ -46,10 +46,10 @@ const ProfileRouter = async (req, res, next) => {
 
     // -> so 1st check is there is valid reg user which is trying to setup org account
     const checkUser = await userModel.findById(req.body.userID)
-    if (checkUser.org_registered != true) {
+    console.log(checkUser)
+    if (checkUser.org_registered == false) {
 
-        // console.log('1st time hai');
-
+        console.log('1st time hai');
 
         const org = await new OrganizationModal({
             "username": checkUser.username,
@@ -76,17 +76,21 @@ const ProfileRouter = async (req, res, next) => {
 
         try {
 
+            console.log('trying fucking this')
             //Now 1st i have to get the acutall id value from _id with this code
 
             var user_id = org._id;
             user_id = user_id.toString();
+            console.log(user_id)
             const profile = await userModel.findOneAndUpdate(
                 { _id: req.body.userID }, // replace with the organization ID
                 { $set: { org_registered: true, org_id: user_id } }, // use $set operator to update the field
                 { new: true }, // return the updated document
             );
-            await profile.save();
             await org.save()
+            await profile.save();
+            console.log(profile)
+
 
             return res.status(200).json({ message: "user saved" });
 

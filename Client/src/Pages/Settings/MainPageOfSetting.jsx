@@ -49,14 +49,14 @@ function MainPageOfSetting() {
           </div>
 
           {/* 4th value */}
-
+          {/* 
           <div className="w-48 h-auto bg-white p-3 rounded-md shadow-md cursor-pointer hover:bg-gray-50 hover:modalShadow">
             <img className="m-auto" src={CareerPage} alt="" />
 
             <h2 className="text-center heading3 font-medium mt-4 mb-0">
               Career Page
             </h2>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

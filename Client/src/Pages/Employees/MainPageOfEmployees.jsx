@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LeftMenuBar from "../../Components/Dashboard/LeftMenuBar";
 import TopNavigationBar from "../../Components/Dashboard/TopNavigationBar";
-
+import Illustration from "../../assets/illustrations/no_user.svg";
 function MainPageOfEmployees() {
   return (
     <div className="flex bg-white">
@@ -21,14 +21,13 @@ function MainPageOfEmployees() {
             </button>
           </Link>
         </div>
-        <div className="mt-12">
-          <div className="w-4/5 block m-auto bg-white h-auto p-5  shadow-md rounded-md hover:bg-gray-50 hover:border border-solid border-gray-300  cursor-pointer  ">
-            <h2 className="heading4 inline">Name: Ali</h2>
-            <h2 className="heading4 inline ml-12 float-right">
-              Department: HR
-            </h2>
-          </div>
-        </div>
+
+        <img
+          src={Illustration}
+          width={350}
+          height={300}
+          className="block m-auto mt-20"
+        ></img>
       </div>
     </div>
   );

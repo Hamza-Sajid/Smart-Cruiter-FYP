@@ -36,8 +36,8 @@ function PostedJobDescription() {
     });
   };
   return (
-    <div>
-      <div className="w-full h-56 bg-gray-700 shadow-xl">
+    <div className=" h-screen">
+      <div className="w-full h-56 bg-gradient-to-b from-gray-900 to-gray-600 bg-gradient-to-r shadow-xl">
         {/* <img
           style={{ opacity: 0.2 }}
           className="h-56 w-full absolute z-99"
@@ -49,11 +49,15 @@ function PostedJobDescription() {
         </h1>
       </div>
 
-      <div className="w-4/5 m-auto bg-gray-100  p-6 mt-12 h-auto rounded-lg shadow-lg">
-        <h2 className="text-2xl">Job Description</h2>
+      <div
+        className="w-4/5 m-auto bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-gray-300 via-gray-100 to-gray-200 bg-opacity-30 p-6 mt-12 h-auto rounded-lg shadow-lg
+        border-2 border-solid border-gray-200
+      "
+      >
+        <h2 className="heading3">Job Description</h2>
 
         <p
-          className="mt-6"
+          className="mt-6 heading4"
           dangerouslySetInnerHTML={{ __html: details?.job_description }}
         ></p>
         <button className="btn mt-6 block m-auto shadow-lg" onClick={handle}>
