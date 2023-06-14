@@ -101,7 +101,7 @@ function TopNavigationBar() {
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              <img src="https://i0.wp.com/fintk2.com/wp-content/uploads/2016/08/Samsung-Logo.png?fit=300%2C300&ssl=1" />
+              <img src="https://www.doyonutilities.com/wp-content/uploads/profile-icon.png" />
             </div>
           </label>
           <ul

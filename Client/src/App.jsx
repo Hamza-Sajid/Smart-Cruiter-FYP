@@ -33,6 +33,10 @@ import HiredCandidateDetails from "./Pages/HiredCandidates/HiredCandidatesDetail
 import MainPage from "./Pages/Report/MainPage";
 import ProtectedRoute from "./Components/Common/ProtectedRoute";
 import { useEffect } from "react";
+import MainPageOfEmployees from "./Pages/Employees/MainPageOfEmployees";
+import AddNewEmployee from "./Pages/Employees/AddNewEmployee";
+import MainPageOfSetting from "./Pages/Settings/MainPageOfSetting";
+import Setting_EditProfile from "./Pages/Settings/Setting_EditProfile";
 
 function App() {
   const isAuthenticated = localStorage.getItem("token");
@@ -242,6 +246,14 @@ function App() {
           }
         />
 
+        <Route path="/employees" element={<MainPageOfEmployees />}></Route>
+        <Route path="/employees/add" element={<AddNewEmployee />}></Route>
+
+        <Route path="/settings" element={<MainPageOfSetting />}></Route>
+        <Route
+          path="/settings/profile"
+          element={<Setting_EditProfile />}
+        ></Route>
         {/* *************************************************** */}
         {/* END USER */}
         {/* *************************************************** */}

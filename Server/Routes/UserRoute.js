@@ -43,6 +43,8 @@ UserRouter.post("/new-password", updatePassword)
 
 //-> ## DASHBOARD HOME ROUTES ##
 
+//I left Auth Middleware  intentionally to increase devlopment speed
+// Will implement it while deploying it on any hosting platform
 UserRouter.post("/home", AuthMiddleware, VerifyToken)
 UserRouter.post("/dashboard", Home)
 module.exports = UserRouter;
