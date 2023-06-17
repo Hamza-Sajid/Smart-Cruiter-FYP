@@ -53,7 +53,7 @@ function EnterNewPassword() {
           SetSuccess(true);
           SetError(false);
           setTimeout(() => {
-            navigate("/");
+            navigate("/login");
           }, 1500);
         }
       })

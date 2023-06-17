@@ -1,13 +1,13 @@
 import axios from "axios";
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import LeftMenuBar from "../../Components/Dashboard/LeftMenuBar";
 import TopNavigationBar from "../../Components/Dashboard/TopNavigationBar";
 import ProfileSetup from "../../Components/ProfileSetup/ProfileSetup";
-
+import DepartmentPhoto from "../../assets/illustrations/dep_1.jpg";
+import DepartmentPhoto2 from "../../assets/illustrations/dep_2.jpg";
+import DepartmentPhoto3 from "../../assets/illustrations/dep_3.jpg";
 import { HiOfficeBuilding } from "react-icons/hi";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   fetchOrganizationDataStart,
   fetchOrganizationDataSuccess,
@@ -32,7 +32,7 @@ function HomePage() {
         }
       )
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
         if (response.data.org_registered == true) {
           setOrganizationData(response.data);
           setProfileSetup(true);
@@ -60,7 +60,7 @@ function HomePage() {
         },
       })
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
         //Translating an ARRAY -> OBJECT
         const arr = Object.entries(response.data.organizaion);
         setOrganizationDetails(arr);
@@ -77,7 +77,8 @@ function HomePage() {
     CheckAuth();
     CheckOrganization();
   }, [profileSetup]);
-  // console.log(organizationDeatails[6][1]);
+
+  const depImages = [DepartmentPhoto, DepartmentPhoto2, DepartmentPhoto3];
 
   return (
     <div className="flex bg-white">
@@ -86,7 +87,7 @@ function HomePage() {
       </div>
       <div className="w-full bg-background">
         <div className="p-0">
-          <TopNavigationBar />
+          <TopNavigationBar title={"Home"} />
           {/* ## USING CONDITIONAL RENDERING HERE TO DIFFRENTIATE 1ST TIME USER AND WELL SETUP USER */}
           {profileSetup == false ? (
             // ~~ WHEN USER LOGIN 1ST TIME ~~
@@ -103,16 +104,35 @@ function HomePage() {
               {/* // ~~ WHEN USER LOGIN AFTER PROFILE SETUP ~~ */}
               <h2>
                 <div className="p-6">
-                  <h2 className="mt-2 font-medium text-3xl ">
+                  <h2 className="mt-2 heading2 ">
                     {organizationData?.company_name}
                   </h2>
                   {/* // ~~ To show departments */}
-                  <div className="flex gap-6 items-center justify-center text-center">
+                  <div className="flex gap-6 items-center justify-center text-center mt-12">
                     {organizationDeatails?.[6][1].map((e, index) => {
+                      //to get random number value as src
+                      let imageNumber = Math.floor(Math.random() * 3);
+
                       return (
-                        <div className="shadows bg-white rounded-2xl w-40 h-28 items-center flex justify-center flex-col cursor-pointer">
-                          <HiOfficeBuilding className="text-2xl text-blue-500 shadow-lg" />
-                          <h2 className="text-xl font-extralight">{e}</h2>
+                        <div
+                          key={index}
+                          className="mt-16 relative shadows  rounded-2xl w-52 h-52 items-center flex justify-center flex-col cursor-pointer"
+                        >
+                          <img
+                            src={depImages[imageNumber]}
+                            // width={220}
+                            // height={220}
+                            className="block  brightness-50 rounded-md shadow-md border border-solid border-gray-300 drop-shadow-md
+                            hover:blur-sm
+                            
+                            "
+                            alt=""
+                          />
+                          <h2 className="heading2b  absolute  text-white top-1/2">
+                            {e}
+                          </h2>
+
+                          {/* <HiOfficeBuilding className="text-4xl text-blue-500 shadow-lg" /> */}
                         </div>
                       );
                     })}

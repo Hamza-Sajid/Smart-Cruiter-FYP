@@ -150,7 +150,7 @@ function InterviewingCandidateDetails() {
         </div>
         <div className="w-full bg-background ">
           <div className="p-0">
-            <TopNavigationBar />
+            <TopNavigationBar title={"Interviewing"} />
             <TopRcruitementCycle />
             <div className="w-11/12 m-auto">
               <SwitchStatus id={id} />

@@ -18,7 +18,7 @@ function HiredCandidates() {
         </div>
         <div className="w-screen bg-background ">
           <div className="p-0 w-full">
-            <TopNavigationBar className="w-full" />
+            <TopNavigationBar title={"Hired"} className="w-full" />
             <TopRcruitementCycle id={id} />
           </div>
           <div className="w-11/12 m-auto mt-12  ">

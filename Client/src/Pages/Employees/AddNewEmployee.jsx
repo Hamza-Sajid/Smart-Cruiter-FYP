@@ -10,12 +10,12 @@ function AddNewEmployee() {
       </div>
       <div className="w-full bg-background">
         <div className="p-0">
-          <TopNavigationBar />
+          <TopNavigationBar title={"Employee Update"} />
         </div>
 
         <div className="p-6 mt-12 bg-white w-3/4 block m-auto rounded-md  modalShadow">
           <h2 className="heading3 text-center font-medium mt-4">
-            Add employee informatoin
+            Add employee information
           </h2>
 
           <img src={ProfilePic} className="block m-auto mt-4"></img>

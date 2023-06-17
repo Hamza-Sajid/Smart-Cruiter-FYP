@@ -38,7 +38,7 @@ function CreateJob() {
       </div>
       <div className="w-full bg-background ">
         <div className="p-0">
-          <TopNavigationBar />
+          <TopNavigationBar title={"Jobs"} />
 
           <CreateJobHeadaer setData={setData} />
         </div>

@@ -12,7 +12,7 @@ import {
 import axios from "axios";
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { object, string, ref } from "yup";
 import MainButton from "../../Components/Common/MainButton";
 import ErrorLogo from "../../assets/icons/error.png";
@@ -139,7 +139,11 @@ function Registration() {
               </ModalBody>
 
               <ModalFooter margin={"auto"}>
-                <Button onClick={() => navigate("/")} colorScheme="blue" mr={3}>
+                <Button
+                  onClick={() => navigate("/login")}
+                  colorScheme="blue"
+                  mr={3}
+                >
                   Go to Login
                 </Button>{" "}
               </ModalFooter>
@@ -306,9 +310,11 @@ function Registration() {
               <MainButton value={"Register"}></MainButton>
               <p className="line2 text-secondrytext mt-3">
                 Already have an account?
-                <a href="" className="inline ml-2 cursor-pointer text-black">
-                  Login
-                </a>
+                <Link to={"/"}>
+                  <a href="" className="inline ml-2 cursor-pointer text-black">
+                    Login
+                  </a>
+                </Link>
               </p>
             </div>
           </form>

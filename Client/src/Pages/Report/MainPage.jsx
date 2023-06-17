@@ -158,7 +158,7 @@ function MainPage() {
       </div>
       <div className="w-full bg-background">
         <div className="p-0">
-          <TopNavigationBar />
+          <TopNavigationBar title={"Statistics"} />
         </div>
 
         <div className="p-6 mt-12 block m-auto">

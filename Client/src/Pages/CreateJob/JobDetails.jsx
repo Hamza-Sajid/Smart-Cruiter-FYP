@@ -53,7 +53,7 @@ function JobDetails() {
       </div>
       <div className="w-full  bg-">
         <div className="p-0">
-          <TopNavigationBar />
+          <TopNavigationBar title={"Applied"} />
           <TopRcruitementCycle id={id} />
           {/* FILTER PROFILE AND APPLICANT LIST SECTION */}
           <div className="flex flex-row ">

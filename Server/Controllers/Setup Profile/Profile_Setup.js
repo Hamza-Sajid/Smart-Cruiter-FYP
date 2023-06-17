@@ -76,7 +76,6 @@ const ProfileRouter = async (req, res, next) => {
 
         try {
 
-            console.log('trying fucking this')
             //Now 1st i have to get the acutall id value from _id with this code
 
             var user_id = org._id;
@@ -106,7 +105,7 @@ const ProfileRouter = async (req, res, next) => {
     else if (checkUser.org_registered == true) {
         // console.log('2nd time hai');
         // console.log('already organizaion is REGISTERED  :-> STATUS  = ' + checkUser.org_registered);
-        return res.status(400).json({ message: "Already Organization Setup On This Profile" })
+        return res.status(400).json({ message: "Already Organization Setup Or Fill Employee All Details" })
     }
 
 

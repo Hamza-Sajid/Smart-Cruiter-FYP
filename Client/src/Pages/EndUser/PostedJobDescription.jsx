@@ -26,7 +26,7 @@ function PostedJobDescription() {
   useEffect(() => {
     fetchJobDescription();
   }, [0]);
-
+  console.log(details);
   const navigate = useNavigate();
   const handle = () => {
     const { org_id, _id } = details;
@@ -44,6 +44,7 @@ function PostedJobDescription() {
           src="https://usv.edu/wp-content/uploads/2017/02/GamingStudioMain.jpg"
           alt=""
         /> */}
+
         <h1 className="font-bold text-5xl text-white text-center pt-20">
           {details?.jobPosition}
         </h1>
@@ -54,8 +55,16 @@ function PostedJobDescription() {
         border-2 border-solid border-gray-200
       "
       >
-        <h2 className="heading3">Job Description</h2>
-
+        <h2 className="heading2b mt-4">Job Description</h2>
+        <div className="p-2">
+          <h4 className="font-bold">
+            Pay : {details?.salaryRangeFrom} ~~ to ~~ {details?.salaryRangeUpto}
+          </h4>
+          <h4 className="font-bold">
+            Totall No Of Jobs : {details?.numberOfSeats}
+          </h4>
+          <h4 className="font-bold">Company : {details?.org_name}</h4>
+        </div>
         <p
           className="mt-6 heading4"
           dangerouslySetInnerHTML={{ __html: details?.job_description }}
@@ -63,9 +72,6 @@ function PostedJobDescription() {
         <button className="btn mt-6 block m-auto shadow-lg" onClick={handle}>
           Apply
         </button>
-        <h4 className="font-bold">
-          Pay : {details?.salaryRangeFrom} ~~ to ~~ {details?.salaryRangeUpto}
-        </h4>
       </div>
     </div>
   );

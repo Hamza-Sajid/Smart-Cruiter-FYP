@@ -17,7 +17,7 @@ function WithdrawnDetails() {
         </div>
         <div className="w-screen bg-background ">
           <div className="p-0 w-full">
-            <TopNavigationBar className="w-full" />
+            <TopNavigationBar title={"Withdrawn"} className="w-full" />
             <TopRcruitementCycle />
           </div>
 

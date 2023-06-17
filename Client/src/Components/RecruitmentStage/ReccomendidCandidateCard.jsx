@@ -30,6 +30,7 @@ function ReccomendidCandidateCard({ id }) {
   }, [0]);
 
   const navigate = useNavigate();
+
   return (
     <div>
       {candidate?.length !== 0 ? (

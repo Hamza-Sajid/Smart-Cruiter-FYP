@@ -20,7 +20,7 @@ function AppliedCandidateDetails() {
         </div>
         <div className="w-full bg-background ">
           <div className="p-0">
-            <TopNavigationBar />
+            <TopNavigationBar title={"Applied"} />
             <TopRcruitementCycle id={id} />
             <div className="w-11/12 m-auto">
               <SwitchStatus id={id} />

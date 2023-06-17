@@ -80,7 +80,7 @@ function PostJob() {
       </div>
       <div className="w-full bg-background ">
         <div className="p-0">
-          <TopNavigationBar />
+          <TopNavigationBar title={"Jobs"} />
         </div>
 
         {/* component */}
@@ -243,6 +243,7 @@ function PostJob() {
                 <option value={"Part Time"}>Part Time</option>
                 <option value={"Remote Based"}>Remote</option>
                 <option value={"Project Based"}>Project Based</option>
+                <option value={"Hourly"}>hourly</option>
               </select>
             </div>
           </div>
@@ -311,7 +312,7 @@ function PostJob() {
 
           {/* Cover Photo Input Fields With Button */}
 
-          <div className="flex flex-col  w-4/5 m-auto mt-20">
+          {/* <div className="flex flex-col  w-4/5 m-auto mt-20">
             <div>
               <h2 className="inline heading3 mr-6">Select an cover photo</h2>
 
@@ -333,7 +334,7 @@ function PostJob() {
                 *cover photo will be shown on the job career page
               </p>
             </div>
-          </div>
+          </div> */}
 
           {/* DESCRIPTION INPUT FILD */}
 

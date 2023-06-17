@@ -4,7 +4,7 @@ import { useState } from "react";
 import { redirect, useNavigate } from "react-router-dom";
 
 import NotificationLogo from "../../assets/icons/notification.svg";
-function TopNavigationBar() {
+function TopNavigationBar({ title }) {
   const [profileURL, setProfileURL] = useState();
   useEffect(() => {
     // axios POST request
@@ -27,7 +27,7 @@ function TopNavigationBar() {
       // console.log(response);
     });
   }, [0]);
-
+  // console.log(title);
   const navigate = useNavigate();
   return (
     // <div className="flex  items-center p-2  topNavigationBoxShadow bg-white">
@@ -88,7 +88,7 @@ function TopNavigationBar() {
               />
             </svg>
           </div>
-          Home
+          {title}
         </a>
       </div>
       <div className="flex-none">

@@ -11,12 +11,12 @@ function MainPageOfEmployees() {
       </div>
       <div className="w-full bg-background">
         <div className="p-0">
-          <TopNavigationBar />
+          <TopNavigationBar title={"Employees"} />
         </div>
         <div className="p-6 mt-4 flex items-center gap-16">
           <h2 className="heading3">Your Employees</h2>
           <Link to={"add"}>
-            <button className="btn bg-primary border-none btn-sm">
+            <button className="btn bg-primary border-none ">
               Add Employees
             </button>
           </Link>
@@ -28,6 +28,9 @@ function MainPageOfEmployees() {
           height={300}
           className="block m-auto mt-20"
         ></img>
+        <h2 className="heading2b text-center mt-12">
+          Currently no active employee
+        </h2>
       </div>
     </div>
   );
