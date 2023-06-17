@@ -46,7 +46,7 @@ function CreateJobHeadaer({ setData }) {
     <div className="flex  w-10/12  m-auto justify-center text-center items-center  topNavigationBoxShadow bg-transparent mt-2 p-10   ml-12 h-14  ">
       {/* --> Main Create Job Button */}
 
-      <div className="w-2/6 text-center">
+      <div className="w-full sm:w-1/2 text-center">
         <Link to={"/postjob"}>
           <button
             type="submit"
@@ -59,7 +59,7 @@ function CreateJobHeadaer({ setData }) {
 
       {/* 2nd flex div */}
 
-      <div className="w-full flex justify-end items-center mr-12  ">
+      <div className="w-full flex justify-end items-center -mr-10 sm:mr-12  ">
         {/* ==> Job Status Button */}
         <button
           onClick={() => SetJobStatus(!jobStatus)}

@@ -76,7 +76,7 @@ function Login() {
 
   return (
     <div className=" bg-gray-100 h-screen w-screen">
-      <div className="flex flex-wrap justify-center m-auto items-center  bg-white   w-3/4 h-auto shadows">
+      <div className="flex flex-wrap justify-center m-auto items-center  bg-white  w-full  sm:w-3/4 h-auto shadows">
         <div className="w-full  p-10  sm:w-1/2">
           <h1 className="font-extrabold text-transparent text-6xl bg-clip-text bg-gradient-to-r from-blue-500 to-black">
             Smart Cruiter
@@ -143,7 +143,7 @@ function Login() {
                 </div>
 
                 <div className=" ml-0  sm:ml-24">
-                  <Link to={"forgetpwd"} className="line1 cursor-pointer">
+                  <Link to={"/forgetpwd"} className="line1 cursor-pointer">
                     Forget password?
                   </Link>
                 </div>
@@ -168,10 +168,10 @@ function Login() {
 
             <hr className="mt-6 mb-4 w-2/4 ml-16 " />
 
-            <h4 className="inline line2 text-secondrytext ml-12">
+            <h4 className="inline line2 text-secondrytext ml-0 sm:ml-12">
               Don't have an account yet?{" "}
               <Link
-                to={"register"}
+                to={"/register"}
                 className="inline ml-2 cursor-pointer text-black"
               >
                 Signup

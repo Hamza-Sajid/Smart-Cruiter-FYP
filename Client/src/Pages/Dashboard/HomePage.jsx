@@ -108,7 +108,7 @@ function HomePage() {
                     {organizationData?.company_name}
                   </h2>
                   {/* // ~~ To show departments */}
-                  <div className="flex gap-6 items-center justify-center text-center mt-12">
+                  <div className="flex flex-wrap gap-6 items-center justify-center text-center mt-12">
                     {organizationDeatails?.[6][1].map((e, index) => {
                       //to get random number value as src
                       let imageNumber = Math.floor(Math.random() * 3);
@@ -122,13 +122,13 @@ function HomePage() {
                             src={depImages[imageNumber]}
                             // width={220}
                             // height={220}
-                            className="block  brightness-50 rounded-md shadow-md border border-solid border-gray-300 drop-shadow-md
+                            className="w-52 h-52 block  brightness-50 rounded-md shadow-md border border-solid border-gray-300 drop-shadow-md
                             hover:blur-sm
                             
                             "
                             alt=""
                           />
-                          <h2 className="heading2b  absolute  text-white top-1/2">
+                          <h2 className=" heading2b  absolute  text-white top-1/2">
                             {e}
                           </h2>
 

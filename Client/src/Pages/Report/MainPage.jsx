@@ -161,8 +161,8 @@ function MainPage() {
           <TopNavigationBar title={"Statistics"} />
         </div>
 
-        <div className="p-6 mt-12 block m-auto">
-          <div className="flex w-3/5 m-auto gap-20 justify-center ">
+        <div className="p-6  mt-12 block m-auto">
+          <div className="flex flex-wrap w-3/5 m-auto gap-20 justify-center ">
             <div className="">
               <h2 className="heading2b text-center">Jobs Created</h2>
               <h5 className="text-center heading4 mb-2">Till now</h5>
@@ -279,6 +279,7 @@ APPLICANT CITY
             {/* <ResponsiveContainer width="100%" height="100%"> */}
 
             <BarChart
+              className="overflow-hidden"
               width={1000}
               height={300}
               data={UniversityLists}

@@ -61,7 +61,7 @@ function ForgetPassword() {
   // console.log(error);
   return (
     <div className="flex h-screen bg-background">
-      <div className="m-auto shadows  w-11/12 sm:w-2/3 h-4/5 p-2">
+      <div className="m-auto shadows  w-full sm:w-2/3 h-4/5 p-8 sm:p-2">
         <img
           className="m-auto"
           width="120"
