@@ -8,7 +8,7 @@ const app = express();
 // -> Email sending code
 
 const sendVerifyEmail = async (name, email, id) => {
-  // console.log("SENGING VERIFY EMAIL")
+  console.log("SENGING VERIFY EMAIL")
   const htmlCode = `
     <!DOCTYPE html>
 <html>
@@ -267,14 +267,18 @@ For account verification this link has been sent kindly click on verify  button 
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
+        return res.status(200).json({ message: "Registered Sucessfully!" });
+
         console.log(error);
       } else {
+        return res.status(400).json({ message: error });
         console.log(`Email sent: ${info.response}`);
       }
     });
 
   } catch (error) {
     console.log("Error -> " + error);
+    return res.status(500).json({ message: error });
   }
 }
 
@@ -366,8 +370,7 @@ const register = async (req, res, next) => {
   }
   // -> Returning success message
 
-  await sendVerifyEmail(f_name, email, user._id),
-    res.status(200).json({ message: "Registered Sucessfully!" });
-};
+  await sendVerifyEmail(f_name, email, user._id)
+}
 
 module.exports = register;
