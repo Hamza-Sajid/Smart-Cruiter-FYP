@@ -267,18 +267,18 @@ For account verification this link has been sent kindly click on verify  button 
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        return res.status(200).json({ message: "Registered Sucessfully!" });
 
         console.log(error);
       } else {
-        return res.status(400).json({ message: error });
+
         console.log(`Email sent: ${info.response}`);
+
       }
     });
 
   } catch (error) {
     console.log("Error -> " + error);
-    return res.status(500).json({ message: error });
+
   }
 }
 
@@ -361,6 +361,7 @@ const register = async (req, res, next) => {
   try {
 
     await user.save();
+    await sendVerifyEmail(f_name, email, user._id)
   } catch (error) {
     // -> Handling error
     console.log("An error occured:>  " + error);
@@ -370,7 +371,8 @@ const register = async (req, res, next) => {
   }
   // -> Returning success message
 
-  await sendVerifyEmail(f_name, email, user._id)
+
+  return res.status(200).json({ message: "Registered Sucessfully!" });
 }
 
 module.exports = register;

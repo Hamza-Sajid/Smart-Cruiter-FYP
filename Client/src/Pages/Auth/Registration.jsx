@@ -54,7 +54,7 @@ function Registration() {
 
   const handleRegitser = async (inputData) => {
     const options = {
-      url: "https://smart-cruiter-fyp.vercel.app/register",
+      url: "http://localhost:3000/register",
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -65,6 +65,7 @@ function Registration() {
 
     axios(options)
       .then((response) => {
+        console.log(response);
         if (response.status == 200) {
           console.log(200);
           onOpen();
