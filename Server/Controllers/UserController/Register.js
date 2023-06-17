@@ -8,7 +8,7 @@ const app = express();
 // -> Email sending code
 
 const sendVerifyEmail = async (name, email, id) => {
-
+  // console.log("SENGING VERIFY EMAIL")
   const htmlCode = `
     <!DOCTYPE html>
 <html>
@@ -176,7 +176,7 @@ For account verification this link has been sent kindly click on verify  button 
                     <table border="0" cellpadding="0" cellspacing="0">
                       <tr>
                         <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-                          <a href="http://localhost:3000/verify?id=`+ id + `" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Verify Now</a>
+                          <a href="https://smart-cruiter-fyp.vercel.app/verify?id=`+ id + `" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Verify Now</a>
                         </td>
                       </tr>
                     </table>
@@ -336,7 +336,7 @@ const register = async (req, res, next) => {
     $or: [{ username }, { email }],
   });
   if (existingUser) {
-    console.log('user alreay exists in system');
+    // console.log('user alreay exists in system');
     return res.status(409).json({ error: "Username or email already taken." });
 
   }
@@ -365,7 +365,8 @@ const register = async (req, res, next) => {
       .json({ error: "An error occurred while saving the user." });
   }
   // -> Returning success message
-  sendVerifyEmail(f_name, email, user._id),
+
+  await sendVerifyEmail(f_name, email, user._id),
     res.status(200).json({ message: "Registered Sucessfully!" });
 };
 
