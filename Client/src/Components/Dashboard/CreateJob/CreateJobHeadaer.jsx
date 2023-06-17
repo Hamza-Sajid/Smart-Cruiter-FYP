@@ -10,7 +10,7 @@ function CreateJobHeadaer({ setData }) {
   const filterShowClosedJobs = () => {
     // axios POST request
     const options = {
-      url: "http://localhost:3000/job/get-jobs/closed",
+      url: "https://smart-cruiter-fyp.vercel.app/job/get-jobs/closed",
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -27,7 +27,7 @@ function CreateJobHeadaer({ setData }) {
   const filterShowActiveJobs = () => {
     // axios POST request
     const options = {
-      url: "http://localhost:3000/job/get-jobs/active",
+      url: "https://smart-cruiter-fyp.vercel.app/job/get-jobs/active",
       method: "POST",
       headers: {
         Accept: "application/json",

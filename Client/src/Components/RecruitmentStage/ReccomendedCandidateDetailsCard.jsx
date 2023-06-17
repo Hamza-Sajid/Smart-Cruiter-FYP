@@ -15,7 +15,7 @@ function ReccomendedCandidateDetailsCard({ id, user, SetUser, setID }) {
     const getCanidateDetails = () => {
       // axios POST request
       const options = {
-        url: "http://localhost:3000/details/active/reccomended/details",
+        url: "https://smart-cruiter-fyp.vercel.app/details/active/reccomended/details",
         method: "POST",
         headers: {
           Accept: "application/json",

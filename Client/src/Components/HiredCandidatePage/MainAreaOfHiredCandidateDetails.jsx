@@ -12,7 +12,7 @@ function MainAreaOfHiredCandidateDetails() {
     const fetchAllInterviewingCanidate = () => {
       // axios POST request
       const options = {
-        url: "http://localhost:3000/details/active/hired",
+        url: "https://smart-cruiter-fyp.vercel.app/details/active/hired",
         method: "POST",
         headers: {
           Accept: "application/json",

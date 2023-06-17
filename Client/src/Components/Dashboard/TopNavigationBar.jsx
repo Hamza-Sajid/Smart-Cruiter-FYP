@@ -9,7 +9,7 @@ function TopNavigationBar({ title }) {
   useEffect(() => {
     // axios POST request
     const options = {
-      url: "http://localhost:3000/getProfilePic",
+      url: "https://smart-cruiter-fyp.vercel.app/getProfilePic",
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -141,7 +141,7 @@ function TopNavigationBar({ title }) {
                 localStorage.removeItem("token");
                 localStorage.removeItem("organization_id");
                 localStorage.removeItem("user_id");
-                navigate("/");
+                navigate("/login");
               }}
             >
               <a>Logout</a>

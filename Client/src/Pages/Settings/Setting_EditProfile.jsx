@@ -87,7 +87,7 @@ function Setting_EditProfile() {
     formData.append("data", inputValue);
 
     axios
-      .post("http://localhost:3000/settings/updateProfileData", {
+      .post("https://smart-cruiter-fyp.vercel.app/settings/updateProfileData", {
         inputValue,
         org_id,
       })

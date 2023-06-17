@@ -9,7 +9,7 @@ function MainPage() {
     const fetchData = () => {
       // axios POST request
       const options = {
-        url: "http://localhost:3000/job/get-jobs",
+        url: "https://smart-cruiter-fyp.vercel.app/job/get-jobs",
         method: "POST",
         headers: {
           Accept: "application/json",

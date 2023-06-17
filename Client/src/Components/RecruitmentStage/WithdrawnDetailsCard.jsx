@@ -24,7 +24,7 @@ function WithdrawnDetailsCard({ id }) {
   useEffect(() => {
     // axios POST request
     const options = {
-      url: "http://localhost:3000/details/active/withdrawn/details",
+      url: "https://smart-cruiter-fyp.vercel.app/details/active/withdrawn/details",
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -50,7 +50,7 @@ function WithdrawnDetailsCard({ id }) {
   const handleTextValue = () => {
     // axios POST request
     const options = {
-      url: "http://localhost:3000/details/active/withdrawn/details/updateReason",
+      url: "https://smart-cruiter-fyp.vercel.app/details/active/withdrawn/details/updateReason",
       method: "POST",
       headers: {
         Accept: "application/json",

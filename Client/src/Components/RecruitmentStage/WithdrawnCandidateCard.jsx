@@ -16,7 +16,7 @@ function WithdrawnCandidateCard({ id }) {
   useEffect(() => {
     const getCandidates = async () => {
       const options = {
-        url: "http://localhost:3000/details/active/withdrawn",
+        url: "https://smart-cruiter-fyp.vercel.app/details/active/withdrawn",
         method: "POST",
         headers: {
           Accept: "application/json",

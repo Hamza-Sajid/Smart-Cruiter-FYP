@@ -51,7 +51,7 @@ function PostJob() {
   const handleSubmit = async () => {
     // axios POST request
     const options = {
-      url: "http://localhost:3000/job/post",
+      url: "https://smart-cruiter-fyp.vercel.app/job/post",
       method: "POST",
       headers: {
         Accept: "application/json",

@@ -25,7 +25,7 @@ function VerifyOPT() {
     };
     convertValues();
     const options = {
-      url: "http://localhost:3000/verify-forget-pwd",
+      url: "https://smart-cruiter-fyp.vercel.app/verify-forget-pwd",
       method: "POST",
       headers: {
         Accept: "application/json",

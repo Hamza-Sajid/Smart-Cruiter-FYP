@@ -59,7 +59,7 @@ function ProfileAddTeam() {
   const post_Method = () => {
     // axios POST request
     const options = {
-      url: "http://localhost:3000/profile/setup",
+      url: "https://smart-cruiter-fyp.vercel.app/profile/setup",
       method: "POST",
       headers: {
         Accept: "application/json",

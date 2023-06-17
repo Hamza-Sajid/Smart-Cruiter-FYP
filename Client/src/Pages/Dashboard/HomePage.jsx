@@ -23,7 +23,7 @@ function HomePage() {
   const CheckAuth = async () => {
     axios
       .post(
-        "http://localhost:3000/home",
+        "https://smart-cruiter-fyp.vercel.app/home",
         {},
         {
           headers: {
@@ -49,7 +49,7 @@ function HomePage() {
     dispatch(fetchOrganizationDataStart());
 
     axios
-      .post("http://localhost:3000/dashboard", {
+      .post("https://smart-cruiter-fyp.vercel.app/dashboard", {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json;charset=UTF-8",

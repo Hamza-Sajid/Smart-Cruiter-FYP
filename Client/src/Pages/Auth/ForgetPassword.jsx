@@ -20,7 +20,7 @@ function ForgetPassword() {
   const handleLogin = async (inputData) => {
     console.log(" i am going to run");
     const options = {
-      url: "http://localhost:3000/forget-password",
+      url: "https://smart-cruiter-fyp.vercel.app/forget-password",
       method: "POST",
       headers: {
         Accept: "application/json",

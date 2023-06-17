@@ -39,7 +39,7 @@ function InterviewingCandidateDetails() {
     const fetchAllInterviewingCanidate = () => {
       // axios POST request
       const options = {
-        url: "http://localhost:3000/details/active/interviewing/details",
+        url: "https://smart-cruiter-fyp.vercel.app/details/active/interviewing/details",
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -74,7 +74,7 @@ function InterviewingCandidateDetails() {
     // axios POST request
 
     const options = {
-      url: "http://localhost:3000/details/active/interviewing/details/dateandtime",
+      url: "https://smart-cruiter-fyp.vercel.app/details/active/interviewing/details/dateandtime",
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -378,7 +378,7 @@ function InterviewingCandidateDetails() {
                         onClick={() => {
                           // axios POST request
                           const options = {
-                            url: "http://localhost:3000/details/active/interviewing/details/sendInterviewEmail",
+                            url: "https://smart-cruiter-fyp.vercel.app/details/active/interviewing/details/sendInterviewEmail",
                             method: "POST",
                             headers: {
                               Accept: "application/json",

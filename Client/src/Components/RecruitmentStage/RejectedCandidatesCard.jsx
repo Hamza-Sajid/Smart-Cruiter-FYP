@@ -26,7 +26,7 @@ function RejectedCandidateCard({ id }) {
   useEffect(() => {
     const getCandidates = async () => {
       const options = {
-        url: "http://localhost:3000/details/active/rejected",
+        url: "https://smart-cruiter-fyp.vercel.app/details/active/rejected",
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -68,7 +68,7 @@ function RejectedCandidateCard({ id }) {
       setShowSpinner(true);
       // axios POST request
       const options = {
-        url: "http://localhost:3000/details/active/hired/sendEmail",
+        url: "https://smart-cruiter-fyp.vercel.app/details/active/hired/sendEmail",
         method: "POST",
         headers: {
           Accept: "application/json",
