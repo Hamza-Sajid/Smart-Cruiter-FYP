@@ -177,6 +177,17 @@ function Login() {
                 Signup
               </Link>
             </h4>
+            <div>
+              <h4 className="inline line2 text-secondrytext ml-0 sm:ml-12">
+                Explore Jobs?
+                <Link
+                  to={"/portal/job"}
+                  className="inline ml-2 cursor-pointer text-gray-100 bg-gray-700 p-1 rounded-md"
+                >
+                  View
+                </Link>
+              </h4>
+            </div>
           </div>
         </div>
         {/* 2nd Div */}

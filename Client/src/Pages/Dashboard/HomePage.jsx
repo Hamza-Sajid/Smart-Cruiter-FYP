@@ -82,7 +82,7 @@ function HomePage() {
 
   return (
     <div className="flex bg-white">
-      <div className="hidden sm:block w-2/12 bg-white h-screen">
+      <div className="hidden sm:block w-2/12  h-screen">
         <LeftMenuBar />
       </div>
       <div className="w-full bg-background">

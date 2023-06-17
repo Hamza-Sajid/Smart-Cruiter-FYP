@@ -234,6 +234,16 @@ function TopNavigationBar({ title }) {
                 </div>
               </div>
             </div>
+
+            <Link to={"portal/job"}>
+              <div
+                className="flex w-full rounded-md m-auto bg-primary text-white cursor-pointer  justify-center mt-12 items-end p-2
+      hover:bg-primary hover:text-white
+      "
+              >
+                <h4 className="heading3b">View Posted Jobs</h4>
+              </div>
+            </Link>
           </div>
         ) : undefined}
 
