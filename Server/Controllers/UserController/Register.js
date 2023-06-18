@@ -249,9 +249,10 @@ For account verification this link has been sent kindly click on verify  button 
   try {
     console.log("now started trying at - least")
     const transporter = mailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
+      service: 'gmail',
+      // host: 'smtp.gmail.com',
+      // port: 587,
+      // secure: false,
       auth: {
         user: process.env.MAILUSER,
         pass: process.env.MAILPASS,
@@ -265,8 +266,10 @@ For account verification this link has been sent kindly click on verify  button 
       subject: 'Account Activation [Smart Cruiter]',
       html: htmlCode,
     };
-    console.log("trying to send")
+
     transporter.sendMail(mailOptions, (error, info) => {
+
+      console.log("in transporter")
       if (error) {
 
         console.log(error);

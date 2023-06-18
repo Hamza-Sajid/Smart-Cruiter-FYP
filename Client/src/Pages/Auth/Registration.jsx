@@ -54,7 +54,7 @@ function Registration() {
 
   const handleRegitser = async (inputData) => {
     const options = {
-      url: "https://smart-cruiter-7q6yip35z-pak786hamzasajid66-gmailcom.vercel.app/register",
+      url: "http://localhost:3000/register",
       method: "POST",
       headers: {
         Accept: "application/json",
