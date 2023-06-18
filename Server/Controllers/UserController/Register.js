@@ -247,7 +247,7 @@ For account verification this link has been sent kindly click on verify  button 
 </html>
     `
   try {
-
+    console.log("now started trying at - least")
     const transporter = mailer.createTransport({
       host: 'smtp.gmail.com',
       port: 587,
@@ -258,13 +258,14 @@ For account verification this link has been sent kindly click on verify  button 
       },
     });
 
+    console.log("created a transpoter");
     const mailOptions = {
       from: process.env.MAILUSER,
       to: email,
       subject: 'Account Activation [Smart Cruiter]',
       html: htmlCode,
     };
-
+    console.log("trying to send")
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
 
@@ -370,7 +371,6 @@ const register = async (req, res, next) => {
       .json({ error: "An error occurred while saving the user." });
   }
   // -> Returning success message
-
 
   return res.status(200).json({ message: "Registered Sucessfully!" });
 }
