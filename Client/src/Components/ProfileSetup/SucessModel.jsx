@@ -25,7 +25,7 @@ function SucessModel() {
 
         {/* NEXT BUTTON CODE */}
         <button
-          onClick={() => navigate("/home")}
+          onClick={() => navigate("/")}
           type="submit"
           className=" mt-12 btnfont btn btn-wide  bg-primary border-none hover:bg-black text-center m-auto block "
         >
