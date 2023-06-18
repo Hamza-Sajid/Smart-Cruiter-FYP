@@ -17,7 +17,7 @@ function FeedbackForm({ id, rating }) {
     const fetchAllInterviewingCanidate = () => {
       // axios POST request
       const options = {
-        url: "https://smart-cruiter-fyp.vercel.app/details/active/interviewing/details",
+        url: "https://smart-cruiter-fyp-production.up.railway.app/details/active/interviewing/details",
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -48,7 +48,7 @@ function FeedbackForm({ id, rating }) {
   const handleFeebackForm = () => {
     // axios POST request
     const options = {
-      url: "https://smart-cruiter-fyp.vercel.app/details/active/interviewing/details/savefeedback",
+      url: "https://smart-cruiter-fyp-production.up.railway.app/details/active/interviewing/details/savefeedback",
       method: "POST",
       headers: {
         Accept: "application/json",

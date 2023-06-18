@@ -18,7 +18,7 @@ function AppliedApplicantProfile({ id }) {
     const fetchData = () => {
       // axios POST request
       const options = {
-        url: "https://smart-cruiter-fyp.vercel.app/details/active/user",
+        url: "https://smart-cruiter-fyp-production.up.railway.app/details/active/user",
         method: "POST",
         headers: {
           Accept: "application/json",

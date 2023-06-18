@@ -17,7 +17,7 @@ function JobDetails() {
       // dispath(startFetchingCandidatesData());
       // axios POST request
       const options = {
-        url: "https://smart-cruiter-fyp.vercel.app/details/active/applied",
+        url: "https://smart-cruiter-fyp-production.up.railway.app/details/active/applied",
         method: "POST",
         headers: {
           Accept: "application/json",

@@ -117,7 +117,7 @@ function PostedJobApplyForm() {
     };
     // console.log(userData);
     const options = {
-      url: "https://smart-cruiter-fyp.vercel.app/job/apply-to-job",
+      url: "https://smart-cruiter-fyp-production.up.railway.app/job/apply-to-job",
       method: "POST",
       headers: {
         Accept: "application/json",

@@ -37,7 +37,7 @@ function EnterNewPassword() {
     convertValues();
     const password = pass.confirmpwd;
     const options = {
-      url: "https://smart-cruiter-fyp.vercel.app/new-password",
+      url: "https://smart-cruiter-fyp-production.up.railway.app/new-password",
       method: "POST",
       headers: {
         Accept: "application/json",

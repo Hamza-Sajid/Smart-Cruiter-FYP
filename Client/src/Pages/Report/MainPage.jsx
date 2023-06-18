@@ -76,7 +76,7 @@ function MainPage() {
   useEffect(() => {
     const getCandidates = async () => {
       const options = {
-        url: "https://smart-cruiter-fyp.vercel.app/report/main",
+        url: "https://smart-cruiter-fyp-production.up.railway.app/report/main",
         method: "POST",
         headers: {
           Accept: "application/json",

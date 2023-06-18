@@ -54,7 +54,7 @@ function Registration() {
 
   const handleRegitser = async (inputData) => {
     const options = {
-      url: "http://localhost:3000/register",
+      url: "https://smart-cruiter-fyp-production.up.railway.app/register",
       method: "POST",
       headers: {
         Accept: "application/json",

@@ -87,10 +87,13 @@ function Setting_EditProfile() {
     formData.append("data", inputValue);
 
     axios
-      .post("https://smart-cruiter-fyp.vercel.app/settings/updateProfileData", {
-        inputValue,
-        org_id,
-      })
+      .post(
+        "https://smart-cruiter-fyp-production.up.railway.app/settings/updateProfileData",
+        {
+          inputValue,
+          org_id,
+        }
+      )
       .then((response) => {
         console.log(response.data);
       })

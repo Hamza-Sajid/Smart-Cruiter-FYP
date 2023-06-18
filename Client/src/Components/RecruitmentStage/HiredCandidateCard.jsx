@@ -26,7 +26,7 @@ function HiredCandidates({ id }) {
   useEffect(() => {
     const getCandidates = async () => {
       const options = {
-        url: "https://smart-cruiter-fyp.vercel.app/details/active/hired",
+        url: "https://smart-cruiter-fyp-production.up.railway.app/details/active/hired",
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -68,7 +68,7 @@ function HiredCandidates({ id }) {
       setShowSpinner(true);
       // axios POST request
       const options = {
-        url: "https://smart-cruiter-fyp.vercel.app/details/active/hired/sendEmail",
+        url: "https://smart-cruiter-fyp-production.up.railway.app/details/active/hired/sendEmail",
         method: "POST",
         headers: {
           Accept: "application/json",

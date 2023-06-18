@@ -12,7 +12,7 @@ function DeleteCandidateProfileButton({ id }) {
   const handleDeleteButton = async () => {
     // axios POST request
     const options = {
-      url: "https://smart-cruiter-fyp.vercel.app/details/active/user/delete",
+      url: "https://smart-cruiter-fyp-production.up.railway.app/details/active/user/delete",
       method: "DELETE",
       headers: {
         Accept: "application/json",

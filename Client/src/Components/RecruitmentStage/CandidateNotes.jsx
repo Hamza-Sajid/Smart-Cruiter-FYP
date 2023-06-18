@@ -23,7 +23,7 @@ function CandidateNotes({ id }) {
   const updateComment = () => {
     // axios POST request
     const options = {
-      url: "https://smart-cruiter-fyp.vercel.app/details/active/user/patch/comments",
+      url: "https://smart-cruiter-fyp-production.up.railway.app/details/active/user/patch/comments",
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -44,7 +44,7 @@ function CandidateNotes({ id }) {
   const postComments = () => {
     // axios POST request
     const options = {
-      url: "https://smart-cruiter-fyp.vercel.app/details/active/user/add/comments",
+      url: "https://smart-cruiter-fyp-production.up.railway.app/details/active/user/add/comments",
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -68,7 +68,7 @@ function CandidateNotes({ id }) {
     const getComments = () => {
       // axios GET request
       const options = {
-        url: "https://smart-cruiter-fyp.vercel.app/details/active/user/get/comments",
+        url: "https://smart-cruiter-fyp-production.up.railway.app/details/active/user/get/comments",
         method: "POST",
         headers: {
           Accept: "application/json",

@@ -11,7 +11,7 @@ function InterviewingCandidateListCard({ id }) {
     const fetchAllInterviewingCanidate = () => {
       // axios POST request
       const options = {
-        url: "https://smart-cruiter-fyp.vercel.app/details/active/interviewing",
+        url: "https://smart-cruiter-fyp-production.up.railway.app/details/active/interviewing",
         method: "POST",
         headers: {
           Accept: "application/json",

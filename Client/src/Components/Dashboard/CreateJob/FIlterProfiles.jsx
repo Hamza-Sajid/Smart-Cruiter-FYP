@@ -12,7 +12,7 @@ function FilterProfiles({ can, setCan }) {
   const filterCandidates = async (filter) => {
     // axios POST request
     const options = {
-      url: "https://smart-cruiter-fyp.vercel.app/details/active/user/filter",
+      url: "https://smart-cruiter-fyp-production.up.railway.app/details/active/user/filter",
       method: "POST",
       headers: {
         Accept: "application/json",

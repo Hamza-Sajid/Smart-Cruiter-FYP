@@ -27,7 +27,7 @@ function Login() {
   // -> handle login api call
   const handleLogin = async (inputData) => {
     const options = {
-      url: "https://smart-cruiter-fyp.vercel.app/login",
+      url: "https://smart-cruiter-fyp-production.up.railway.app/login",
       method: "POST",
       headers: {
         Accept: "application/json",

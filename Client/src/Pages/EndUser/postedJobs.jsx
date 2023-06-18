@@ -8,7 +8,7 @@ function PostedJobs() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        "https://smart-cruiter-fyp.vercel.app/job/get-all-jobs"
+        "https://smart-cruiter-fyp-production.up.railway.app/job/get-all-jobs"
       );
       setData(response.data.fetchAllPostedJobs);
     };
