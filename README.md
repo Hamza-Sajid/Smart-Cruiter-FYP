@@ -1,17 +1,17 @@
 
 # Smart Cruiter
-
+### Live Link : https://smart-cruiter-fyp-mqjf.vercel.app
 An applicant tracking management system, help organization in their hiring process with futures like:
 
 1-) Job creation
 
-2-) Managing applicants (applied , reccomended , hired , declined , withdrawn)
+2-) Managing applicants (applied, recommended, hired , declined, withdrawn)
 
-3-) You can setup online interview
+3-) You can set up an online interview
 
-4-) Send rejection or accepting email to hundred of candidates in a single click
+4-) Send rejection or accepting emails to hundreds of candidates in a single click
 
-5-) Manage record of applicant with great data visualization
+5-) Manage the record of applicants with great data visualization
 
 6-) Job details and application form for end-user
 
@@ -19,7 +19,7 @@ An applicant tracking management system, help organization in their hiring proce
 
 ## Tech Stack
 
-**Client:** React, Redux Toolkit, TailwindCSS , DaisyUI
+**Client:** React, Redux Toolkit, TailwindCSS, DaisyUI
 
 **Server:** Node, Express
 
@@ -40,7 +40,7 @@ An applicant tracking management system, help organization in their hiring proce
 
 ## Installation
 
-To nstall dependencies use npm
+To install dependencies use npm
 
 ```bash
   npm install
