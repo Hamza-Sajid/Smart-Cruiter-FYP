@@ -55,3 +55,7 @@ Frontend / Client start command:
 ```bash
   npm run dev
 ```
+
+## Need Detailed Assistance/Help?
+I'm available as a freelance MERN developer on [Fiverr](https://www.fiverr.com/mrhamzasajid/build-web-applications-with-mern-stack-reactjs-nodejs?context_referrer=seller_page&ref_ctx_id=e16faa02db8d4fd0bddae79455778a9c&pckg_id=1&pos=3&seller_online=true&imp_id=9d7c1f8d-2382-4e0d-8525-78ada752dfcc#), if you want to convert your idea to code or stuglling with bugs in your system feel free to contact me https://www.fiverr.com/mrhamzasajid
+
